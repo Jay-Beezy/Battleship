@@ -19,6 +19,14 @@ class Ship
 		Ship();
 
 		/**
+		* @pre need to delete a ship
+		* @post deletes all arrays within the class
+		* @param none
+		* @return N/A
+		**/
+		~Ship();
+
+		/**
 		* @pre Ship constructor is called and given a coordinate to start, string orientation and length
 		* @post The class is created, m_shipArray is filled with zeros
 		* @param int length, length of ship, string shipStart, coordinates for head of ship, string shipOrientation, direction ship does on board

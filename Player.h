@@ -21,6 +21,14 @@ class Player
 		Player(int ships);
 
 		/**
+		* @pre need to delete a player
+		* @post deletes all arrays within the class
+		* @param none
+		* @return N/A
+		**/
+		~Player();
+
+		/**
 		* @pre The class is created using a default constructor with no number of ships specified
 		* @post The class is created
 		* @return N/A
@@ -92,13 +100,15 @@ class Player
 		* @return true if hit lands, false if miss
 		**/
 		bool checkGrid(std::string shipCoords);
-		
+
 		/**
 		* @pre all ships have been constructed
 		* @post checks how many ships have not been destroed
 		* @return number of ships not destroyed
 		**/
 		int shipsRemaining();
+
+
 
 	private:
 		int m_ships;

@@ -26,10 +26,10 @@ Executive::~Executive() //deconstructor
 }
 
 void Executive::run() {  //runs the program
-	
+
 	std::string p1coords;
 	std::string p2coords;
-	
+
 	std::cout << "+-+-+-+-+-+-+-BATTLESHIP-+-+-+-+-+-+-+\n";
 
 	int shipAmount = 0;
@@ -43,9 +43,9 @@ void Executive::run() {  //runs the program
 		std::cin >> shipAmount;
 	}
 	//Creating Players
-	playerOne = new Player(shipAmount);
-	playerTwo = new Player(shipAmount); 
-	
+	Player playerOne(shipAmount);
+	Player playerTwo(shipAmount);
+
 	std::cout << "\nPlayer One's turn to place their ships!\n\n";
 	//Populating Player 1
 	playerOne.showWaters();
@@ -80,10 +80,7 @@ void Executive::run() {  //runs the program
 		std::cin>>p2coords;
 		playerOne.checkGrid(p2coords);
 	}
-	
-	delete playerOne;
-	delete playerTwo;
-		
+
 }
 
 void Executive::fillGrids(){
@@ -146,4 +143,3 @@ int Executive::isWinner(){
 		return(0);
 	}
 }
-
