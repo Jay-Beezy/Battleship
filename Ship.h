@@ -13,14 +13,14 @@ class Ship
 
 		/**
 		* @pre Ship default constructor is called
-	  * @post The class is created, m_shipArray is filled with zeros
+		* @post The class is created, m_shipArray is filled with zeros
 		* @return N/A
 		**/
 		Ship();
 
 		/**
 		* @pre Ship constructor is called and given a coordinate to start, string orientation and length
-	  * @post The class is created, m_shipArray is filled with zeros
+		* @post The class is created, m_shipArray is filled with zeros
 		* @param int length, length of ship, string shipStart, coordinates for head of ship, string shipOrientation, direction ship does on board
 		* @return N/A
 		**/
@@ -28,7 +28,7 @@ class Ship
 
 		/**
 		* @pre need to know if a ship is destroyed
-	  * @post outputs bool if ship is destroyed
+		* @post outputs bool if ship is destroyed
 		* @param none
 		* @return returns true if shipIntegrity is zero
 		**/
@@ -36,7 +36,7 @@ class Ship
 
 		/**
 		* @pre we need to know if the space was a ship
-	  * @post space is checked and bool is returned
+		* @post space is checked and bool is returned
 		* @param int row - row of space to be checked, char col - column index of space to be checked
 		* @return returns true if the space contains a ship
 		**/
@@ -44,7 +44,7 @@ class Ship
 
 		/**
 		* @pre we just want to know the ship's information, test function
-	  * @post tells us information about the ship
+		* @post tells us information about the ship
 		* @param none
 		* @return N/A
 		**/
@@ -52,7 +52,7 @@ class Ship
 
 		/**
 		* @pre we need to store the values of the ship's coordinates in an array
-	  * @post an array of strings(coordinates) is made, any unfilled elements stay as zero
+		* @post an array of strings(coordinates) is made, any unfilled elements stay as zero
 		* @param none
 		* @return N/A
 		**/
@@ -76,14 +76,14 @@ class Ship
 
 		/**
 		* @pre we need to turn a column number back into the letter it corresponds to on the board
-	  * @post we turned the number into a string
+		* @post we turned the number into a string
 		* @param int colnum, the column value
 		* @return std::string, the string
 		**/
 		std::string numToCol(int colnum);
 		/**
 		* @pre we need to access the private array in another class
-	  * @post we've made it so we can access the array from another class
+		* @post we've made it so we can access the array from another class
 		* @param none
 		* @return returns a pointer to the array of coordinates
 		**/
