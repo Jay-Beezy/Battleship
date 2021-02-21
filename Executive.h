@@ -19,9 +19,12 @@ class Executive
 		void printPlayerOneGrid();
 		void printPlayerTwoGrid();
 		void fillGrids();
+		int isWinner();
 
 	private:
 		int** playerOneGrid;
 		int** playerTwoGrid;
+		Player playerOne;
+		Player playerTwo;
 };
 #endif

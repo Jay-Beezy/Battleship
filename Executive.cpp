@@ -25,9 +25,11 @@ Executive::~Executive() //deconstructor
 	delete[] playerTwoGrid;
 }
 
-void Executive::run(){  //runs the program
+void Executive::run() {  //runs the program
+	
 	std::string p1coords;
 	std::string p2coords;
+	
 	std::cout << "+-+-+-+-+-+-+-BATTLESHIP-+-+-+-+-+-+-+\n";
 
 	int shipAmount = 0;
@@ -40,9 +42,12 @@ void Executive::run(){  //runs the program
 		std::cout << "How many ships do you want to use?\n";
 		std::cin >> shipAmount;
 	}
-
+	//Creating Players
+	playerOne = new Player(shipAmount);
+	playerTwo = new Player(shipAmount); 
+	
 	std::cout << "\nPlayer One's turn to place their ships!\n\n";
-	Player playerOne(shipAmount); //Creating player one
+	//Populating Player 1
 	playerOne.showWaters();
 	for(int i = 0; i < shipAmount; i++){
 		playerOne.anchorShips(i+1);
@@ -50,7 +55,7 @@ void Executive::run(){  //runs the program
 	std::cout<<"Player One, look away!\n";
 
 	std::cout << "\nPlayer Two's turn to place their ships!\n\n";
-	Player playerTwo(shipAmount); //Creating player one
+	//Populating Player 2
 	playerTwo.showWaters();
 	for(int i = 0; i < shipAmount; i++){
 		playerTwo.anchorShips(i+1);
@@ -74,8 +79,12 @@ void Executive::run(){  //runs the program
 		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
 		std::cin>>p2coords;
 		playerOne.checkGrid(p2coords);
-		}
 	}
+	
+	delete playerOne;
+	delete playerTwo;
+		
+}
 
 void Executive::fillGrids(){
 	for(int i = 0; i < 10; i++){
@@ -127,3 +136,14 @@ void Executive::printPlayerTwoGrid(){
 	}
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
+
+int Executive::isWinner(){
+	if(playerOne.shipsRemaining() == 0) {
+		return(1);
+	} else if(playerTwo.shipsRemaining() == 0) {
+		return(2);
+	} else {
+		return(0);
+	}
+}
+

@@ -17,6 +17,20 @@ Player::Player(int ships)
 	}
 }
 
+Player::Player()
+{
+	m_ships = 0;
+	playerGrid = new char*[10];
+	for(int i = 0; i < 10; i++){
+		playerGrid[i] = new char[10];
+	}
+	for(int j = 0; j < 10; j++){
+		for(int k = 0; k < 10; k++){
+			playerGrid[j][k] = 'O';
+		}
+	}
+}
+
 int Player::colToInt(char column){
 	if(column == 'A' || column == 'a'){
 		return(1);
@@ -51,7 +65,7 @@ int Player::colToInt(char column){
 	return(0);
 }
 
-void Player::checkGrid(std::string shipCoords){
+bool Player::checkGrid(std::string shipCoords){
 	char col = shipCoords.at(0);
 	char row= shipCoords.at(1);
 	int rownum = row - '0';
@@ -62,13 +76,18 @@ void Player::checkGrid(std::string shipCoords){
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
-
 			playerGrid[rownum][colnum] = 'H';
+			return true;
 		}
 		else{
 			//print miss notif, change values in showWaters to misses
-			std::cout << "Sorry you missed.\n";
-			playerGrid[rownum][colnum] = 'M';
+			if(playerGrid[rownum][colnum] == 'H') {
+				std::cout << "You hit a spot already hit.\n";
+			}else {
+				std::cout << "Sorry you missed.\n";
+				playerGrid[rownum][colnum] = 'M';
+			}
+			return false;
 		}
 	}
 
@@ -287,4 +306,14 @@ bool Player::validatePosition(int row, char col, std::string direction, int size
 		}
 	}
 	return(isValid);
+}
+
+int Player::shipsRemaining(){
+	int cnt = m_ships;
+	for(int i=0;i<m_ships;i++) {
+		if(shipArray[i].isDestroyed() ){
+			cnt--;
+		}
+	}
+	return(cnt);
 }
