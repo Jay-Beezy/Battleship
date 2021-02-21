@@ -4,13 +4,15 @@
 #include <iostream>
 
 
+Ship::Ship(){};
+
 Ship::Ship(std::string shipStart, std::string shipOrientation, int length){ //constructor
 	m_shipLength = length;
 	m_hullIntegrity = length;
 	m_shipHead = shipStart;
 	m_shipDirection = shipOrientation;
 	for(int i=0;i<6;i++){//makes sure the array never has an empty element
-		m_shipArray[i] = 0;
+		m_shipArray[i] = "0";
 	}
 }
 
@@ -87,24 +89,24 @@ std::string Ship::numToCol(int colnum){
 	return("X");//shouldn't ever happen because validate posiiton checks for this
 }
 
-void Ship::createArray(){
-
-	char headcol = m_shiphead.at(0);
-	char headrow= m_shiphead.at(1);
+void Ship::createArray()
+{
+	char headcol = m_shipHead.at(0);
+	char headrow= m_shipHead.at(1);
 	int hrow = headrow - '0';
-	int hcol = colToNum(headcol);
+	int hcol = colToNum(std::to_string(headcol));
 	std::string colstring(1,headcol);
 
 	if(m_shipDirection=="V"){
-	for(int i=0;i<size;i++){
+	for(int i=0;i<m_shipLength;i++){
 			hrow = hrow+i;
 			m_shipArray[i]= colstring+numToString(hrow);
 		}
 	}
 	if(m_shipDirection=="H"){
-	for(int i=0;i<size;i++){
+	for(int i=0;i<m_shipLength;i++){
 			hcol = hcol+i;
-			m_shipArray[i]= numToCol(headcol)+= headrow;
+			m_shipArray[i]= (numToCol(headcol) + headrow);
 		}
 	}
 }
@@ -130,7 +132,7 @@ bool Ship::isHit(int row, char col){
 	std::string hitcol(1,col);
 	hitcoords = hitcol + numToString(row);
 	for(int i=0; i<6; i++){
-		if(m_shipArray[i]=hitcoords){
+		if(m_shipArray[i]==hitcoords){
 			Hit=true;
 			m_hullIntegrity--;
 			//isDestroyed();?

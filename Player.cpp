@@ -262,7 +262,10 @@ void Player::anchorShips(int length){
 
 	if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
 		shipLocation = shipStarterCol + intToString(shipStarterRow);
-		shipArray[shipLength] = Ship newShip(shipLocation, shipPlacement, shipLength);
+
+		Ship newShip(shipLocation, shipPlacement, shipLength);
+
+		shipArray[shipLength] = newShip;
 	}
 
 	if(shipPlacement=="V"){
