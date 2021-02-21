@@ -58,7 +58,6 @@ class Executive
 		* @return N/A
 		**/
 		void fillGrids();
-		int isWinner();
 
 		/**
 		* @pre need to know if there is a winner
