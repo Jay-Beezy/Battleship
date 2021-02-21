@@ -16,6 +16,10 @@ Ship::Ship(std::string shipStart, std::string shipOrientation, int length){ //co
 	}
 }
 
+	Ship::~Ship(){
+		
+	}
+
 int Ship::colToNum(std::string column){
 	if(column == "A" || column == "a"){
 		return(1);
@@ -56,34 +60,34 @@ std::string Ship::numToString(int num){
 }
 
 std::string Ship::numToCol(int colnum){
-	if(colnum = 1){
+	if(colnum == 1){
 		return("A");
 	}
-	else if(colnum = 2){
+	else if(colnum == 2){
 		return("B");
 	}
-	else if(colnum = 3){
+	else if(colnum == 3){
 		return("C");
 	}
-	else if(colnum = 4){
+	else if(colnum == 4){
 		return("D");
 	}
-	else if(colnum = 5){
+	else if(colnum == 5){
 		return("E");
 	}
-	else if(colnum = 6){
+	else if(colnum == 6){
 		return("F");
 	}
-	else if(colnum = 7){
+	else if(colnum == 7){
 		return("G");
 	}
-	else if(colnum = 8){
+	else if(colnum == 8){
 		return("H");
 	}
-	else if(colnum = 9){
+	else if(colnum == 9){
 		return("I");
 	}
-	else if(colnum = 10){
+	else if(colnum == 10){
 		return("J");
 	}
 	return("X");//shouldn't ever happen because validate posiiton checks for this

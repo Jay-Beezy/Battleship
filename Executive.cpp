@@ -1,7 +1,6 @@
 //Executive.cpp
 
 #include "Executive.h"
-#include "Player.cpp"
 #include <iostream>
 
 
@@ -81,9 +80,6 @@ void Executive::run() {  //runs the program
 		std::cin>>p2coords;
 		playerOne.checkGrid(p2coords);
 	}
-
-	delete playerOne;
-	delete playerTwo;
 
 }
 

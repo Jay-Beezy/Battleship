@@ -17,6 +17,16 @@ Player::Player(int ships)
 	}
 }
 
+Player::~Player()
+{
+	for(int i = 0; i < 10; i++)
+	{
+		delete playerGrid[i];
+	}
+	delete[] playerGrid;
+
+}
+
 Player::Player()
 {
 	m_ships = 0;
@@ -86,11 +96,10 @@ bool Player::checkGrid(std::string shipCoords){
 			}else {
 				std::cout << "Sorry you missed.\n";
 				playerGrid[rownum][colnum] = 'M';
-			}
-			return false;
+			}		return false;
 		}
 	}
-
+return false;
 }
 
 void Player::showWaters(){
@@ -246,7 +255,7 @@ void Player::anchorShips(int length){
 	}while(validateRow(shipStarterRow) == false);
 
 
-	while(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) != true){
+	while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) != true){
 		std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 		std::cout << "\nWhere would you like to place the head of the ship? \n";
 		do{
@@ -268,41 +277,45 @@ void Player::anchorShips(int length){
 		shipArray[shipLength] = newShip;
 	}
 
-	if(shipPlacement=="V"){
+	int startercolnum = colToInt(shipStarterCol);
+
+	if(shipPlacement=="V" || shipPlacement=="v"){
 		for(int i=0;i<shipLength;i++){
-			playerGrid[shipStarterRow+i][shipStarterCol]='S';
+			playerGrid[shipStarterRow+i][startercolnum]='S';
 		}
 	}
-	if(shipPlacement=="H"){
+	if(shipPlacement=="H" || shipPlacement=="h"){
 		for(int i=0;i<shipLength;i++){
-				playerGrid[shipStarterRow][shipStarterCol+i]='S';
+				playerGrid[shipStarterRow][startercolnum+i]='S';
 		}
 	}
 }
 
 bool Player::validatePosition(int row, char col, std::string direction, int size){
-	bool isValid = false;
+	bool isValid;
 	int colnum = colToInt(col);
-	if(direction=="H"){
+	if(direction=="H" || direction == "h"){
 		for(int i=0;i<size;i++){
-			if((colnum+i)<=10 && playerGrid[row][colnum+i]==0){
+			if((colnum)<=10 && playerGrid[row][colnum+i]=='0'){
 				isValid = true;
 			}
 			else{
 				isValid = false;
 			}
+			colnum++;
 		}
 	}
 
 	//changed int i, to int j, cuz bug fixing. - andrew
-	if(direction=="V"){
+	if(direction=="V" || direction == "v"){
 		for(int j=0;j<size;j++){
-			if((row+j)<=10 && playerGrid[row+j][colnum]==0){
+			if((row)<=10 && playerGrid[row+j][colnum]=='0'){
 				isValid = true;
 			}
 			else{
 				isValid = false;
 			}
+			row++;
 		}
 	}
 	return(isValid);
