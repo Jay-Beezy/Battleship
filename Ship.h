@@ -11,6 +11,7 @@ class Ship
 
 	public:
 
+		Ship();
 
 		Ship(std::string shipStart, std::string shipOrientation, int length);
 

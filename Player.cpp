@@ -62,10 +62,7 @@ void Player::checkGrid(std::string shipCoords){
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
-			if(shipArray[i].isDestroyed())
-			{
-				//presumably things are done if it is destroyed, don't know what -andrew
-			}
+
 			playerGrid[rownum][colnum] = 'H';
 		}
 		else{
@@ -246,7 +243,10 @@ void Player::anchorShips(int length){
 
 	if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
 		shipLocation = shipStarterCol + intToString(shipStarterRow);
-		shipArray[shipLength] = Ship newShip(shipLocation, shipPlacement, shipLength);
+
+		Ship newShip(shipLocation, shipPlacement, shipLength);
+
+		shipArray[shipLength] = newShip;
 	}
 
 	if(shipPlacement=="V"){
