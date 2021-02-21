@@ -10,7 +10,7 @@ Ship::Ship(std::string shipStart, std::string shipOrientation, int length){ //co
 	m_shipHead = shipStart;
 	m_shipDirection = shipOrientation;
 	for(int i=0;i<6;i++){//makes sure the array never has an empty element
-		m_shipArray[i]=0;
+		m_shipArray[i] = 0;
 	}
 }
 

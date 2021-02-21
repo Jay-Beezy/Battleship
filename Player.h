@@ -21,6 +21,13 @@ class Player
 		Player(int ships);
 
 		/**
+		* @pre The class is created using a default constructor with no number of ships specified
+		* @post The class is created
+		* @return N/A
+		**/
+		Player();
+
+		/**
 		* @pre You need to turn a char column value to an int value
 		* @post the char is turned into the corresponding int
 		* @param char column, the column value
@@ -82,9 +89,16 @@ class Player
 		* @pre the player has inputted coordinates to fire upon, we need to check them
 		* @post checks if the ship has been hit, informs player
 		* @param std::string shipCoords, the location of the ship
-		* @return bool if checkGrid has a hit
+		* @return true if hit lands, false if miss
 		**/
 		bool checkGrid(std::string shipCoords);
+		
+		/**
+		* @pre all ships have been constructed
+		* @post checks how many ships have not been destroed
+		* @return number of ships not destroyed
+		**/
+		int shipsRemaining();
 
 	private:
 		int m_ships;

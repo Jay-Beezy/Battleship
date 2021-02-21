@@ -58,6 +58,7 @@ class Executive
 		* @return N/A
 		**/
 		void fillGrids();
+		int isWinner();
 
 		/**
 		* @pre need to know if there is a winner
@@ -70,5 +71,7 @@ class Executive
 	private:
 		int** playerOneGrid;
 		int** playerTwoGrid;
+		Player playerOne;
+		Player playerTwo;
 };
 #endif
