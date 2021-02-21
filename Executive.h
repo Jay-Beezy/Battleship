@@ -59,6 +59,14 @@ class Executive
 		**/
 		void fillGrids();
 
+		/**
+		* @pre need to know if there is a winner
+		* @post we know if there is a winner now
+		* @param none
+		* @return returns 1 if player1 wins and 2 if player2 wins
+		**/
+		int isWinner();
+
 	private:
 		int** playerOneGrid;
 		int** playerTwoGrid;
