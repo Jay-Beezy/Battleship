@@ -1,0 +1,171 @@
+\hypertarget{class_executive}{}\doxysection{Executive Class Reference}
+\label{class_executive}\index{Executive@{Executive}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_executive_ad870c1d741f1f313eb0c5a8336f8af6b}{Executive}} ()
+\item 
+\mbox{\hyperlink{class_executive_a4ce80c499f7640b1770ade77cf56d965}{$\sim$\+Executive}} ()
+\item 
+void \mbox{\hyperlink{class_executive_adef7cad3387e8fc79d92ffd418f45258}{run}} ()
+\item 
+void \mbox{\hyperlink{class_executive_a36d3dfa844d652efdb38be2877de2e0d}{print\+Player\+One\+Grid}} ()
+\item 
+void \mbox{\hyperlink{class_executive_a8f47ac32c8dfd3dcc76bb394ea742a86}{print\+Player\+Two\+Grid}} ()
+\item 
+void \mbox{\hyperlink{class_executive_aaad968036c9b09ccab049dde889f093b}{fill\+Grids}} ()
+\item 
+int \mbox{\hyperlink{class_executive_a441511b4ed1ed692838e9f4352556585}{is\+Winner}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_executive_ad870c1d741f1f313eb0c5a8336f8af6b}\label{class_executive_ad870c1d741f1f313eb0c5a8336f8af6b}} 
+\index{Executive@{Executive}!Executive@{Executive}}
+\index{Executive@{Executive}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{Executive()}{Executive()}}
+{\footnotesize\ttfamily Executive\+::\+Executive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+\mbox{\hyperlink{class_executive}{Executive}} class is created 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+class is created, grids are created 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_executive_a4ce80c499f7640b1770ade77cf56d965}\label{class_executive_a4ce80c499f7640b1770ade77cf56d965}} 
+\index{Executive@{Executive}!````~Executive@{$\sim$Executive}}
+\index{````~Executive@{$\sim$Executive}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{$\sim$Executive()}{~Executive()}}
+{\footnotesize\ttfamily Executive\+::$\sim$\+Executive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+game finishes, need to delete all arrays 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+all arrays are deleted, no memory lost 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_executive_aaad968036c9b09ccab049dde889f093b}\label{class_executive_aaad968036c9b09ccab049dde889f093b}} 
+\index{Executive@{Executive}!fillGrids@{fillGrids}}
+\index{fillGrids@{fillGrids}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{fillGrids()}{fillGrids()}}
+{\footnotesize\ttfamily void Executive\+::fill\+Grids (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to fill the 2d arrays for players one and two with zeros 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+arrays are filled with 0s simultaneously 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_executive_a441511b4ed1ed692838e9f4352556585}\label{class_executive_a441511b4ed1ed692838e9f4352556585}} 
+\index{Executive@{Executive}!isWinner@{isWinner}}
+\index{isWinner@{isWinner}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{isWinner()}{isWinner()}}
+{\footnotesize\ttfamily int Executive\+::is\+Winner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to know if there is a winner 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+we know if there is a winner now 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 1 if player1 wins and 2 if player2 wins 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_executive_a36d3dfa844d652efdb38be2877de2e0d}\label{class_executive_a36d3dfa844d652efdb38be2877de2e0d}} 
+\index{Executive@{Executive}!printPlayerOneGrid@{printPlayerOneGrid}}
+\index{printPlayerOneGrid@{printPlayerOneGrid}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{printPlayerOneGrid()}{printPlayerOneGrid()}}
+{\footnotesize\ttfamily void Executive\+::print\+Player\+One\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to display the playing grid of P1 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+playing grid is displayed to user, has labels for each space 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_executive_a8f47ac32c8dfd3dcc76bb394ea742a86}\label{class_executive_a8f47ac32c8dfd3dcc76bb394ea742a86}} 
+\index{Executive@{Executive}!printPlayerTwoGrid@{printPlayerTwoGrid}}
+\index{printPlayerTwoGrid@{printPlayerTwoGrid}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{printPlayerTwoGrid()}{printPlayerTwoGrid()}}
+{\footnotesize\ttfamily void Executive\+::print\+Player\+Two\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to display the playing grid of P2 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+playing grid is displayed to user, has labels for each space 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_executive_adef7cad3387e8fc79d92ffd418f45258}\label{class_executive_adef7cad3387e8fc79d92ffd418f45258}} 
+\index{Executive@{Executive}!run@{run}}
+\index{run@{run}!Executive@{Executive}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Executive\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need the game to run 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+game is run, communicates with all other classes 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/classwork/eecs448/\+Main Projects/\+Battleship/Executive.\+h\item 
+D\+:/classwork/eecs448/\+Main Projects/\+Battleship/Executive.\+cpp\end{DoxyCompactItemize}
