@@ -11,14 +11,47 @@ Ship::Ship(std::string shipStart, std::string shipOrientation, int length){ //co
 	m_hullIntegrity = length;
 	m_shipHead = shipStart;
 	m_shipDirection = shipOrientation;
-	for(int i=0;i<6;i++){//makes sure the array never has an empty element
-		m_shipArray[i] = "0";
-	}
+  createArray();
 }
 
 	Ship::~Ship(){
-		
+
 	}
+
+char Ship::capitalize(char column){
+	if(column == 'A' || column == 'a'){
+		return('A');
+	}
+	else if(column == 'B' || column == 'b'){
+		return('B');
+	}
+	else if(column == 'C' || column == 'c'){
+		return('C');
+	}
+	else if(column == 'D' || column == 'd'){
+		return('D');
+	}
+	else if(column == 'E' || column == 'e'){
+		return('E');
+	}
+	else if(column == 'F' || column == 'f'){
+		return('F');
+	}
+	else if(column == 'G' || column == 'g'){
+		return('G');
+	}
+	else if(column == 'H' || column == 'h'){
+		return('H');
+	}
+	else if(column == 'I' || column == 'i'){
+		return('I');
+	}
+	else if(column == 'J' || column == 'j'){
+		return('J');
+	}
+	return('0');
+}
+
 
 int Ship::colToNum(std::string column){
 	if(column == "A" || column == "a"){
@@ -98,19 +131,20 @@ void Ship::createArray()
 	char headcol = m_shipHead.at(0);
 	char headrow= m_shipHead.at(1);
 	int hrow = headrow - '0';
-	int hcol = colToNum(std::to_string(headcol));
 	std::string colstring(1,headcol);
+	int hcol = colToNum(colstring);
 
-	if(m_shipDirection=="V"){
+
+	if(m_shipDirection=="V"||m_shipDirection=="v"){
 	for(int i=0;i<m_shipLength;i++){
-			hrow = hrow+i;
 			m_shipArray[i]= colstring+numToString(hrow);
+			hrow++;
 		}
 	}
-	if(m_shipDirection=="H"){
+	if(m_shipDirection=="H"||m_shipDirection=="h"){
 	for(int i=0;i<m_shipLength;i++){
-			hcol = hcol+i;
-			m_shipArray[i]= (numToCol(headcol) + headrow);
+			m_shipArray[i]= (numToCol(hcol) +=headrow);
+			hrow++;
 		}
 	}
 }
@@ -133,7 +167,8 @@ bool Ship::isDestroyed(){
 bool Ship::isHit(int row, char col){
 	bool Hit=false;
 	std::string hitcoords;
-	std::string hitcol(1,col);
+	char capCol= capitalize(col);
+	std::string hitcol(1,capCol);
 	hitcoords = hitcol + numToString(row);
 	for(int i=0; i<6; i++){
 		if(m_shipArray[i]==hitcoords){

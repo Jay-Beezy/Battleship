@@ -97,6 +97,8 @@ class Ship
 		**/
 		std::string* getArray();
 
+		char capitalize(char col);
+
 	private:
 		int m_shipLength = 0;
 		int m_hullIntegrity = 0;

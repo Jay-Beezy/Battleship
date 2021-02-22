@@ -12,7 +12,7 @@ Player::Player(int ships)
 	}
 	for(int j = 0; j < 10; j++){
 		for(int k = 0; k < 10; k++){
-			playerGrid[j][k] = 'O';
+			playerGrid[j][k] = '0';
 		}
 	}
 }
@@ -36,7 +36,7 @@ Player::Player()
 	}
 	for(int j = 0; j < 10; j++){
 		for(int k = 0; k < 10; k++){
-			playerGrid[j][k] = 'O';
+			playerGrid[j][k] = '0';
 		}
 	}
 }
@@ -81,21 +81,21 @@ bool Player::checkGrid(std::string shipCoords){
 	int rownum = row - '0';
 	int colnum = colToInt(col);
 	for(int i=0;i<m_ships;i++){
-		if(shipArray[i].isHit(rownum,col)==true)
+		if(shipArray[i].isHit(rownum, col)==true)
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
-			playerGrid[rownum][colnum] = 'H';
+			playerGrid[rownum-1][colnum-1] = 'H';
 			return true;
 		}
 		else{
 			//print miss notif, change values in showWaters to misses
-			if(playerGrid[rownum][colnum] == 'H') {
+			if(playerGrid[rownum-1][colnum-1] == 'H') {
 				std::cout << "You hit a spot already hit.\n";
 			}else {
 				std::cout << "Sorry you missed.\n";
-				playerGrid[rownum][colnum] = 'M';
+				playerGrid[rownum-1][colnum-1] = 'M';
 			}		return false;
 		}
 	}
@@ -180,7 +180,6 @@ std::string Player::intToString(int num){
 
 bool Player::validateRow(int row){
 	bool isValid = false;
-	do{
 		if(row == 1){
 			isValid = true;
 			return(true);
@@ -224,7 +223,6 @@ bool Player::validateRow(int row){
 		else{
 			return(false);
 		}
-	}while(isValid == false);
 
 }
 
@@ -278,15 +276,17 @@ void Player::anchorShips(int length){
 	}
 
 	int startercolnum = colToInt(shipStarterCol);
+	int arrayRow = shipStarterRow-1;
+	int arrayCol = startercolnum-1;
 
 	if(shipPlacement=="V" || shipPlacement=="v"){
 		for(int i=0;i<shipLength;i++){
-			playerGrid[shipStarterRow+i][startercolnum]='S';
+			playerGrid[arrayRow+i][arrayCol]='S';
 		}
 	}
 	if(shipPlacement=="H" || shipPlacement=="h"){
 		for(int i=0;i<shipLength;i++){
-				playerGrid[shipStarterRow][startercolnum+i]='S';
+				playerGrid[arrayRow][arrayCol+i]='S';
 		}
 	}
 }
@@ -296,7 +296,7 @@ bool Player::validatePosition(int row, char col, std::string direction, int size
 	int colnum = colToInt(col);
 	if(direction=="H" || direction == "h"){
 		for(int i=0;i<size;i++){
-			if((colnum)<=10 && playerGrid[row][colnum+i]=='0'){
+			if((colnum)<=10 && playerGrid[row-1][colnum-1]=='0'){
 				isValid = true;
 			}
 			else{
@@ -309,7 +309,7 @@ bool Player::validatePosition(int row, char col, std::string direction, int size
 	//changed int i, to int j, cuz bug fixing. - andrew
 	if(direction=="V" || direction == "v"){
 		for(int j=0;j<size;j++){
-			if((row)<=10 && playerGrid[row+j][colnum]=='0'){
+			if(row <= 10 && playerGrid[row-1][colnum-1]=='0' ){
 				isValid = true;
 			}
 			else{
