@@ -1,0 +1,254 @@
+\hypertarget{class_ship}{}\doxysection{Ship Class Reference}
+\label{class_ship}\index{Ship@{Ship}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}{Ship}} ()
+\item 
+\mbox{\hyperlink{class_ship_a43cd6eeaffc11b49239b091621963a65}{$\sim$\+Ship}} ()
+\item 
+\mbox{\hyperlink{class_ship_a3b6908f595ddbd6f1f9d0f147377f5f4}{Ship}} (std\+::string ship\+Start, std\+::string ship\+Orientation, int length)
+\item 
+bool \mbox{\hyperlink{class_ship_af4fbef39336439af9abaea4b12fa3205}{is\+Destroyed}} ()
+\item 
+bool \mbox{\hyperlink{class_ship_aa7d672367984dc93da35308183c25d5d}{is\+Hit}} (int row, char col)
+\item 
+void \mbox{\hyperlink{class_ship_acc84fc6fadb492bba3df7c44cead3aec}{ship\+Docks}} ()
+\item 
+void \mbox{\hyperlink{class_ship_a6ecf0f26b491604d146e85a185dc228a}{create\+Array}} ()
+\item 
+int \mbox{\hyperlink{class_ship_afcfc1572494abd9c420b3b327602d090}{col\+To\+Num}} (std\+::string column)
+\item 
+std\+::string \mbox{\hyperlink{class_ship_a54e4c6ed877b376702f4c1b272ef43e7}{num\+To\+String}} (int num)
+\item 
+std\+::string \mbox{\hyperlink{class_ship_ac05a373ea86e105420c6ffa138d03ae5}{num\+To\+Col}} (int colnum)
+\item 
+std\+::string $\ast$ \mbox{\hyperlink{class_ship_a0b1a2b7f0b5595c77bc489363094fab5}{get\+Array}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}\label{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}} 
+\index{Ship@{Ship}!Ship@{Ship}}
+\index{Ship@{Ship}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{Ship()}{Ship()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Ship\+::\+Ship (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+\mbox{\hyperlink{class_ship}{Ship}} default constructor is called 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The class is created, m\+\_\+ship\+Array is filled with zeros 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_a43cd6eeaffc11b49239b091621963a65}\label{class_ship_a43cd6eeaffc11b49239b091621963a65}} 
+\index{Ship@{Ship}!````~Ship@{$\sim$Ship}}
+\index{````~Ship@{$\sim$Ship}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{$\sim$Ship()}{~Ship()}}
+{\footnotesize\ttfamily Ship\+::$\sim$\+Ship (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to delete a ship 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+deletes all arrays within the class 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_a3b6908f595ddbd6f1f9d0f147377f5f4}\label{class_ship_a3b6908f595ddbd6f1f9d0f147377f5f4}} 
+\index{Ship@{Ship}!Ship@{Ship}}
+\index{Ship@{Ship}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{Ship()}{Ship()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Ship\+::\+Ship (\begin{DoxyParamCaption}\item[{std\+::string}]{ship\+Start,  }\item[{std\+::string}]{ship\+Orientation,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+\mbox{\hyperlink{class_ship}{Ship}} constructor is called and given a coordinate to start, string orientation and length 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The class is created, m\+\_\+ship\+Array is filled with zeros 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em int} & length, length of ship, string ship\+Start, coordinates for head of ship, string ship\+Orientation, direction ship does on board \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ship_afcfc1572494abd9c420b3b327602d090}\label{class_ship_afcfc1572494abd9c420b3b327602d090}} 
+\index{Ship@{Ship}!colToNum@{colToNum}}
+\index{colToNum@{colToNum}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{colToNum()}{colToNum()}}
+{\footnotesize\ttfamily int Ship\+::col\+To\+Num (\begin{DoxyParamCaption}\item[{std\+::string}]{column }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+You need to turn a char column value to an int value 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+the char is turned into the corresponding in 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em string} & column, the column value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int, the column return value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_a6ecf0f26b491604d146e85a185dc228a}\label{class_ship_a6ecf0f26b491604d146e85a185dc228a}} 
+\index{Ship@{Ship}!createArray@{createArray}}
+\index{createArray@{createArray}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{createArray()}{createArray()}}
+{\footnotesize\ttfamily void Ship\+::create\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need to store the values of the ship\textquotesingle{}s coordinates in an array 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+an array of strings(coordinates) is made, any unfilled elements stay as zero 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_a0b1a2b7f0b5595c77bc489363094fab5}\label{class_ship_a0b1a2b7f0b5595c77bc489363094fab5}} 
+\index{Ship@{Ship}!getArray@{getArray}}
+\index{getArray@{getArray}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{getArray()}{getArray()}}
+{\footnotesize\ttfamily std\+::string $\ast$ Ship\+::get\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need to access the private array in another class 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+we\textquotesingle{}ve made it so we can access the array from another class 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a pointer to the array of coordinates 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_af4fbef39336439af9abaea4b12fa3205}\label{class_ship_af4fbef39336439af9abaea4b12fa3205}} 
+\index{Ship@{Ship}!isDestroyed@{isDestroyed}}
+\index{isDestroyed@{isDestroyed}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{isDestroyed()}{isDestroyed()}}
+{\footnotesize\ttfamily bool Ship\+::is\+Destroyed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+need to know if a ship is destroyed 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+outputs bool if ship is destroyed 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if ship\+Integrity is zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_aa7d672367984dc93da35308183c25d5d}\label{class_ship_aa7d672367984dc93da35308183c25d5d}} 
+\index{Ship@{Ship}!isHit@{isHit}}
+\index{isHit@{isHit}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{isHit()}{isHit()}}
+{\footnotesize\ttfamily bool Ship\+::is\+Hit (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{char}]{col }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need to know if the space was a ship 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+space is checked and bool is returned 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em int} & row -\/ row of space to be checked, char col -\/ column index of space to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if the space contains a ship 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_ac05a373ea86e105420c6ffa138d03ae5}\label{class_ship_ac05a373ea86e105420c6ffa138d03ae5}} 
+\index{Ship@{Ship}!numToCol@{numToCol}}
+\index{numToCol@{numToCol}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{numToCol()}{numToCol()}}
+{\footnotesize\ttfamily std\+::string Ship\+::num\+To\+Col (\begin{DoxyParamCaption}\item[{int}]{colnum }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need to turn a column number back into the letter it corresponds to on the board 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+we turned the number into a string 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em int} & colnum, the column value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string, the string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_a54e4c6ed877b376702f4c1b272ef43e7}\label{class_ship_a54e4c6ed877b376702f4c1b272ef43e7}} 
+\index{Ship@{Ship}!numToString@{numToString}}
+\index{numToString@{numToString}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{numToString()}{numToString()}}
+{\footnotesize\ttfamily std\+::string Ship\+::num\+To\+String (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we need to turn an int to a string 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+we turned an int into a string 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em int} & num, number we\textquotesingle{}re turning into a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string, the string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_ship_acc84fc6fadb492bba3df7c44cead3aec}\label{class_ship_acc84fc6fadb492bba3df7c44cead3aec}} 
+\index{Ship@{Ship}!shipDocks@{shipDocks}}
+\index{shipDocks@{shipDocks}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{shipDocks()}{shipDocks()}}
+{\footnotesize\ttfamily void Ship\+::ship\+Docks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+we just want to know the ship\textquotesingle{}s information, test function 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tells us information about the ship 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N/A 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/classwork/eecs448/\+Main Projects/\+Battleship/Ship.\+h\item 
+D\+:/classwork/eecs448/\+Main Projects/\+Battleship/Ship.\+cpp\end{DoxyCompactItemize}
