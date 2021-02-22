@@ -1,0 +1,20 @@
+FULL HOUR COUNT: 15
+
+2/13/21 (Saturday)
+Total Hours: 1
+Description:
+Group meeting with TA
+
+2/17/21 (Wednesday)
+Total Hours: 4
+Description:
+-Created main.cpp, and the executive class
+-Created rough version of the arrays that would store hits and misses.
+-Created user interface of each player's board
+
+2/19/21 (Friday)
+Total Hours: 10
+Description:
+-Created the ship and player class, expanded on the executive class
+-Created methods to validate user input when determining where to place a ship
+
