@@ -1,0 +1,30 @@
+FULL HOUR COUNT: 16
+
+2/13/21 (Saturday)
+3:00pm - 4:00pm
+Total Hours: 1
+Description:
+Group meeting with TA
+
+
+2/19/21 (Thursday)
+5:00pm - 7:00pm
+Total Hours: 2
+Description:
+-Familiarizing with code base
+-Identifying every separate member's individual repo, forking and cloning, seeing what can be done now
+
+2/20/21 (Saturday)
+12:00pm-5:00pm
+Total Hours: 5
+Description:
+-Wrote Player.cpp, Ship.cpp
+
+2/22/21 (Sunday)
+3:00pm - 11pm
+Total Hours: 8
+Description:
+-Debugging
+-Group meeting
+-Writing class/general documentation
+-Writing/correcting methods in Executive, Player, and Ship classes
