@@ -1,3 +1,5 @@
+FULL HOUR COUNT: 14
+
 2/13/21 (Saturday)
 3:00pm - 4:00pm
 Total Hours: 1
@@ -35,5 +37,3 @@ Description:
 -Group meeting
 -Writing class/general documentation
 -Writing/correcting methods in Executive, Player, and Ship classes
-
-
