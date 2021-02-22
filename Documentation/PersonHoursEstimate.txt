@@ -1,0 +1,22 @@
+Estimated Person-Hours: 35
+Group Members: 5
+Average hours per group member: 7
+
+-Hour Estimate Breakdown-
+Executive: 6
+Executive Documentation: 1
+Player:6
+Player Documentation: 1
+Ship: 6
+Ship Documentation: 1
+Other Documentation: 4
+Meetings: 10
+
+Total Hours: 35
+
+Justification:
+-Writing/debugging 3 complex classes
+-Writing comprehensive documentation for implemented classes
+-Writing miscellaneous documentation relating to overall product function
+-Hour estimates are loose due to potential for technical difficulties
+-Allow for 2 designated hours (per group member) of meeting time for planning
