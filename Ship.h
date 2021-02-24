@@ -108,7 +108,7 @@ class Ship
 
 };
 #endif
-=======
+//*=======
 //Ship.h
 
 #ifndef SHIP_H
@@ -217,4 +217,4 @@ class Ship
 
 };
 #endif
-
+*//
