@@ -65,12 +65,12 @@ class Executive
 		* @param none
 		* @return returns 1 if player1 wins and 2 if player2 wins
 		**/
-		int isWinner();
+		int isWinner(Player& playerOne,Player& playerTwo);
 
 	private:
-		int** playerOneGrid;
-		int** playerTwoGrid;
-		Player playerOne;
-		Player playerTwo;
+		//int** playerOneGrid;
+		//int** playerTwoGrid;
+		//Player playerOne;
+		//Player playerTwo;
 };
 #endif
