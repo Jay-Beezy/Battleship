@@ -56,7 +56,9 @@ class Player
 		* @post The player grid is shown
 		* @return void
 		**/
-		void showWaters();
+
+		void showFiringBoard(std::string);
+		void showWaters(std::string);
 
 		/**
 		* @pre A column value must be checked to see if it is valid
@@ -99,7 +101,7 @@ class Player
 		* @param std::string shipCoords, the location of the ship
 		* @return true if hit lands, false if miss
 		**/
-		bool checkGrid(std::string shipCoords);
+		void checkGrid(char letterInput, int numberInput,Player& otherPlayer);
 
 		/**
 		* @pre all ships have been constructed
@@ -112,7 +114,8 @@ class Player
 
 	private:
 		int m_ships;
-		char** playerGrid;
+		 char** playerGrid;
+		 char** shotGrid;
 		Ship shipArray[5];//max number of ships, allows us to have a location for each ship in memory
 
 };
