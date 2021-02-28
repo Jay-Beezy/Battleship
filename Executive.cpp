@@ -4,6 +4,7 @@
 #include <iostream>
 
 
+
 Executive::Executive(){ //constructor
 	//playerOneGrid = new int*[10];
 	//playerTwoGrid = new int*[10];
@@ -31,6 +32,7 @@ void Executive::run() {  //runs the program
 	char p2coords ;
 	int p1Number = 0;
 	int p2Number = 0;
+	std::cout << "\e[8;50;105t";
 
 	std::cout << "+-+-+-+-+-+-+-BATTLESHIP-+-+-+-+-+-+-+\n";
 
