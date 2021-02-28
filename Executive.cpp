@@ -55,6 +55,7 @@ void Executive::run() {  //runs the program
 		playerOne.anchorShips(i+1);
 	}
 	std::cout<<"Player One, look away!\n";
+	system("clear");
 
 	std::cout << "\nPlayer Two's turn to place their ships!\n\n";
 	//Populating Player 2
@@ -63,11 +64,12 @@ void Executive::run() {  //runs the program
 		playerTwo.anchorShips(i+1);
 	}
 	std::cout<<"Player Two, look away!\n";
+	system("clear");
 
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
 	while (1){
-			
+
 		std::cout<<"Player One's Firing grid:\n";
 		playerOne.showFiringBoard("One");
 		//printPlayerOneGrid();//These are the firing grids
@@ -78,9 +80,8 @@ void Executive::run() {  //runs the program
 		std::cin>>p1coords;
 		std::cout<<"Player One, enter number of the space you'd like to fire on: ";
 		std::cin>>p1Number;
-		
 		playerOne.checkGrid(p1coords,p1Number, playerTwo);
-		
+		system("clear");
 		std::cout<<"Player Two's Firing grid:\n";
 		playerTwo.showFiringBoard("Two");
 		//printPlayerTwoGrid();//These are the firing grids
@@ -91,9 +92,8 @@ void Executive::run() {  //runs the program
 		std::cin>>p2coords;
 		std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
 		std::cin>>p2Number;
-		
 		playerTwo.checkGrid(p2coords,p2Number, playerOne);
-
+		system("clear");
 	}
 
 }
