@@ -64,7 +64,7 @@ Player::Player()
 	}
 }
 
-void Player::anchorShips(int length){
+void Player::placeShips(int length){
 	char shipStarterCol;
 	int shipStarterRow = 0;
 	int shipLength = length;
@@ -209,7 +209,7 @@ void Player::showFiringBoard(std::string turnPlayer)
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
 
-void Player::showWaters(std::string turnPlayer){
+void Player::showShipPlacement(std::string turnPlayer){
 
 
 	

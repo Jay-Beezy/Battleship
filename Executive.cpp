@@ -52,7 +52,7 @@ void Executive::run() {  //runs the program
 	//Populating Player 1
 	playerOne.showFiringBoard("One");
 	for(int i = 0; i < shipAmount; i++){
-		playerOne.anchorShips(i+1);
+		playerOne.placeShips(i+1);
 	}
 	std::cout<<"Player One, look away!\n";
 
@@ -60,7 +60,7 @@ void Executive::run() {  //runs the program
 	//Populating Player 2
 	playerTwo.showFiringBoard("Two");
 	for(int i = 0; i < shipAmount; i++){
-		playerTwo.anchorShips(i+1);
+		playerTwo.placeShips(i+1);
 	}
 	std::cout<<"Player Two, look away!\n";
 
@@ -72,7 +72,7 @@ void Executive::run() {  //runs the program
 		playerOne.showFiringBoard("One");
 		//printPlayerOneGrid();//These are the firing grids
 		std::cout<<"Player One's Ships:\n";
-		playerOne.showWaters("One");// These are your ship placements
+		playerOne.showShipPlacement("One");// These are your ship placements
 		std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
 		std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
 		std::cin>>p1coords;
@@ -85,7 +85,7 @@ void Executive::run() {  //runs the program
 		playerTwo.showFiringBoard("Two");
 		//printPlayerTwoGrid();//These are the firing grids
 		std::cout<<"Player Two's Ships:\n";
-		playerTwo.showWaters("Two");// These are your ship placements
+		playerTwo.showShipPlacement("Two");// These are your ship placements
 		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
 		std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
 		std::cin>>p2coords;

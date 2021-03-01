@@ -49,7 +49,7 @@ class Player
 		* @param int length, how long that ships is
 		* @return void
 		**/
-		void anchorShips(int length);
+		void placeShips(int length);
 
 		/**
 		* @pre The function is called
@@ -57,8 +57,8 @@ class Player
 		* @return void
 		**/
 
-		void showFiringBoard(std::string);
-		void showWaters(std::string);
+		void showFiringBoard(std::string); // shows top board where you fire your shots
+		void showShipPlacement(std::string); // shows bottom board where youre ships are placed
 
 		/**
 		* @pre A column value must be checked to see if it is valid
