@@ -102,7 +102,9 @@ void Executive::run() {  //runs the program
 		std::cin>>p1coords;
 		std::cout<<"Player One, enter number of the space you'd like to fire on: ";
 		std::cin>>p1Number;
+		std::cout << "\n";
 		playerOne.checkGrid(p1coords,p1Number, playerTwo);
+		std::cout << "\n";
 		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 		system("clear");
 		std::cout << "Switching turns in: 3\n";
