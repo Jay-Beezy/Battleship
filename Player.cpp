@@ -169,7 +169,7 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 	int colnum = colToInt(letterInput);
 	
 	
-		if(this->playerGrid[numberInput-1][colnum-1]== 'S' || this->playerGrid[numberInput-1][colnum-1]== 'H')
+		if(otherPlayer.playerGrid[numberInput-1][colnum-1]== 'S' || otherPlayer.playerGrid[numberInput-1][colnum-1]== 'H')
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
