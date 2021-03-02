@@ -57,17 +57,17 @@ void Executive::run() {  //runs the program
 		playerOne.placeShips(i+1);
 	}
 	std::cout<<"Player One, look away!\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-	system("clear");
-	std::cout << "Switching turns in: 3\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 2\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 1\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
+	//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	//system("clear");
+	//std::cout << "Switching turns in: 3\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 2\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 1\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
 
 	std::cout << "\nPlayer Two's turn to place their ships!\n\n";
 	//Populating Player 2
@@ -75,18 +75,18 @@ void Executive::run() {  //runs the program
 	for(int i = 0; i < shipAmount; i++){
 		playerTwo.placeShips(i+1);
 	}
-	std::cout<<"Player Two, look away!\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-	system("clear");
-	std::cout << "Switching turns in: 3\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 2\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 1\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
+	//std::cout<<"Player Two, look away!\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	//system("clear");
+	//std::cout << "Switching turns in: 3\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 2\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 1\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
 
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
@@ -105,17 +105,17 @@ void Executive::run() {  //runs the program
 		std::cout << "\n";
 		playerOne.checkGrid(p1coords,p1Number, playerTwo);
 		std::cout << "\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-		system("clear");
-		std::cout << "Switching turns in: 3\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
-		std::cout << "Switching turns in: 2\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
-		std::cout << "Switching turns in: 1\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
+		//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+		//system("clear");
+		//std::cout << "Switching turns in: 3\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
+		//std::cout << "Switching turns in: 2\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
+		//std::cout << "Switching turns in: 1\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
 		std::cout<<"Player Two's Firing grid:\n";
 		playerTwo.showFiringBoard("Two");
 		//printPlayerTwoGrid();//These are the firing grids
@@ -129,17 +129,17 @@ void Executive::run() {  //runs the program
 		std::cout << "\n";
 		playerTwo.checkGrid(p2coords,p2Number, playerOne);
 		std::cout << "\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-		system("clear");
-		std::cout << "Switching turns in: 3\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
-		std::cout << "Switching turns in: 2\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
-		std::cout << "Switching turns in: 1\n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		system("clear");
+		//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+		//system("clear");
+		//std::cout << "Switching turns in: 3\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
+		//std::cout << "Switching turns in: 2\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
+		//std::cout << "Switching turns in: 1\n";
+		//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		//system("clear");
 
 	}
 
