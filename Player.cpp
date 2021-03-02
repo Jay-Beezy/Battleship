@@ -6,6 +6,7 @@
 Player::Player(int ships)
 {
 	m_ships = ships;
+	shipArray = new Ship[ships];
 	playerGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
 		playerGrid[i] = new char[10];
@@ -106,11 +107,12 @@ void Player::placeShips(int length){
 	}
 
 	if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
-		shipLocation = shipStarterCol + intToString(shipStarterRow);
+		//shipLocation = shipStarterCol + intToString(shipStarterRow);
 
-		Ship newShip(shipLocation, shipPlacement, shipLength);
+		Ship newShip(shipStarterCol,shipStarterRow, shipPlacement, shipLength);
 
-		shipArray[shipLength] = newShip;
+
+		shipArray[shipLength-1] = newShip;
 	}
 
 	int startercolnum = colToInt(shipStarterCol);
@@ -167,7 +169,8 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 	//char col = shipCoords.at(0);
 	//char row= shipCoords.at(1);
 	int colnum = colToInt(letterInput);
-	
+	//std::cout <<"colnum: " << colnum << "\n";
+	//std::cout << "numberInput: " << numberInput << "\n";	
 	
 		if(otherPlayer.playerGrid[numberInput-1][colnum-1]== 'S' || otherPlayer.playerGrid[numberInput-1][colnum-1]== 'H')
 		{
@@ -176,6 +179,15 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 			std::cout << "Congrats you hit!\n";
 			shotGrid[numberInput-1][colnum-1] = 'H';
 			otherPlayer.playerGrid[numberInput-1][colnum-1] = 'H';
+			for(int i = 0; i < m_ships-1;i++)
+			{
+				std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
+				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == '83')
+				 {
+					shipArray[i].shipMinusHealth();
+				 	shipArray[i].checkIfSunk();
+				 }
+			}
 			
 		}
 		else {
@@ -184,6 +196,16 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 				otherPlayer.playerGrid[numberInput-1][colnum-1] = 'M';
 				
 			}		
+}
+
+void Player::shipHit(Ship& ship)
+{
+	ship.shipMinusHealth();
+	if(ship.getHealth() !=ship.getLength())
+	{
+		ship.checkIfSunk();
+	}
+	
 }
 
 
@@ -371,11 +393,11 @@ bool Player::validatePosition(int row, char col, std::string direction, int size
 }
 
 int Player::shipsRemaining(){
-	int cnt = m_ships;
-	for(int i=0;i<m_ships;i++) {
-		if(shipArray[i].isDestroyed() ){
-			cnt--;
-		}
-	}
-	return(cnt);
+	// int cnt = m_ships;
+	// for(int i=0;i<m_ships;i++) {
+	// 	if(shipArray[i].isDestroyed() ){
+	// 		cnt--;
+	// 	}
+	// }
+	// return(cnt);
 }

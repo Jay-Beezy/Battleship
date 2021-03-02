@@ -110,13 +110,15 @@ class Player
 		**/
 		int shipsRemaining();
 
+		void shipHit(Ship& ship);
+
 
 
 	private:
 		int m_ships;
 		 char** playerGrid;
 		 char** shotGrid;
-		Ship shipArray[5];//max number of ships, allows us to have a location for each ship in memory
+		Ship* shipArray;//max number of ships, allows us to have a location for each ship in memory
 
 };
 #endif
