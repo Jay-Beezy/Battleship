@@ -6,11 +6,24 @@
 
 Ship::Ship(){};
 
-Ship::Ship(std::string shipStart, std::string shipOrientation, int length){ //constructor
+Ship::Ship(char shipHead_xCoordinate, int shipHead_yCoordinate, std::string shipOrientation, int length){ //constructor
 	m_shipLength = length;
-	m_hullIntegrity = length;
-	m_shipHead = shipStart;
+	m_shipHealth = length;
+	m_shipHead_XCoordinate = shipHead_xCoordinate;
+	m_shipHead_YCoordinate = shipHead_yCoordinate;
 	m_shipDirection = shipOrientation;
+
+	individualShipPlacements = new char*[10];
+	for(int i = 0; i < 10; i++){
+		individualShipPlacements[i] = new char[10];
+	}
+	for(int j = 0; j < 10; j++){
+		for(int k = 0; k < 10; k++){
+			individualShipPlacements[j][k] = '0';
+		}
+	}
+
+
   createArray();
 }
 
@@ -53,35 +66,35 @@ char Ship::capitalize(char column){
 }
 
 
-int Ship::colToNum(std::string column){
-	if(column == "A" || column == "a"){
+int Ship::colToNum(char column){
+	if(column == 'A' || column == 'a'){
 		return(1);
 	}
-	else if(column == "B" || column == "b"){
+	else if(column == 'B' || column == 'b'){
 		return(2);
 	}
-	else if(column == "C" || column == "c"){
+	else if(column == 'C' || column == 'c'){
 		return(3);
 	}
-	else if(column == "D" || column == "d"){
+	else if(column == 'D' || column == 'd'){
 		return(4);
 	}
-	else if(column == "E" || column == "e"){
+	else if(column == 'E' || column == 'e'){
 		return(5);
 	}
-	else if(column == "F" || column == "f"){
+	else if(column == 'F' || column == 'f'){
 		return(6);
 	}
-	else if(column == "G" || column == "g"){
+	else if(column == 'G' || column == 'g'){
 		return(7);
 	}
-	else if(column == "H" || column == "h"){
+	else if(column == 'H' || column == 'h'){
 		return(8);
 	}
-	else if(column == "I" || column == "i"){
+	else if(column == 'I' || column == 'i'){
 		return(9);
 	}
-	else if(column == "J" || column == "j"){
+	else if(column == 'J' || column == 'j'){
 		return(10);
 	}
 	return(0);
@@ -128,57 +141,94 @@ std::string Ship::numToCol(int colnum){
 
 void Ship::createArray()
 {
-	char headcol = m_shipHead.at(0);
-	char headrow= m_shipHead.at(1);
-	int hrow = headrow - '0';
-	std::string colstring(1,headcol);
-	int hcol = colToNum(colstring);
+	 char head_XCoordinate = m_shipHead_XCoordinate;
+	 int head_YCoordinate= m_shipHead_YCoordinate;
+	 //int hrow = headrow - '0';
+	 //std::string colstring(1,head_X_Coordinate);
+	 int letterCoordinate = colToNum(head_XCoordinate);
 
 
-	if(m_shipDirection=="V"||m_shipDirection=="v"){
-	for(int i=0;i<m_shipLength;i++){
-			m_shipArray[i]= colstring+numToString(hrow);
-			hrow++;
+	 if(m_shipDirection=="V"||m_shipDirection=="v"){
+	 for(int i=0;i<m_shipLength;i++){
+	 		individualShipPlacements[head_YCoordinate+i-1][letterCoordinate-1]= 'S';
+	 	}
+
+	 }
+	 if(m_shipDirection=="H"||m_shipDirection=="h"){
+	 for(int i=0;i<m_shipLength;i++){
+	 	individualShipPlacements[head_YCoordinate-1][letterCoordinate+i-1]= 'S';
+
+	 	}
+	 }
+
+	 	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			std::cout << individualShipPlacements[i][j] << "     ";
 		}
-	}
-	if(m_shipDirection=="H"||m_shipDirection=="h"){
-	for(int i=0;i<m_shipLength;i++){
-			m_shipArray[i]= (numToCol(hcol) +=headrow);
-			hrow++;
-		}
+		std::cout << "\n";
 	}
 }
 
-std::string* Ship::getArray(){
-	std::string* arrayptr = m_shipArray;
-	return(arrayptr);
+int Ship::getShipPlacementArray(int i, int j)
+{
+	 return individualShipPlacements[i][j];
 }
 
+void Ship::shipMinusHealth()
+{
+	m_shipHealth--;
+	std::cout << "Ship Health: " << m_shipHealth << "\n";
 
-bool Ship::isDestroyed(){
-	if(m_hullIntegrity == 0){
-		return(true);
-	}
-	else{
-		return(false);
+}
+
+void Ship::checkIfSunk()
+{
+	if(m_shipHealth == 0)
+	{
+		std::cout <<"Size " << m_shipLength << " ship has been sunk\n";
 	}
 }
 
-bool Ship::isHit(int row, char col){
-	bool Hit=false;
-	std::string hitcoords;
-	char capCol= capitalize(col);
-	std::string hitcol(1,capCol);
-	hitcoords = hitcol + numToString(row);
-	for(int i=0; i<6; i++){
-		if(m_shipArray[i]==hitcoords){
-			Hit=true;
-			m_hullIntegrity--;
-			//isDestroyed();?
-		}
-	}
-	return(Hit);
+int Ship::getHealth()
+{
+	return m_shipHealth;
 }
+
+int Ship::getLength()
+{
+	return m_shipLength;
+}
+
+// std::string* Ship::getArray(){
+// 	std::string* arrayptr = m_shipArray;
+// 	return(arrayptr);
+// }
+
+
+// bool Ship::isDestroyed(){
+// 	if(m_hullIntegrity == 0){
+// 		return(true);
+// 	}
+// 	else{
+// 		return(false);
+// 	}
+// }
+
+// bool Ship::isHit(int row, char col){
+// 	bool Hit=false;
+// 	std::string hitcoords;
+// 	char capCol= capitalize(col);
+// 	std::string hitcol(1,capCol);
+// 	hitcoords = hitcol + numToString(row);
+// 	for(int i=0; i<6; i++){
+// 		if(m_shipArray[i]==hitcoords){
+// 			Hit=true;
+// 			m_hullIntegrity--;
+// 			//isDestroyed();?
+// 		}
+// 	}
+// 	return(Hit);
+// }
 
 
 // void Ship::shipDocks(){

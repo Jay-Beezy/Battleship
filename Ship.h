@@ -32,7 +32,7 @@ class Ship
 		* @param int length, length of ship, string shipStart, coordinates for head of ship, string shipOrientation, direction ship does on board
 		* @return N/A
 		**/
-		Ship(std::string shipStart, std::string shipOrientation, int length);
+		Ship(char shipHead_XCoordinate, int shipHead_YCoordinate, std::string shipOrientation, int length);
 
 		/**
 		* @pre need to know if a ship is destroyed
@@ -40,7 +40,7 @@ class Ship
 		* @param none
 		* @return returns true if shipIntegrity is zero
 		**/
-		bool isDestroyed();
+		//bool isDestroyed();
 
 		/**
 		* @pre we need to know if the space was a ship
@@ -48,7 +48,7 @@ class Ship
 		* @param int row - row of space to be checked, char col - column index of space to be checked
 		* @return returns true if the space contains a ship
 		**/
-		bool isHit(int row, char col);
+		//bool isHit(int row, char col);
 
 		/**
 		* @pre we just want to know the ship's information, test function
@@ -56,7 +56,7 @@ class Ship
 		* @param none
 		* @return N/A
 		**/
-		void shipDocks();
+		//void shipDocks();
 
 		/**
 		* @pre we need to store the values of the ship's coordinates in an array
@@ -72,7 +72,7 @@ class Ship
 		* @param string column, the column value
 		* @return int, the column return value
 		**/
-		int colToNum(std::string column);
+		int colToNum(char column);
 
 		/**
 		* @pre we need to turn an int to a string
@@ -95,16 +95,28 @@ class Ship
 		* @param none
 		* @return returns a pointer to the array of coordinates
 		**/
-		std::string* getArray();
+		//std::string* getArray();
 
 		char capitalize(char col);
 
+		int getShipPlacementArray(int i, int j);
+
+		void shipMinusHealth();
+
+		int getHealth();
+
+		int getLength();
+
+		void checkIfSunk();
+
 	private:
 		int m_shipLength = 0;
-		int m_hullIntegrity = 0;
-		std::string m_shipHead;
+		int m_shipHealth = 0;
+		char m_shipHead_XCoordinate;
+		int m_shipHead_YCoordinate;
 		std::string m_shipDirection;
-		std::string m_shipArray[5]; //Max ship length is 6
+		char** individualShipPlacements;
+		//std::string m_shipArray[5]; //Max ship length is 6
 
 };
 #endif
