@@ -131,8 +131,8 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 	if(playerOne.getShotGrid(p1coords,p1Number)=='0')
 		{
 		playerOne.checkGrid(p1coords,p1Number, playerTwo);
-		break;
 		std::cout << "\n";
+		break;
 		}
 	}
 	
@@ -184,8 +184,8 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 		if(playerTwo.getShotGrid(p2coords,p2Number)=='0')
 			{
 			playerTwo.checkGrid(p2coords,p2Number, playerOne);
-			break;
 			std::cout << "\n";
+			break;
 			}
 		}	
 		}
@@ -256,12 +256,12 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
-int Executive::isWinner(Player& playerOne,Player& playerTwo){
-	if(playerOne.shipsRemaining() == 0) {
-		return(1);
-	} else if(playerTwo.shipsRemaining() == 0) {
-		return(2);
-	} else {
-		return(0);
-	}
-}
+// int Executive::isWinner(Player& playerOne,Player& playerTwo){
+// 	if(playerOne.shipsRemaining() == 0) {
+// 		return(1);
+// 	} else if(playerTwo.shipsRemaining() == 0) {
+// 		return(2);
+// 	} else {
+// 		return(0);
+// 	}
+// }
