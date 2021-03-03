@@ -108,7 +108,7 @@ class Player
 		* @post checks how many ships have not been destroed
 		* @return number of ships not destroyed
 		**/
-		int shipsRemaining();
+		//int shipsRemaining();
 
 		void shipHit(Ship& ship);
 		

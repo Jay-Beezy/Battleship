@@ -248,24 +248,23 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 			for(int i = 0; i < m_ships-1;i++)
 			{
 				std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
-				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == '83')
+				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
 					shipArray[i].shipMinusHealth();
 				 	shipArray[i].checkIfSunk();
 				 }
 			}
-			
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='H')
 		{
 			std::cout << "Already hit\n";
 		}
-		else {
+		else 
+		{
 				std::cout << "Sorry you missed.\n";
 				shotGrid[numberInput-1][colnum-1] = 'M';
-				otherPlayer.playerGrid[numberInput-1][colnum-1] = 'M';
-				
-			}		
+				otherPlayer.playerGrid[numberInput-1][colnum-1] = 'M';		
+		}		
 }
 
 char Player::getShotGrid(char letter, int input)
@@ -390,45 +389,45 @@ std::string Player::intToString(int num){
 }
 
 bool Player::validateRow(int row){
-	bool isValid = false;
+	//bool isValid = false;
 		if(row == 1){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 2){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 3){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 4){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 5){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 6){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 7){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 8){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 9){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else if(row == 10){
-			isValid = true;
+			//isValid = true;
 			return(true);
 		}
 		else{
@@ -441,12 +440,12 @@ bool Player::validateRow(int row){
 
 
 
-int Player::shipsRemaining(){
-	// int cnt = m_ships;
-	// for(int i=0;i<m_ships;i++) {
-	// 	if(shipArray[i].isDestroyed() ){
-	// 		cnt--;
-	// 	}
-	// }
-	// return(cnt);
-}
+//int Player::shipsRemaining(){
+	//  int cnt = m_ships;
+	//  for(int i=0;i<m_ships;i++) {
+	//  	if(shipArray[i].isDestroyed() ){
+	//  		cnt--;
+	//  	}
+	//  }
+	//  return(cnt);
+//}
