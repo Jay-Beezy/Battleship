@@ -238,7 +238,7 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 	//std::cout <<"colnum: " << colnum << "\n";
 	//std::cout << "numberInput: " << numberInput << "\n";	
 	
-		if(otherPlayer.playerGrid[numberInput-1][colnum-1]== 'S' || otherPlayer.playerGrid[numberInput-1][colnum-1]== 'H')
+		if(otherPlayer.playerGrid[numberInput-1][colnum-1]== 'S')
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
@@ -256,12 +256,23 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 			}
 			
 		}
+		else if(shotGrid[numberInput-1][colnum-1]=='H')
+		{
+			std::cout << "Already hit\n";
+		}
 		else {
 				std::cout << "Sorry you missed.\n";
 				shotGrid[numberInput-1][colnum-1] = 'M';
 				otherPlayer.playerGrid[numberInput-1][colnum-1] = 'M';
 				
 			}		
+}
+
+char Player::getShotGrid(char letter, int input)
+{
+	int colnum = colToInt(letter);
+	//std:: cout << shotGrid[input-1][colnum-1]<<"\n";
+	return shotGrid[input-1][colnum-1];
 }
 
 void Player::shipHit(Ship& ship)

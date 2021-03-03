@@ -111,7 +111,8 @@ class Player
 		int shipsRemaining();
 
 		void shipHit(Ship& ship);
-
+		
+		char getShotGrid(char letter, int number);
 
 
 	private:
