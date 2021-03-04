@@ -134,12 +134,7 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 {
 	while(1)
 	{
-	std::cout <<"Shot Already hit, please try again\n";
-	std::cout<<"Player One's Firing grid:\n";
-	playerOne.showFiringBoard("One");
-	//printPlayerOneGrid();//These are the firing grids
-	std::cout<<"Player One's Ships:\n";
-	playerOne.showShipPlacement("One");// These are your ship placements
+	std::cout <<"Shot already hit, please try again\n\n";
 	std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
 	do{
 		std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
@@ -217,12 +212,7 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 		{
 		while(1)
 		{
-		std::cout <<"Shot Already hit, please try again\n";
-		std::cout<<"Player Two's Firing grid:\n";
-		playerTwo.showFiringBoard("Two");
-		//printPlayerTwoGrid();//These are the firing grids
-		std::cout<<"Player Two's Ships:\n";
-		playerTwo.showShipPlacement("Two");// These are your ship placements
+		std::cout <<"Shot already hit, please try again\n\n";
 		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
 		do{
 			std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
