@@ -45,6 +45,12 @@ void Executive::run() {  //runs the program
 		std::cin.ignore(100, '\n');
 		std::cout << "How many ships do you want to use?\n";
 		std::cin >> shipAmount;
+		if(std::cin.fail()){
+			std::cout << "ERROR: Please enter an integer.\n";
+		}
+		else if(shipAmount <= 0 || shipAmount > 6){
+			std::cout << "ERROR: Please enter an integer within the bounds [1, 6].\n";
+		}
 	}
 	//Creating Players
 	Player playerOne(shipAmount);
