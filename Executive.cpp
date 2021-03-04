@@ -28,8 +28,8 @@ Executive::~Executive() //deconstructor
 
 void Executive::run() {  //runs the program
 
-	char p1coords ;
-	char p2coords ;
+	char p1coords = '\0';
+	char p2coords = '\0';
 	int p1Number = 0;
 	int p2Number = 0;
 	std::cout << "\e[8;50;105t";
@@ -51,6 +51,7 @@ void Executive::run() {  //runs the program
 		else if(shipAmount <= 0 || shipAmount > 6){
 			std::cout << "ERROR: Please enter an integer within the bounds [1, 6].\n";
 		}
+		std::cout << std::endl;
 	}
 	//Creating Players
 	Player playerOne(shipAmount);
@@ -97,21 +98,32 @@ void Executive::run() {  //runs the program
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
 	while (1){
-
 		std::cout<<"Player One's Firing grid:\n";
 		playerOne.showFiringBoard("One");
 		//printPlayerOneGrid();//These are the firing grids
 		std::cout<<"Player One's Ships:\n";
 		playerOne.showShipPlacement("One");// These are your ship placements
-
-	
-		
-			std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
+		std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
+		do{
 			std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
 			std::cin>>p1coords;
+			if(!charIsValid(p1coords)){
+				std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
+			}
+		}while(!charIsValid(p1coords));
+		do{
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
 			std::cout<<"Player One, enter number of the space you'd like to fire on: ";
 			std::cin>>p1Number;
-			std::cout << "\n";
+			if(std::cin.fail()){
+				std::cout << "ERROR: Please enter an integer.\n";
+			}
+			else if(p1Number < 1 || p1Number > 10){
+				std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+			}
+		}while(std::cin.fail() || p1Number < 1 || p1Number > 10);
+		std::cout << "\n";
 		
 if(playerOne.getShotGrid(p1coords,p1Number) == '0')
 {
@@ -129,10 +141,25 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 	std::cout<<"Player One's Ships:\n";
 	playerOne.showShipPlacement("One");// These are your ship placements
 	std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
-	std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
-	std::cin>>p1coords;
-	std::cout<<"Player One, enter number of the space you'd like to fire on: ";
-	std::cin>>p1Number;
+	do{
+		std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
+		std::cin>>p1coords;
+		if(!charIsValid(p1coords)){
+			std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
+		}
+	}while(!charIsValid(p1coords));
+	do{
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		std::cout<<"Player One, enter number of the space you'd like to fire on: ";
+		std::cin>>p1Number;
+		if(std::cin.fail()){
+			std::cout << "ERROR: Please enter an integer.\n";
+		}
+		else if(p1Number < 1 || p1Number > 10){
+			std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+		}
+	}while(std::cin.fail() || p1Number < 1 || p1Number > 10);
 	std::cout << "\n";
 	if(playerOne.getShotGrid(p1coords,p1Number)=='0')
 		{
@@ -160,10 +187,25 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 		std::cout<<"Player Two's Ships:\n";
 		playerTwo.showShipPlacement("Two");// These are your ship placements
 		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
-		std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
-		std::cin>>p2coords;
-		std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
-		std::cin>>p2Number;
+		do{
+			std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
+			std::cin>>p2coords;
+			if(!charIsValid(p2coords)){
+				std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
+			}
+		}while(!charIsValid(p2coords));
+		do{
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
+			std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
+			std::cin>>p2Number;
+			if(std::cin.fail()){
+				std::cout << "ERROR: Please enter an integer.\n";
+			}
+			else if(p2Number < 1 || p2Number > 10){
+				std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+			}
+		}while(std::cin.fail() || p2Number < 1 || p2Number > 10);
 		std::cout << "\n";
 
 		if(playerTwo.getShotGrid(p2coords,p2Number) == '0')
@@ -182,10 +224,25 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 		std::cout<<"Player Two's Ships:\n";
 		playerTwo.showShipPlacement("Two");// These are your ship placements
 		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
-		std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
-		std::cin>>p2coords;
-		std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
-		std::cin>>p2Number;
+		do{
+			std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
+			std::cin>>p2coords;
+			if(!charIsValid(p2coords)){
+				std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
+			}
+		}while(!charIsValid(p2coords));
+		do{
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
+			std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
+			std::cin>>p2Number;
+			if(std::cin.fail()){
+				std::cout << "ERROR: Please enter an integer.\n";
+			}
+			else if(p2Number < 1 || p2Number > 10){
+				std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+			}
+		}while(std::cin.fail() || p2Number < 1 || p2Number > 10);
 		std::cout << "\n";
 		if(playerTwo.getShotGrid(p2coords,p2Number)=='0')
 			{
@@ -209,6 +266,10 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 
 	}
 
+}
+
+bool Executive::charIsValid(char coord){
+	return(coord == 'a' || coord == 'A' || coord == 'b' || coord == 'B' || coord == 'c' || coord == 'C' || coord == 'd' || coord == 'D' || coord == 'e' || coord == 'E' || coord == 'f' || coord == 'F' || coord == 'g' || coord == 'G' || coord == 'h' || coord == 'H' || coord == 'i' || coord == 'I' || coord == 'j' || coord == 'J');
 }
 
 // void Executive::fillGrids(){

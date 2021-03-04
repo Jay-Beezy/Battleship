@@ -69,6 +69,14 @@ class Executive
 		**/
 		//int isWinner(Player& playerOne,Player& playerTwo);
 
+		/**
+		* @pre need to check if char coordinate is in bounds
+		* @post coords validity is returned
+		* @param coord character in question
+		* @return returns true if char is in bounds
+		**/
+		bool charIsValid(char coord);
+
 	
 
 	private:
