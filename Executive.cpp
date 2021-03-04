@@ -103,14 +103,46 @@ void Executive::run() {  //runs the program
 		//printPlayerOneGrid();//These are the firing grids
 		std::cout<<"Player One's Ships:\n";
 		playerOne.showShipPlacement("One");// These are your ship placements
-		std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
-		std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
-		std::cin>>p1coords;
-		std::cout<<"Player One, enter number of the space you'd like to fire on: ";
-		std::cin>>p1Number;
-		std::cout << "\n";
+
+	
+		
+			std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
+			std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
+			std::cin>>p1coords;
+			std::cout<<"Player One, enter number of the space you'd like to fire on: ";
+			std::cin>>p1Number;
+			std::cout << "\n";
+		
+if(playerOne.getShotGrid(p1coords,p1Number) == '0')
+{
+	playerOne.checkGrid(p1coords,p1Number,playerTwo);
+	std::cout << "\n";
+}
+else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(p1coords,p1Number)=='M')
+{
+	while(1)
+	{
+	std::cout <<"Shot Already hit, please try again\n";
+	std::cout<<"Player One's Firing grid:\n";
+	playerOne.showFiringBoard("One");
+	//printPlayerOneGrid();//These are the firing grids
+	std::cout<<"Player One's Ships:\n";
+	playerOne.showShipPlacement("One");// These are your ship placements
+	std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
+	std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
+	std::cin>>p1coords;
+	std::cout<<"Player One, enter number of the space you'd like to fire on: ";
+	std::cin>>p1Number;
+	std::cout << "\n";
+	if(playerOne.getShotGrid(p1coords,p1Number)=='0')
+		{
 		playerOne.checkGrid(p1coords,p1Number, playerTwo);
 		std::cout << "\n";
+		break;
+		}
+	}
+	
+}
 		//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 		//system("clear");
 		//std::cout << "Switching turns in: 3\n";
@@ -133,8 +165,36 @@ void Executive::run() {  //runs the program
 		std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
 		std::cin>>p2Number;
 		std::cout << "\n";
-		playerTwo.checkGrid(p2coords,p2Number, playerOne);
+
+		if(playerTwo.getShotGrid(p2coords,p2Number) == '0')
+		{
+			playerTwo.checkGrid(p2coords,p2Number,playerOne);
+			std::cout << "\n";
+		}
+		else if (playerTwo.getShotGrid(p2coords,p2Number)=='H' || playerTwo.getShotGrid(p2coords,p2Number)=='M')
+		{
+		while(1)
+		{
+		std::cout <<"Shot Already hit, please try again\n";
+		std::cout<<"Player Two's Firing grid:\n";
+		playerTwo.showFiringBoard("Two");
+		//printPlayerTwoGrid();//These are the firing grids
+		std::cout<<"Player Two's Ships:\n";
+		playerTwo.showShipPlacement("Two");// These are your ship placements
+		std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
+		std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
+		std::cin>>p2coords;
+		std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
+		std::cin>>p2Number;
 		std::cout << "\n";
+		if(playerTwo.getShotGrid(p2coords,p2Number)=='0')
+			{
+			playerTwo.checkGrid(p2coords,p2Number, playerOne);
+			std::cout << "\n";
+			break;
+			}
+		}	
+		}
 		//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 		//system("clear");
 		//std::cout << "Switching turns in: 3\n";
@@ -202,12 +262,12 @@ void Executive::run() {  //runs the program
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
-int Executive::isWinner(Player& playerOne,Player& playerTwo){
-	if(playerOne.shipsRemaining() == 0) {
-		return(1);
-	} else if(playerTwo.shipsRemaining() == 0) {
-		return(2);
-	} else {
-		return(0);
-	}
-}
+// int Executive::isWinner(Player& playerOne,Player& playerTwo){
+// 	if(playerOne.shipsRemaining() == 0) {
+// 		return(1);
+// 	} else if(playerTwo.shipsRemaining() == 0) {
+// 		return(2);
+// 	} else {
+// 		return(0);
+// 	}
+// }
