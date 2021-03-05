@@ -1,0 +1,5 @@
+Sleep function to momentarily pause program in between turns:
+https://stackoverflow.com/questions/1658386/sleep-function-in-c
+
+Cin.fail integer input protection:
+http://www.cplusplus.com/forum/beginner/2957/
