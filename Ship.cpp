@@ -28,7 +28,13 @@ Ship::Ship(char shipHead_xCoordinate, int shipHead_yCoordinate, std::string ship
 }
 
 	Ship::~Ship(){
-
+		//Having deletes here makes the getShipPlacementArray segfault
+		/*
+		for(int i = 0; i < 10; i++){
+		delete[] individualShipPlacements[i];
+		}
+		delete[] individualShipPlacements;
+		*/
 	}
 
 char Ship::capitalize(char column){

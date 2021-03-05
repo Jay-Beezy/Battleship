@@ -245,9 +245,10 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 			std::cout << "Congrats you hit!\n";
 			shotGrid[numberInput-1][colnum-1] = 'H';
 			otherPlayer.playerGrid[numberInput-1][colnum-1] = 'H';
-			for(int i = 0; i < m_ships-1;i++)
+			for(int i = 0; i < m_ships;i++)
 			{
-				std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
+				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
+				 //not sure why this is here^
 				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
 					shipArray[i].shipMinusHealth();
