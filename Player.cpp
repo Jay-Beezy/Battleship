@@ -151,7 +151,8 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 			else if(playerGrid[row-1][colnum-1]=='S')
 			{
 					std::cout <<"Ships overlapping horizontally, please try again\n";
-					isValid = false;
+					return(false);
+					//isValid = false;
 					//return(isValid);
 			}
 			else
@@ -162,18 +163,6 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 			colnum++;
 		}
 	}
-	// colnum = colToInt(col);
-	
-	// if(direction=="H" || direction=="h"){
-	// 	for(int i=0;i<shipLength;i++){
-	// 			if(playerGrid[row-1][colnum-1]=='S')
-	// 			{
-	// 				std::cout <<"Ships overlapping horizontally, please try again\n";
-	// 				isValid = false;
-	// 			}
-	// 			colnum++;
-	// 	}
-	// }
 
 	//changed int i, to int j, cuz bug fixing. - andrews
 	if(direction=="V" || direction == "v"){
@@ -184,7 +173,8 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 			else if(playerGrid[row-1][colnum-1]=='S')
 	 		{
 	 				std::cout <<"Ships overlapping Vertically, please try again\n";
-	 				isValid = false;
+					return(false);
+	 				//isValid = false;
 	 		}
 			else
 			{
