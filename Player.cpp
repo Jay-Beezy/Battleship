@@ -6,6 +6,7 @@
 Player::Player(int ships)
 {
 	m_ships = ships;
+	numberOfShips = m_ships;
 	shipArray = new Ship[ships];
 	playerGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
@@ -247,7 +248,10 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
 					shipArray[i].shipMinusHealth();
-				 	shipArray[i].checkIfSunk();
+				 	if(shipArray[i].checkIfSunk())
+					 {
+						 numberOfShips--;
+					 }
 				 }
 			}
 		}
@@ -436,12 +440,7 @@ bool Player::validateRow(int row){
 
 
 
-//int Player::shipsRemaining(){
-	//  int cnt = m_ships;
-	//  for(int i=0;i<m_ships;i++) {
-	//  	if(shipArray[i].isDestroyed() ){
-	//  		cnt--;
-	//  	}
-	//  }
-	//  return(cnt);
-//}
+int Player::shipsRemaining()
+{
+	return numberOfShips;
+}

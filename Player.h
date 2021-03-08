@@ -108,7 +108,7 @@ class Player
 		* @post checks how many ships have not been destroed
 		* @return number of ships not destroyed
 		**/
-		//int shipsRemaining();
+		int shipsRemaining();
 
 		void shipHit(Ship& ship);
 		
@@ -117,6 +117,7 @@ class Player
 
 	private:
 		int m_ships;
+		int numberOfShips;
 		 char** playerGrid;
 		 char** shotGrid;
 		Ship* shipArray;//max number of ships, allows us to have a location for each ship in memory
