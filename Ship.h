@@ -107,7 +107,7 @@ class Ship
 
 		int getLength();
 
-		void checkIfSunk();
+		bool checkIfSunk();
 
 	private:
 		int m_shipLength = 0;

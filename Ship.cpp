@@ -187,11 +187,16 @@ void Ship::shipMinusHealth()
 
 }
 
-void Ship::checkIfSunk()
+bool Ship::checkIfSunk()
 {
 	if(m_shipHealth == 0)
 	{
 		std::cout <<"Size " << m_shipLength << " ship has been sunk\n";
+		return(true);
+	}
+	else
+	{
+		return(false);
 	}
 }
 
