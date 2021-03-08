@@ -170,10 +170,15 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 			if(row <= 10 && playerGrid[row-1][colnum-1]=='0' ){
 				isValid = true;
 			}
+			else if(row>10)
+			{
+				std::cout << "\n\nInvalid Coordinates, try again.\n\n";
+				return(false);
+			}
 			else if(playerGrid[row-1][colnum-1]=='S')
 	 		{
 	 				std::cout <<"Ships overlapping Vertically, please try again\n";
-					return(false);
+					 return(false);
 	 				//isValid = false;
 	 		}
 			else
