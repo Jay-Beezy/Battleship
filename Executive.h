@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 #include <thread>
 #include <chrono>
 
@@ -67,7 +68,7 @@ class Executive
 		* @param none
 		* @return returns 1 if player1 wins and 2 if player2 wins
 		**/
-		//int isWinner(Player& playerOne,Player& playerTwo);
+		bool isWinner(Player& playerOne,Player& playerTwo);
 
 		/**
 		* @pre need to check if char coordinate is in bounds

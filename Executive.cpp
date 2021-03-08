@@ -97,7 +97,7 @@ void Executive::run() {  //runs the program
 
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
-	while (1){
+	while (!isWinner(playerOne,playerTwo)){
 		std::cout<<"Player One's Firing grid:\n";
 		playerOne.showFiringBoard("One");
 		//printPlayerOneGrid();//These are the firing grids
@@ -125,18 +125,18 @@ void Executive::run() {  //runs the program
 		}while(std::cin.fail() || p1Number < 1 || p1Number > 10);
 		std::cout << "\n";
 		
-if(playerOne.getShotGrid(p1coords,p1Number) == '0')
-{
-	playerOne.checkGrid(p1coords,p1Number,playerTwo);
-	std::cout << "\n";
-}
-else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(p1coords,p1Number)=='M')
-{
-	while(1)
+	if(playerOne.getShotGrid(p1coords,p1Number) == '0')
 	{
-	std::cout <<"Shot already hit, please try again\n\n";
-	std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
-	do{
+		playerOne.checkGrid(p1coords,p1Number,playerTwo);
+		std::cout << "\n";
+	}
+	else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(p1coords,p1Number)=='M')
+	{	
+		while(1)
+		{
+		std::cout <<"Shot already hit, please try again\n\n";
+		std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
+		do{
 		std::cout<<"Player One, enter letter of the space you'd like to fire on: ";
 		std::cin>>p1coords;
 		if(!charIsValid(p1coords)){
@@ -165,6 +165,17 @@ else if (playerOne.getShotGrid(p1coords,p1Number)=='H' || playerOne.getShotGrid(
 	}
 	
 }
+
+
+
+
+
+		isWinner(playerOne,playerTwo);
+
+
+
+
+
 		//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 		//system("clear");
 		//std::cout << "Switching turns in: 3\n";
@@ -313,12 +324,16 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
-// int Executive::isWinner(Player& playerOne,Player& playerTwo){
-// 	if(playerOne.shipsRemaining() == 0) {
-// 		return(1);
-// 	} else if(playerTwo.shipsRemaining() == 0) {
-// 		return(2);
-// 	} else {
-// 		return(0);
-// 	}
-// }
+ bool Executive::isWinner(Player& playerOne,Player& playerTwo){
+ 	if(playerOne.shipsRemaining() == 0) {
+		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
+		 exit(1);
+ 		return(true);
+ 	} else if(playerTwo.shipsRemaining() == 0) {
+		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
+		exit(1);
+ 		return(true);
+ 	} else {
+ 		return(false);
+ 	}
+ }
