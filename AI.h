@@ -13,8 +13,6 @@ class AI
         void takeShot(char** oppGrid);
 
     private:
-        int retRow();
-        char retCol();
         const int m_difficulty;
         char** shipGrid;
         char** shotGrid;
