@@ -3,3 +3,6 @@ https://stackoverflow.com/questions/1658386/sleep-function-in-c
 
 Cin.fail integer input protection:
 http://www.cplusplus.com/forum/beginner/2957/
+
+Exit function:
+https://www.youtube.com/watch?v=s7gUg-aAbEY

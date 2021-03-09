@@ -28,3 +28,11 @@ Team 5 Project 2 Estimated Total Hours: 27.5
 3/4
 0.5 hours - Caden - implement charIsValid (verifies if char coordinate is in [A,J] bound
 2 hours - Caden - implement input protection for ship count, shot selection, and ship placement
+
+3/5
+1.5 hours - Wesley - ships being sunk
+
+3/8
+0.5 hours - Steven - fixed overlap protection, ship segmenting
+1 hours - Steven - implemented isWinner function
+2 hours - Caden - implementing AI (Difficulty 1 complete, Difficulty 3 partially done)
