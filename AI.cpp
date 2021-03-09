@@ -35,10 +35,22 @@ void AI::takeShot(char** oppGrid){
         oppGrid[yCoord][xCoord] = 'X';   
     }
     else if(m_difficulty == 2){
-        
+        srand((unsigned) time(0));
+        xCoord = rand() % 10;
+        srand((unsigned) time(0));
+        yCoord = rand() % 10;
+        //recursive shot
     }
     else if(m_difficulty == 3){
-
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(oppGrid)[i][j] == 'S'){
+                    oppGrid[i][j] = 'X';
+                    //may need Ship object functions to display when AI has sunk a ship or to check win condition.
+                    return;
+                }
+            }
+        }
     }
     else{
         std::cerr << "ERROR: Invalid difficulty level.\n";
