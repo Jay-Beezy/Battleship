@@ -1,6 +1,6 @@
 #include "AI.h"
 
-AI::AI(int difficulty){
+AI::AI(int difficulty, int ships){
     while(difficulty < 1 || difficulty > 3)
     {
         std::cerr << "ERROR: Invalid difficulty input. Please enter a valid on the bound [1,3]: ";
@@ -19,9 +19,17 @@ AI::AI(int difficulty){
             shipGrid[i][j] = '0';
         }
     }
+    shipArray = new Ship[ships];
 }
 
 AI::~AI(){
+    for(int i = 0; i < 10; i++)
+	{
+		delete shipGrid[i];
+		delete shotGrid[i];
+	}
+	delete[] shipGrid;
+	delete[] shotGrid;
 }
 
 void AI::takeShot(char** oppGrid){
@@ -89,6 +97,8 @@ void AI::placeShips(int length){
             }
         }
     }while(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == false);
+    Ship newShip(shipStarterCol, shipStarterRow, shipPlacement, shipLength);
+    shipArray[shipLength-1] = newShip;
 }
 
 bool AI::validatePosition(int row, int col, std::string direction, int shipLength)
