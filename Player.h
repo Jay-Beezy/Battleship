@@ -80,12 +80,12 @@ class Player
 		* @pre a ship has been created, and it is not known if it's position is valid
 		* @post returns rue if the position is valid
 		* @param int row, the row the 'head' of the ship is located on
-		* @param char col, the column the 'head' of the ship is located on
+		* @param int colnum, the column the 'head' of the ship is located on
 		* @param std::string direction, the direction the ship is heading, H or V
 		* @param int size, the length of the ship
 		* @return bool, is the position is valid
 		**/
-		bool validatePosition(int row, char col, std::string direction, int size);
+		bool validatePosition(int row, int colnum, std::string direction, int size);
 
 		/**
 		* @pre we need to turn an int to a string

@@ -74,31 +74,11 @@ void Player::placeShips(int length){
 	std::string shipPlacement;
 
 	std::cout << "\nWhat orientation would you like the ship to be placed in?\n";
-
 	do{
-		std::cout << "Vertical or Horizontal? (V / H): ";
-		std::cin >> shipPlacement;
-	}while(!std::cin.fail() && shipPlacement != "V" && shipPlacement != "v" && shipPlacement != "H" && shipPlacement != "h");
-
-
-	std::cout << "\nWhere would you like to place the head of the ship? \n";
-	do{
-		std::cout << "Please input a valid column (A - J): ";
-		std::cin >> shipStarterCol;
-	}while(validateCol(shipStarterCol) == false);
-
-	do{
-		std::cout << "Please input a valid row (1 - 10): ";
-		std::cin >> shipStarterRow;
-	}while(validateRow(shipStarterRow) == false);
-
-
-	while(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) != true)
-	{
 		do{
-		std::cout << "Vertical or Horizontal? (V / H): ";
-		std::cin >> shipPlacement;
-	}while(!std::cin.fail() && shipPlacement != "V" && shipPlacement != "v" && shipPlacement != "H" && shipPlacement != "h");	
+			std::cout << "Vertical or Horizontal? (V / H): ";
+			std::cin >> shipPlacement;
+		}while(!std::cin.fail() && shipPlacement != "V" && shipPlacement != "v" && shipPlacement != "H" && shipPlacement != "h");
 		std::cout << "\nWhere would you like to place the head of the ship? \n";
 		do{
 			std::cout << "Please input a valid column (A - J): ";
@@ -109,14 +89,12 @@ void Player::placeShips(int length){
 			std::cout << "Please input a valid row (1 - 10): ";
 			std::cin >> shipStarterRow;
 		}while(validateRow(shipStarterRow) == false);
-	}
+	}while(validatePosition(shipStarterRow, colToInt(shipStarterCol), shipPlacement, shipLength) == false);
 
 	//if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
 		//shipLocation = shipStarterCol + intToString(shipStarterRow);
 
 		Ship newShip(colToInt(shipStarterCol), shipStarterRow, shipPlacement, shipLength);
-
-
 		shipArray[shipLength-1] = newShip;
 	//}
 
@@ -137,11 +115,10 @@ void Player::placeShips(int length){
 	}
 }
 
-bool Player::validatePosition(int row, char col, std::string direction, int shipLength)
+bool Player::validatePosition(int row, int colnum, std::string direction, int shipLength)
 {
 	bool isValid = false;
 	//int temporaryRow = row;
-	int colnum = colToInt(col);
 	if(direction=="H" || direction == "h")
 	{
 		for(int i=0;i<shipLength;i++)
@@ -284,7 +261,6 @@ void Player::shipHit(Ship& ship)
 	
 }
 
-
 void Player::showFiringBoard(std::string turnPlayer)
 {
 		std::cout << "+------------------------------------------Player " + turnPlayer + "'s Board-------------------------------------------+\n";
@@ -333,54 +309,6 @@ void Player::showShipPlacement(std::string turnPlayer){
 
 bool Player::validateCol(char column){
 	return (column >='a' && column <='j') || (column >='A' && column <='J');
-
-	// bool isValid = false;
-	// do{
-	// 	if(column == 'A' || column == 'a'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'B' || column == 'b'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'C' || column == 'c'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'D' || column == 'd'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'E' || column == 'e'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'F' || column == 'f'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'G' || column == 'g'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'H' || column == 'h'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'I' || column == 'i'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else if(column == 'J' || column == 'j'){
-	// 		isValid = true;
-	// 		return(true);
-	// 	}
-	// 	else{
-	// 		isValid = false;
-	// 		return(false);
-	// 	}
-	// }while(isValid == false);
 }
 
 std::string Player::intToString(int num){
@@ -389,56 +317,8 @@ std::string Player::intToString(int num){
 }
 
 bool Player::validateRow(int row){
-	//bool isValid = false;
-		if(row == 1){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 2){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 3){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 4){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 5){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 6){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 7){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 8){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 9){
-			//isValid = true;
-			return(true);
-		}
-		else if(row == 10){
-			//isValid = true;
-			return(true);
-		}
-		else{
-			return(false);
-		}
-
+	return (row >= 1 && row <= 10);
 }
-
-
-
-
 
 int Player::shipsRemaining()
 {
