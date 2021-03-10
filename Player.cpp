@@ -8,13 +8,13 @@ Player::Player(int ships)
 	m_ships = ships;
 	numberOfShips = m_ships;
 	shipArray = new Ship[ships];
-	playerGrid = new char*[10];
+	shipGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
-		playerGrid[i] = new char[10];
+		shipGrid[i] = new char[10];
 	}
 	for(int j = 0; j < 10; j++){
 		for(int k = 0; k < 10; k++){
-			playerGrid[j][k] = '0';
+			shipGrid[j][k] = '0';
 		}
 	}
 
@@ -34,10 +34,10 @@ Player::~Player()
 {
 	for(int i = 0; i < 10; i++)
 	{
-		delete playerGrid[i];
+		delete shipGrid[i];
 		delete shotGrid[i];
 	}
-	delete[] playerGrid;
+	delete[] shipGrid;
 	delete[] shotGrid;
 
 }
@@ -45,13 +45,13 @@ Player::~Player()
 Player::Player()
 {
 	m_ships = 0;
-	playerGrid = new char*[10];
+	shipGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
-		playerGrid[i] = new char[10];
+		shipGrid[i] = new char[10];
 	}
 	for(int j = 0; j < 10; j++){
 		for(int k = 0; k < 10; k++){
-			playerGrid[j][k] = '0';
+			shipGrid[j][k] = '0';
 		}
 	}
 
@@ -126,13 +126,13 @@ void Player::placeShips(int length){
 
 	if(shipPlacement=="V" || shipPlacement=="v"){
 		for(int i=0;i<shipLength;i++){
-			playerGrid[arrayRow+i][arrayCol]='S';
+			shipGrid[arrayRow+i][arrayCol]='S';
 		}
 	}
 	if(shipPlacement=="H" || shipPlacement=="h"){
 		for(int i=0;i<shipLength;i++){
-				playerGrid[arrayRow][arrayCol+i]='S';
-				//std::cout << "playerGrid: " << arrayRow <<arrayCol+i << " = " << playerGrid[arrayRow][arrayCol+i] << "\n";
+				shipGrid[arrayRow][arrayCol+i]='S';
+				//std::cout << "shipGrid: " << arrayRow <<arrayCol+i << " = " << shipGrid[arrayRow][arrayCol+i] << "\n";
 		}
 	}
 }
@@ -146,10 +146,10 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 	{
 		for(int i=0;i<shipLength;i++)
 		{
-			if((colnum)<=10 && playerGrid[row-1][colnum-1]=='0'){
+			if((colnum)<=10 && shipGrid[row-1][colnum-1]=='0'){
 				isValid = true;
 			}
-			else if(playerGrid[row-1][colnum-1]=='S')
+			else if(shipGrid[row-1][colnum-1]=='S')
 			{
 					std::cout <<"Ships overlapping horizontally, please try again\n";
 					return(false);
@@ -168,7 +168,7 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 	//changed int i, to int j, cuz bug fixing. - andrews
 	if(direction=="V" || direction == "v"){
 		for(int j=0;j<shipLength;j++){
-			if(row <= 10 && playerGrid[row-1][colnum-1]=='0' ){
+			if(row <= 10 && shipGrid[row-1][colnum-1]=='0' ){
 				isValid = true;
 			}
 			else if(row>10)
@@ -176,7 +176,7 @@ bool Player::validatePosition(int row, char col, std::string direction, int ship
 				std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 				return(false);
 			}
-			else if(playerGrid[row-1][colnum-1]=='S')
+			else if(shipGrid[row-1][colnum-1]=='S')
 	 		{
 	 				std::cout <<"Ships overlapping Vertically, please try again\n";
 					 return(false);
@@ -234,13 +234,13 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 	//std::cout <<"colnum: " << colnum << "\n";
 	//std::cout << "numberInput: " << numberInput << "\n";	
 	
-		if(otherPlayer.playerGrid[numberInput-1][colnum-1]== 'S')
+		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
 			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer.playerGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'H';
 			for(int i = 0; i < m_ships;i++)
 			{
 				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
@@ -263,7 +263,7 @@ void Player::checkGrid(char letterInput, int numberInput, Player& otherPlayer){
 		{
 				std::cout << "Sorry you missed.\n";
 				shotGrid[numberInput-1][colnum-1] = 'M';
-				otherPlayer.playerGrid[numberInput-1][colnum-1] = 'M';		
+				otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';		
 		}		
 }
 
@@ -317,13 +317,13 @@ void Player::showShipPlacement(std::string turnPlayer){
 	for(int i = 0; i < 10; i++){
 		for(int j = 0; j < 10; j++){
 			if(j == 0){
-				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << playerGrid[i][j] << "\t";
+				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << shipGrid[i][j] << "\t";
 			}
 			else if(j == 9){
-				std::cout << playerGrid[i][j] << "\t" << "|";
+				std::cout << shipGrid[i][j] << "\t" << "|";
 			}
 			else{
-				std::cout << playerGrid[i][j] << "\t";
+				std::cout << shipGrid[i][j] << "\t";
 			}
 		}
 		std::cout << "\n";

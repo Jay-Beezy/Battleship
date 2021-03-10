@@ -118,8 +118,8 @@ class Player
 	private:
 		int m_ships;
 		int numberOfShips;
-		 char** playerGrid;
-		 char** shotGrid;
+		char** shipGrid;
+		char** shotGrid;
 		Ship* shipArray;//max number of ships, allows us to have a location for each ship in memory
 
 };
