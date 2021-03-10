@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include<ctime>
+#include<string>
 
 class AI
 {
@@ -11,9 +12,11 @@ class AI
         AI(int difficulty);
         ~AI();
         void takeShot(char** oppGrid);
+        void placeShips(int length);
 
     private:
-        const int m_difficulty;
+        bool validatePosition(int row, int col, std::string direction, int shipLength);
+        int m_difficulty;
         char** shipGrid;
         char** shotGrid;
 };
