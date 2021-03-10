@@ -32,7 +32,7 @@ class Ship
 		* @param int length, length of ship, string shipStart, coordinates for head of ship, string shipOrientation, direction ship does on board
 		* @return N/A
 		**/
-		Ship(char shipHead_XCoordinate, int shipHead_YCoordinate, std::string shipOrientation, int length);
+		Ship(int shipHead_XCoordinate, int shipHead_YCoordinate, std::string shipOrientation, int length);
 
 		/**
 		* @pre need to know if a ship is destroyed
@@ -67,14 +67,6 @@ class Ship
 		void createArray();
 
 		/**
-		* @pre You need to turn a char column value to an int value
-		* @post the char is turned into the corresponding in
-		* @param string column, the column value
-		* @return int, the column return value
-		**/
-		int colToNum(char column);
-
-		/**
 		* @pre we need to turn an int to a string
 		* @post we turned an int into a string
 		* @param int num, number we're turning into a string
@@ -82,13 +74,6 @@ class Ship
 		**/
 		std::string numToString(int num);
 
-		/**
-		* @pre we need to turn a column number back into the letter it corresponds to on the board
-		* @post we turned the number into a string
-		* @param int colnum, the column value
-		* @return std::string, the string
-		**/
-		std::string numToCol(int colnum);
 		/**
 		* @pre we need to access the private array in another class
 		* @post we've made it so we can access the array from another class

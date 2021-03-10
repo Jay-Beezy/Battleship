@@ -6,7 +6,7 @@
 
 Ship::Ship(){};
 
-Ship::Ship(char shipHead_xCoordinate, int shipHead_yCoordinate, std::string shipOrientation, int length){ //constructor
+Ship::Ship(int shipHead_xCoordinate, int shipHead_yCoordinate, std::string shipOrientation, int length){ //constructor
 	m_shipLength = length;
 	m_shipHealth = length;
 	m_shipHead_XCoordinate = shipHead_xCoordinate;
@@ -71,98 +71,27 @@ char Ship::capitalize(char column){
 	return('0');
 }
 
-
-int Ship::colToNum(char column){
-	if(column == 'A' || column == 'a'){
-		return(1);
-	}
-	else if(column == 'B' || column == 'b'){
-		return(2);
-	}
-	else if(column == 'C' || column == 'c'){
-		return(3);
-	}
-	else if(column == 'D' || column == 'd'){
-		return(4);
-	}
-	else if(column == 'E' || column == 'e'){
-		return(5);
-	}
-	else if(column == 'F' || column == 'f'){
-		return(6);
-	}
-	else if(column == 'G' || column == 'g'){
-		return(7);
-	}
-	else if(column == 'H' || column == 'h'){
-		return(8);
-	}
-	else if(column == 'I' || column == 'i'){
-		return(9);
-	}
-	else if(column == 'J' || column == 'j'){
-		return(10);
-	}
-	return(0);
-}
-
 std::string Ship::numToString(int num){
 	std::string temp = std::to_string(num);
 	return(temp);
 }
 
-std::string Ship::numToCol(int colnum){
-	if(colnum == 1){
-		return("A");
-	}
-	else if(colnum == 2){
-		return("B");
-	}
-	else if(colnum == 3){
-		return("C");
-	}
-	else if(colnum == 4){
-		return("D");
-	}
-	else if(colnum == 5){
-		return("E");
-	}
-	else if(colnum == 6){
-		return("F");
-	}
-	else if(colnum == 7){
-		return("G");
-	}
-	else if(colnum == 8){
-		return("H");
-	}
-	else if(colnum == 9){
-		return("I");
-	}
-	else if(colnum == 10){
-		return("J");
-	}
-	return("X");//shouldn't ever happen because validate posiiton checks for this
-}
-
 void Ship::createArray()
 {
-	 char head_XCoordinate = m_shipHead_XCoordinate;
+	 int head_XCoordinate = m_shipHead_XCoordinate;
 	 int head_YCoordinate= m_shipHead_YCoordinate;
 	 //int hrow = headrow - '0';
 	 //std::string colstring(1,head_X_Coordinate);
-	 int letterCoordinate = colToNum(head_XCoordinate);
-
 
 	 if(m_shipDirection=="V"||m_shipDirection=="v"){
 	 for(int i=0;i<m_shipLength;i++){
-	 		individualShipPlacements[head_YCoordinate+i-1][letterCoordinate-1]= 'S';
+	 		individualShipPlacements[head_YCoordinate+i-1][head_XCoordinate-1]= 'S';
 	 	}
 
 	 }
 	 if(m_shipDirection=="H"||m_shipDirection=="h"){
 	 for(int i=0;i<m_shipLength;i++){
-	 	individualShipPlacements[head_YCoordinate-1][letterCoordinate+i-1]= 'S';
+	 	individualShipPlacements[head_YCoordinate-1][head_XCoordinate+i-1]= 'S';
 
 	 	}
 	 }

@@ -114,7 +114,7 @@ void Player::placeShips(int length){
 	//if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
 		//shipLocation = shipStarterCol + intToString(shipStarterRow);
 
-		Ship newShip(shipStarterCol,shipStarterRow, shipPlacement, shipLength);
+		Ship newShip(colToInt(shipStarterCol), shipStarterRow, shipPlacement, shipLength);
 
 
 		shipArray[shipLength-1] = newShip;
