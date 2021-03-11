@@ -86,6 +86,15 @@ void Player::placeShips(int length){
 		}while(validateCol(shipStarterCol) == false);
 
 		do{
+			while(1){
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore();
+			}
+			else 
+				break;
+			}
 			std::cout << "Please input a valid row (1 - 10): ";
 			std::cin >> shipStarterRow;
 		}while(validateRow(shipStarterRow) == false);
