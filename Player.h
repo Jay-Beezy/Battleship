@@ -4,11 +4,12 @@
 #define PLAYER_H
 
 #include "Ship.h"
+#include "Parent.h"
 #include <string>
 #include <fstream>
 #include <iostream>
 
-class Player
+class Player : public Parent
 {
 
 	public:
@@ -41,7 +42,7 @@ class Player
 		* @param char column, the column value
 		* @return int, the column return value
 		**/
-		int colToInt(char column);
+		//int colToInt(char column);
 
 		/**
 		* @pre The ship must be created and anchored to a spot on player grid
@@ -56,71 +57,6 @@ class Player
 		* @post The player grid is shown
 		* @return void
 		**/
-
-		void showFiringBoard(std::string); // shows top board where you fire your shots
-		void showShipPlacement(std::string); // shows bottom board where youre ships are placed
-
-		/**
-		* @pre A column value must be checked to see if it is valid
-		* @post returns true if the column is a valid proposal
-		* @param char column, the column value to check
-		* @return bool, is the column valid
-		**/
-		bool validateCol(char column);
-
-		/**
-		* @pre A row value must be checked to see if it is valid
-		* @post returns true if the row is a valid proposal
-		* @param int row, the row value to check
-		* @return bool, is the row valid
-		**/
-		bool validateRow(int row);
-
-		/**
-		* @pre a ship has been created, and it is not known if it's position is valid
-		* @post returns rue if the position is valid
-		* @param int row, the row the 'head' of the ship is located on
-		* @param int colnum, the column the 'head' of the ship is located on
-		* @param std::string direction, the direction the ship is heading, H or V
-		* @param int size, the length of the ship
-		* @return bool, is the position is valid
-		**/
-		bool validatePosition(int row, int colnum, std::string direction, int size);
-
-		/**
-		* @pre we need to turn an int to a string
-		* @post we turned an int into a string
-		* @param int num, number we're turning into a string
-		* @return std::string, the string
-		**/
-		std::string intToString(int num);
-
-		/**
-		* @pre the player has inputted coordinates to fire upon, we need to check them
-		* @post checks if the ship has been hit, informs player
-		* @param std::string shipCoords, the location of the ship
-		* @return true if hit lands, false if miss
-		**/
-		void checkGrid(char letterInput, int numberInput,Player& otherPlayer);
-
-		/**
-		* @pre all ships have been constructed
-		* @post checks how many ships have not been destroed
-		* @return number of ships not destroyed
-		**/
-		int shipsRemaining();
-
-		void shipHit(Ship& ship);
-		
-		char getShotGrid(char letter, int number);
-
-
-	private:
-		int m_ships;
-		int numberOfShips;
-		char** shipGrid;
-		char** shotGrid;
-		Ship* shipArray;//max number of ships, allows us to have a location for each ship in memory
 
 };
 #endif
