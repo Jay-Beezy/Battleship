@@ -6,8 +6,9 @@
 #include <ctime>
 #include <string>
 #include "Ship.h"
+#include "Parent.h"
 
-class AI
+class AI: public Parent
 {
     public:
         AI(int difficulty, int ships);
@@ -32,10 +33,6 @@ class AI
 		* @param int size, the length of the ship
 		* @return bool, is the position is valid
 		**/
-        bool validatePosition(int row, int col, std::string direction, int shipLength);
         int m_difficulty;
-        char** shipGrid;
-        char** shotGrid;
-        Ship* shipArray;
 };
 #endif
