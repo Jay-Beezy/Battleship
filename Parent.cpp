@@ -108,15 +108,15 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 			{
 				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
 				 //not sure why this is here^
-				 if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
-				 {
+				if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				{
 					shipArray[i].shipMinusHealth();
 				 	if(shipArray[i].checkIfSunk())
-					 {
-						 numberOfShips--;
-						 charge = 1;
-					 }
-				 }
+					{
+						m_numberOfShips--;
+						charge = 1;
+					}
+				}
 			}
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='H')
@@ -207,7 +207,7 @@ bool Parent::validateRow(int row){
 	return (row >= 1 && row <= 10);
 }
 
-int Parent::shipsRemaining()
+const int Parent::shipsRemaining()
 {
-	return numberOfShips;
+	return m_numberOfShips;
 }
