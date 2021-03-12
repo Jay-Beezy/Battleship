@@ -53,6 +53,18 @@ class Player : public Parent
 		**/
 		void placeShips(int length);
 
+
+		/**
+		* @pre a ship has been created, and it is not known if it's position is valid
+		* @post returns rue if the position is valid
+		* @param int row, the row the 'head' of the ship is located on
+		* @param int colnum, the column the 'head' of the ship is located on
+		* @param std::string direction, the direction the ship is heading, H or V
+		* @param int size, the length of the ship
+		* @return bool, is the position is valid
+		**/
+		virtual bool validatePosition(int row, int colnum, std::string direction, int size);
+
 		/**
 		* @pre player's turn begins
 		* @post player's shot board will be printed
@@ -72,7 +84,16 @@ class Player : public Parent
 		* @post area will be hit (or not) and opponent ship grid will be adjusted accordingly
 		* @param opp the opponent to be fired upon
 		**/
-		void takeShot(Parent& opp);
+		void takeShot(Parent* opp);
+
+		/**
+		* @pre all ships have been constructed
+		* @post checks how many ships have not been destroed
+		* @return number of ships not destroyed
+		**/
+		const int shipsRemaining();
+
+		char getShotGrid(char letter, int input);
 
 		/**
 		* @pre the player has inputted coordinates to fire upon, we need to process them
@@ -80,7 +101,7 @@ class Player : public Parent
 		* @param std::string shipCoords, the location of the ship
 		* @return none
 		**/
-		void checkGrid(char letterInput, int numberInput,Parent& otherPlayer);
+		void checkGrid(char letterInput, int numberInput,Parent* otherPlayer);
 
 		/**
 		* @pre the player has inputted coordinates to fire upon, we need to process them
@@ -88,9 +109,19 @@ class Player : public Parent
 		* @param std::string shipCoords, the location of the ship
 		* @return none
 		**/
-		void checkPower(char letterInput, int numberInput,Parent& otherPlayer);
+		void checkPower(char letterInput, int numberInput,Parent* otherPlayer);
+
+
+		/**
+		* @pre char column value needs to be converted to an integer
+		* @post none
+		* @param column char to be converted
+		* @return integer column equivalent
+		**/	
+		int colToInt(char column);
 
 		private:
+		bool charge; //variable for if player has a power shot charge	
 		std::string m_id;
 };
 #endif

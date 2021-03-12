@@ -89,7 +89,7 @@ void Player::placeShips(int length){
 		do{
 			std::cout << "Please input a valid column (A - J): ";
 			std::cin >> shipStarterCol;
-		}while(validateCol(shipStarterCol) == false);
+		}while(!(shipStarterCol >= 'a' || shipStarterCol <= 'j' || shipStarterCol >= 'A' || shipStarterCol <= 'J'));
 
 		do{
 			while(1){
@@ -103,13 +103,11 @@ void Player::placeShips(int length){
 			}
 			std::cout << "Please input a valid row (1 - 10): ";
 			std::cin >> shipStarterRow;
-		}while(validateRow(shipStarterRow) == false);
+		}while(shipStarterRow < 1 || shipStarterRow > 10);
 	}while(validatePosition(shipStarterRow, colToInt(shipStarterCol), shipPlacement, shipLength) == false);
 
 
 	//if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
-		//shipLocation = shipStarterCol + intToString(shipStarterRow);
-
 		shipArray[shipLength-1] = new Ship(colToInt(shipStarterCol), shipStarterRow, shipPlacement, shipLength);
 	//}
 
@@ -138,7 +136,6 @@ void Player::showFiringBoard(std::string turnPlayer)
 	std::cout << "+------------------------------------------Player " + turnPlayer + "'s Board-------------------------------------------+\n";
 	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	std::cout << "DEBUG\n";
 	for(int i = 0; i < 10; i++){
 		for(int j = 0; j < 10; j++){
 			if(j == 0){
@@ -154,7 +151,6 @@ void Player::showFiringBoard(std::string turnPlayer)
 		std::cout << "\n";
 	}
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	std::cout << "DEBUG1\n";
 }
 
 void Player::showShipPlacement(std::string turnPlayer){
@@ -176,10 +172,112 @@ void Player::showShipPlacement(std::string turnPlayer){
 		std::cout << "\n";
 	}
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	std::cout << "DEBUG2\n";
 }
 
-void Player::takeShot(Parent& opp){
+bool Player::validatePosition(int row, int colnum, std::string direction, int shipLength)
+{
+	bool isValid = false;
+	//int temporaryRow = row;
+	if(direction=="H" || direction == "h")
+	{
+		for(int i=0;i<shipLength;i++)
+		{
+			if((colnum)<=10 && shipGrid[row-1][colnum-1]=='0'){
+				isValid = true;
+			}
+			else if(shipGrid[row-1][colnum-1]=='S')
+			{
+					std::cout <<"Ships overlapping horizontally, please try again\n";
+					return(false);
+					//isValid = false;
+					//return(isValid);
+			}
+			else
+			{
+				isValid = false;
+				std::cout << "\n\nInvalid Coordinates, try again.\n\n";
+			}
+			colnum++;
+		}
+	}
+
+	//changed int i, to int j, cuz bug fixing. - andrews
+	if(direction=="V" || direction == "v"){
+		for(int j=0;j<shipLength;j++){
+			if(row <= 10 && shipGrid[row-1][colnum-1]=='0' ){
+				isValid = true;
+			}
+			else if(row>10)
+			{
+				std::cout << "\n\nInvalid Coordinates, try again.\n\n";
+				return(false);
+			}
+			else if(shipGrid[row-1][colnum-1]=='S')
+	 		{
+	 				std::cout <<"Ships overlapping Vertically, please try again\n";
+					 return(false);
+	 				//isValid = false;
+	 		}
+			else
+			{
+				isValid = false;
+			}
+			row++;
+		}
+	}
+	return(isValid);
+}
+
+
+int Player::colToInt(char column){
+	if(column == 'A' || column == 'a'){
+		return(1);
+	}
+	else if(column == 'B' || column == 'b'){
+		return(2);
+	}
+	else if(column == 'C' || column == 'c'){
+		return(3);
+	}
+	else if(column == 'D' || column == 'd'){
+		return(4);
+	}
+	else if(column == 'E' || column == 'e'){
+		return(5);
+	}
+	else if(column == 'F' || column == 'f'){
+		return(6);
+	}
+	else if(column == 'G' || column == 'g'){
+		return(7);
+	}
+	else if(column == 'H' || column == 'h'){
+		return(8);
+	}
+	else if(column == 'I' || column == 'i'){
+		return(9);
+	}
+	else if(column == 'J' || column == 'j'){
+		return(10);
+	}
+	return(0);
+}
+
+/* void Parent::shipHit(Ship& ship)
+{
+	ship.shipMinusHealth();
+	if(ship.getHealth() !=ship.getLength())
+	{
+		ship.checkIfSunk();
+	}
+} */
+
+const int Player::shipsRemaining()
+{
+	return(m_numberOfShips);
+}
+
+void Player::takeShot(Parent* opp){
 	int yCoord = 0;
 	char xCoord = '\0';
 	char powerShotChoice = '\0';
@@ -227,7 +325,7 @@ void Player::takeShot(Parent& opp){
 			}
 		}while(std::cin.fail() || yCoord < 1 || yCoord > 10);
 		std::cout << "\n";
-		if(getShotGrid(xCoord,yCoord)=='0'){
+		if(shotGrid[yCoord-1][colToInt(xCoord)-1] =='0'){
 			if(shotType == 1){
 				checkPower(xCoord, yCoord, opp);
 			}	
@@ -236,7 +334,7 @@ void Player::takeShot(Parent& opp){
 			}
 			std::cout << "\n";
 		}					
-		else if (getShotGrid(xCoord,yCoord)=='H' || getShotGrid(xCoord,yCoord)=='M')
+		else if (shotGrid[yCoord-1][colToInt(xCoord)-1] == 'H' || shotGrid[yCoord-1][colToInt(xCoord)-1] == 'M')
 		{
 			std::cout <<"Shot already hit, please try again\n\n";
 			repeat = true;
@@ -244,16 +342,16 @@ void Player::takeShot(Parent& opp){
 	}while(repeat == true);
 }
 
-void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
+void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 	int colnum = colToInt(letterInput);	
 	
-		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
+		if(otherPlayer->shipGrid[numberInput-1][colnum-1]== 'S')
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
 			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'H';
 			for(int i = 0; i < m_ships;i++)
 			{
 				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
@@ -264,7 +362,7 @@ void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 				 	if(shipArray[i]->checkIfSunk())
 					 {
 						 m_numberOfShips--;
-						 otherPlayer.charge = 1;
+						 otherPlayer->charge = 1;
 					 }
 				 }
 			}
@@ -277,11 +375,11 @@ void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 		{
 			std::cout << "Sorry you missed.\n";
 			shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';	
+			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
 		}		
 }
 
-void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
+void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 	//char col = shipCoords.at(0);
 	//char row= shipCoords.at(1);
 	int colnum = colToInt(letterInput);
@@ -294,13 +392,13 @@ void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
 		{
 			if(!(((numberInput-2+k)>9)||((numberInput-2+k)<0)||((colnum-2+j)>9)||((colnum-2+j)<0)))//make sure shot is still valid
 			{	
-				if(otherPlayer.shipGrid[numberInput-2+k][colnum-2+j]== 'S')
+				if(otherPlayer->shipGrid[numberInput-2+k][colnum-2+j]== 'S')
 				{	
 					fire = 1;
 					//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 					//check isWinner? or do that in Executive
 					shotGrid[numberInput-2+k][colnum-2+j] = 'H';
-					otherPlayer.shipGrid[numberInput-2+k][colnum-2+j] = 'H';
+					otherPlayer->shipGrid[numberInput-2+k][colnum-2+j] = 'H';
 					for(int i = 0; i < m_ships;i++)
 					{
 						//std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
@@ -320,7 +418,7 @@ void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
 				else 
 				{
 					shotGrid[numberInput-2+k][colnum-2+j] = 'M';
-					otherPlayer.shipGrid[numberInput-2+k][colnum-2+j] = 'M';		
+					otherPlayer->shipGrid[numberInput-2+k][colnum-2+j] = 'M';		
 				}
 			}
 		}
