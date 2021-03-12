@@ -119,7 +119,7 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 					shipArray[i]->shipMinusHealth();
 				 	if(shipArray[i]->checkIfSunk())
 					 {
-						 numberOfShips--;
+						 m_numberOfShips--;
 						 otherPlayer.charge = 1;
 					 }
 				 }
@@ -213,7 +213,7 @@ bool Parent::validateRow(int row){
 	return (row >= 1 && row <= 10);
 }
 
-int Parent::shipsRemaining()
+const int Parent::shipsRemaining()
 {
-	return numberOfShips;
+	return m_numberOfShips;
 }

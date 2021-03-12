@@ -7,7 +7,7 @@ Player::Player(int ships)
 {
 	charge = 0;
 	m_ships = ships;
-	numberOfShips = m_ships;
+	m_numberOfShips = m_ships;
 	shipArray = new Ship*[ships];
 	shipGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
@@ -162,7 +162,7 @@ void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
 							shipArray[i]->shipMinusHealth();
 							if(shipArray[i]->checkIfSunk())
 							{
-								numberOfShips--;
+								m_numberOfShips--;
 							}
 						}
 					}

@@ -62,7 +62,7 @@ class Parent
 		* @post checks how many ships have not been destroed
 		* @return number of ships not destroyed
 		**/
-		int shipsRemaining();
+		const int shipsRemaining();
 
 		void shipHit(Ship& ship);
 		
@@ -81,7 +81,7 @@ class Parent
 
     //protected:
         int m_ships;
-		int numberOfShips;
+		int m_numberOfShips;
 		char** shipGrid;
 		char** shotGrid;
 		Ship** shipArray;//max number of ships, allows us to have a location for each ship in memory
