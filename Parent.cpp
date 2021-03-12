@@ -171,9 +171,6 @@ void Parent::showFiringBoard(std::string turnPlayer)
 }
 
 void Parent::showShipPlacement(std::string turnPlayer){
-
-
-	
 	std::cout << "+------------------------------------------Player "+ turnPlayer+ "'s  Board------------------------------------------+\n";
 	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
