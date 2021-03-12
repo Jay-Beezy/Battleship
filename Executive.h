@@ -4,6 +4,8 @@
 #define EXECUTIVE_H
 
 #include "Player.h"
+#include "AI.h"
+#include "Parent.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -68,7 +70,7 @@ class Executive
 		* @param none
 		* @return returns 1 if player1 wins and 2 if player2 wins
 		**/
-		bool isWinner(Player& playerOne,Player& playerTwo);
+		bool isWinner(Player& playerOne,Parent& playerTwo);
 
 		/**
 		* @pre need to check if char coordinate is in bounds
