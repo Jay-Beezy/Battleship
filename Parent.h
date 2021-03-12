@@ -87,6 +87,13 @@ class Parent
 
 		bool charge; //variable for if player has a power shot charge	
 
+
+		/**
+		* @pre the player selects coordinates to fire upon
+		* @post area will be hit (or not) and opponent ship grid will be adjusted accordingly
+		* @param opp the opponent to be fired upon
+		**/
+		void takeShot(Parent& opp);
     //protected:
         int m_ships;
 		int m_numberOfShips;

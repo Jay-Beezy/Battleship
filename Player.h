@@ -17,9 +17,10 @@ class Player : public Parent
 		* @pre The class is created and a number of ships provided
 		* @post The class is created
 		* @param int ships, the number of ships the player has
+		* @param id - identifies player
 		* @return N/A
 		**/
-		Player(int ships);
+		Player(int ships, std::string id);
 
 		/**
 		* @pre need to delete a player
@@ -53,11 +54,21 @@ class Player : public Parent
 		void placeShips(int length);
 
 		/**
+		* @pre the player selects coordinates to fire upon
+		* @post area will be hit (or not) and opponent ship grid will be adjusted accordingly
+		* @param opp the opponent to be fired upon
+		**/
+		void takeShot(Parent& opp);
+
+		/**
 		* @pre the player has inputted coordinates to fire upon, we need to process them
 		* @post checks if the ship has been hit, if not hits area with power shot
 		* @param std::string shipCoords, the location of the ship
 		* @return none
 		**/
 		void checkPower(char letterInput, int numberInput,Parent& otherPlayer);
+
+		private:
+		std::string m_id;
 };
 #endif

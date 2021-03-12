@@ -3,8 +3,9 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(int ships)
+Player::Player(int ships, std::string id)
 {
+	m_id = id;
 	charge = 0;
 	m_ships = ships;
 	m_numberOfShips = m_ships;
@@ -123,6 +124,63 @@ void Player::placeShips(int length){
 				//std::cout << "shipGrid: " << arrayRow <<arrayCol+i << " = " << shipGrid[arrayRow][arrayCol+i] << "\n";
 		}
 	}
+}
+
+void Player::takeShot(Parent& opp){
+	int yCoord = 0;
+	char xCoord = '/0';
+	char powerShotChoice = '/0';
+	int shotType = 0;
+	if(charge == 1)
+			{
+				do{
+					std::cout<<"You have a Power Shot! Would you like to use it?(Y/N): ";
+					std::cin >> powerShotChoice;
+				}while(!(powerShotChoice == 'Y' || powerShotChoice == 'y' || powerShotChoice == 'N' || powerShotChoice == 'n'));
+				if(powerShotChoice == 'Y' || powerShotChoice == 'y')
+				{
+					shotType = 1;
+				}
+				else
+				{
+					shotType = 0;
+				}
+			}
+	std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
+	do
+	{
+		std::cout<<"Player "<< m_id << ", enter letter of the space you'd like to fire on: ";
+		std::cin>> xCoord;
+		if(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')))
+		{
+			std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
+		}
+	}while(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')));
+	do
+	{
+		//std::cin.clear();
+		//std::cin.ignore(100, '\n');
+		std::cout<<"Player "<< m_id << ", enter number of the space you'd like to fire on: ";
+		std::cin>>yCoord;
+		if(std::cin.fail())
+		{
+			std::cout << "ERROR: Please enter an integer.\n";
+		}
+		else if(yCoord < 1 || yCoord > 10)
+		{
+			std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+		}
+	}while(std::cin.fail() || yCoord < 1 || yCoord > 10);
+	std::cout << "\n";
+	if(getShotGrid(xCoord,yCoord)=='0'){
+			if(shotType == 1){
+				checkPower(xCoord, yCoord, opp);
+			}	
+			else{
+				checkGrid(xCoord, yCoord, opp);
+			}
+	}							
+	std::cout << "\n";
 }
 
 void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
