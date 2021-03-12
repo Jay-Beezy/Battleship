@@ -182,56 +182,105 @@ void Player::takeShot(Parent& opp){
 	char xCoord = '/0';
 	char powerShotChoice = '/0';
 	int shotType = 0;
-	if(charge == 1)
+	bool repeat = false;
+	if(charge == 1){
+		do{
+			std::cout<<"You have a Power Shot! Would you like to use it?(Y/N): ";
+			std::cin >> powerShotChoice;
+		}while(!(powerShotChoice == 'Y' || powerShotChoice == 'y' || powerShotChoice == 'N' || powerShotChoice == 'n'));
+		if(powerShotChoice == 'Y' || powerShotChoice == 'y')
+		{
+			shotType = 1;
+		}
+		else
+		{
+			shotType = 0;
+		}
+	}
+	do{
+		repeat = false;
+		std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
+		do
+		{
+			std::cout<<"Player "<< m_id << ", enter letter of the space you'd like to fire on: ";
+			std::cin>> xCoord;
+			if(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')))
 			{
-				do{
-					std::cout<<"You have a Power Shot! Would you like to use it?(Y/N): ";
-					std::cin >> powerShotChoice;
-				}while(!(powerShotChoice == 'Y' || powerShotChoice == 'y' || powerShotChoice == 'N' || powerShotChoice == 'n'));
-				if(powerShotChoice == 'Y' || powerShotChoice == 'y')
-				{
-					shotType = 1;
-				}
-				else
-				{
-					shotType = 0;
-				}
+				std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
 			}
-	std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
-	do
-	{
-		std::cout<<"Player "<< m_id << ", enter letter of the space you'd like to fire on: ";
-		std::cin>> xCoord;
-		if(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')))
+		}while(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')));
+		do
 		{
-			std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
-		}
-	}while(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')));
-	do
-	{
-		//std::cin.clear();
-		//std::cin.ignore(100, '\n');
-		std::cout<<"Player "<< m_id << ", enter number of the space you'd like to fire on: ";
-		std::cin>>yCoord;
-		if(std::cin.fail())
-		{
-			std::cout << "ERROR: Please enter an integer.\n";
-		}
-		else if(yCoord < 1 || yCoord > 10)
-		{
-			std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
-		}
-	}while(std::cin.fail() || yCoord < 1 || yCoord > 10);
-	std::cout << "\n";
-	if(getShotGrid(xCoord,yCoord)=='0'){
+			//std::cin.clear();
+			//std::cin.ignore(100, '\n');
+			std::cout<<"Player "<< m_id << ", enter number of the space you'd like to fire on: ";
+			std::cin>>yCoord;
+			if(std::cin.fail())
+			{
+				std::cout << "ERROR: Please enter an integer.\n";
+			}
+			else if(yCoord < 1 || yCoord > 10)
+			{
+				std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
+			}
+		}while(std::cin.fail() || yCoord < 1 || yCoord > 10);
+		std::cout << "\n";
+		if(getShotGrid(xCoord,yCoord)=='0'){
 			if(shotType == 1){
 				checkPower(xCoord, yCoord, opp);
 			}	
 			else{
 				checkGrid(xCoord, yCoord, opp);
 			}
-	}							
-	std::cout << "\n";
+			std::cout << "\n";
+		}					
+		else if (getShotGrid(xCoord,yCoord)=='H' || getShotGrid(xCoord,yCoord)=='M')
+		{
+			std::cout <<"Shot already hit, please try again\n\n";
+			repeat = true;
+		}
+	}while(repeat = true);
+}
+
+void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
+	//char col = shipCoords.at(0);
+	//char row= shipCoords.at(1);
+	int colnum = colToInt(letterInput);
+	//std::cout <<"colnum: " << colnum << "\n";
+	//std::cout << "numberInput: " << numberInput << "\n";	
+	
+		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
+		{
+			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
+			//check isWinner? or do that in Executive
+			std::cout << "Congrats you hit!\n";
+			shotGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'H';
+			for(int i = 0; i < m_ships;i++)
+			{
+				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
+				 //not sure why this is here^
+				 if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				 {
+					shipArray[i]->shipMinusHealth();
+				 	if(shipArray[i]->checkIfSunk())
+					 {
+						 m_numberOfShips--;
+						 otherPlayer.charge = 1;
+					 }
+				 }
+			}
+		}
+		else if(shotGrid[numberInput-1][colnum-1]=='H')
+		{
+			std::cout << "Already hit\n";
+		}
+		else 
+		{
+				std::cout << "Sorry you missed.\n";
+				shotGrid[numberInput-1][colnum-1] = 'M';
+				otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';		
+		}		
 }
 
 void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){

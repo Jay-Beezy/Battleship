@@ -96,47 +96,6 @@ int Parent::colToInt(char column){
 	return(0);
 }
 
-void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
-	//char col = shipCoords.at(0);
-	//char row= shipCoords.at(1);
-	int colnum = colToInt(letterInput);
-	//std::cout <<"colnum: " << colnum << "\n";
-	//std::cout << "numberInput: " << numberInput << "\n";	
-	
-		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
-		{
-			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
-			//check isWinner? or do that in Executive
-			std::cout << "Congrats you hit!\n";
-			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'H';
-			for(int i = 0; i < m_ships;i++)
-			{
-				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
-				 //not sure why this is here^
-				 if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
-				 {
-					shipArray[i]->shipMinusHealth();
-				 	if(shipArray[i]->checkIfSunk())
-					 {
-						 m_numberOfShips--;
-						 otherPlayer.charge = 1;
-					 }
-				 }
-			}
-		}
-		else if(shotGrid[numberInput-1][colnum-1]=='H')
-		{
-			std::cout << "Already hit\n";
-		}
-		else 
-		{
-				std::cout << "Sorry you missed.\n";
-				shotGrid[numberInput-1][colnum-1] = 'M';
-				otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';		
-		}		
-}
-
 char Parent::getShotGrid(char letter, int input)
 {
 	int colnum = colToInt(letter);

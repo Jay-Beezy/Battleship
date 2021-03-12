@@ -58,14 +58,6 @@ class Parent
 		void checkPower(char letterInput, int numberInput,Parent& otherPlayer);
 
 		/**
-		* @pre the player has inputted coordinates to fire upon, we need to process them
-		* @post checks if the ship has been hit, if not does so
-		* @param std::string shipCoords, the location of the ship
-		* @return none
-		**/
-		void checkGrid(char letterInput, int numberInput,Parent& otherPlayer);
-
-		/**
 		* @pre all ships have been constructed
 		* @post checks how many ships have not been destroed
 		* @return number of ships not destroyed
