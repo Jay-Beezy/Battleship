@@ -390,10 +390,31 @@ void Executive::run()
 }
 
 void Executive::takeTurn(Player& player, int id){
-	
-	//print player map
+	printShots(player, id);
+	printShips(player, id);
 	//player takes shot
 	//shot feedback
+}
+
+void Executive::printShots(Player& player, int id){
+	std::cout << "+------------------------------------------Player " << id << "'s Board-------------------------------------------+\n";
+	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
+	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			if(j == 0){
+				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << player.shotGrid[i][j] << "\t";
+			}
+			else if(j == 9){
+				std::cout << player.shotGrid[i][j] << "\t" << "|";
+			}
+			else{
+				std::cout << player.shotGrid[i][j] << "\t";
+			}
+		}
+		std::cout << "\n";
+	}
+	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
 
 void Executive::printShips(Player& player, int id){

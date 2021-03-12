@@ -41,6 +41,12 @@ class Executive
 		void run();
 
 	private:
+		/**
+		* @pre shot board needs to be printed
+		* @param player which player is taking their turn
+		* @post print shot board
+		**/
+		void printShots(Player& player, int id);
 
 		/**
 		* @pre ship board needs to be printed
