@@ -47,7 +47,7 @@ class Executive
 		* @param opp opposing player
 		* @post player's current ship map will display and they will select shot location
 		**/
-		void takeTurn(Player& player, Player& opp, std::string id);
+		void takeTurn(Parent* player, Parent* opp, std::string id);
 
 		/**
 		* @pre need players to change turns
@@ -85,7 +85,7 @@ class Executive
 		* @param none
 		* @return returns 1 if player1 wins and 2 if player2 wins
 		**/
-		bool isWinner(Player& playerOne,Parent& playerTwo);
+		bool isWinner(Player* playerOne, Parent* playerTwo);
 
 		/**
 		* @pre need to check if char coordinate is in bounds

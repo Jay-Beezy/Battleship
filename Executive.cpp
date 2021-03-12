@@ -41,13 +41,12 @@ void Executive::run()
 	std::cin >> choice;
 
 	if(choice == 2){
-		std::cout <<"What Difficulty? (1 for easy, 2 for medium, 3 for hard): ";
+		std::cout <<"What AI Difficulty? (1 for easy, 2 for medium, 3 for hard): ";
 		std::cin >> difficulty;
 	}
-	std::cout << "How many ships do you want to use?\n";
+	std::cout << "How many ships do you want to use?: ";
 	std::cin >> shipAmount;
 
-	AI robot(difficulty, shipAmount);
 	while(shipAmount <= 0 || shipAmount > 6 || std::cin.fail()){
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
@@ -61,41 +60,37 @@ void Executive::run()
 		}
 		std::cout << std::endl;
 	}
-	//Creating Players
-	Player playerOne(shipAmount, "One");
-	Player playerTwo(shipAmount, "Two");
-	std::cout << "\nPlayer One's turn to place their ships!\n\n";
-	//Populating Player 1
-	playerOne.showFiringBoard("One");
-	for(int i = 0; i < shipAmount; i++){
-		playerOne.placeShips(i+1);
-	}
-	std::cout<<"Player One, look away!\n";
-	//changeTurns();
 
+	Player* playerOne = new Player(shipAmount, "One");
+	Parent* playerTwo;
+
+	std::cout << "\nPlayer One's turn to place their ships!\n\n";
+	//changeTurns();
+	//Populating Player 1
+	playerOne->showFiringBoard("One");
+	for(int i = 0; i < shipAmount; i++){
+		playerOne->placeShips(i+1);
+	}
 	if(choice == 1)
 	{
+		playerTwo = new Player(shipAmount, "Two");
 		std::cout << "\nPlayer Two's turn to place their ships!\n\n";
+		//changeTurns();
 		//Populating Player 2
-		playerTwo.showFiringBoard("Two");	
-	
+		playerTwo->showFiringBoard("Two");	
 		for(int i = 0; i < shipAmount; i++)
 		{
-			playerTwo.placeShips(i+1);
-			//std::cout<<"Player Two, look away!\n";
+			playerTwo->placeShips(i+1);
 		}
 	}
-	else if(choice == 2)
+	else
 	{
-		std::cout << "\nAI is placing their ship.\n\n";
-		//Populating Player 2
-		robot.showFiringBoard("Two");	
-	
+		playerTwo = new AI(difficulty, shipAmount);
+		std::cout << "\nAI is placing their ships.\n\n";
 		for(int i = 0; i < shipAmount; i++)
 		{
-			robot.placeShips(i+1);
+			playerTwo->placeShips(i+1);
 		}
-		//robot.showShipPlacement("Robot");
 	}
 	//changeTurns();
 	while(!isWinner(playerOne, playerTwo)){
@@ -395,10 +390,10 @@ void Executive::run()
 	*/
 }
 
-void Executive::takeTurn(Player& player, Player& opp, std::string id){
-	player.showFiringBoard(id);
-	player.showShipPlacement(id);
-	player.takeShot(opp);
+void Executive::takeTurn(Parent* player, Parent* opp, std::string id){
+	player->showFiringBoard(id);
+	player->showShipPlacement(id);
+	player->takeShot(opp);
 	//shot feedback
 }
 
@@ -457,12 +452,12 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
-bool Executive::isWinner(Player& playerOne, Parent& playerTwo){
- 	if(playerOne.shipsRemaining() == 0) {
+bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
+ 	if(playerOne->shipsRemaining() == 0) {
 		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
 		 exit(1);
  		return(true);
- 	} else if(playerTwo.shipsRemaining() == 0) {
+ 	} else if(playerTwo->shipsRemaining() == 0) {
 		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
 		exit(1);
  		return(true);
