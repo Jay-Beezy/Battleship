@@ -99,7 +99,7 @@ class Parent
 		int m_numberOfShips;
 		char** shipGrid;
 		char** shotGrid;
-		Ship* shipArray;//max number of ships, allows us to have a location for each ship in memory
+		Ship** shipArray;//max number of ships, allows us to have a location for each ship in memory
 
 };
 #endif

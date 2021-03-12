@@ -369,7 +369,7 @@ void Executive::run()
 						}
 					}	
 				}
-				//changeTurns();
+                //changeTurns();
 				isWinner(playerOne,playerTwo);
 			}
 			else if(choice == 2)
@@ -385,7 +385,7 @@ void Executive::run()
 				isWinner(playerOne,robot);
 			}
 	}
-	
+
 
 }
 
@@ -494,7 +494,7 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
- bool Executive::isWinner(Player playerOne, Parent playerTwo){
+bool Executive::isWinner(Player playerOne, Parent playerTwo){
  	if(playerOne.shipsRemaining() == 0) {
 		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
 		 exit(1);
@@ -507,8 +507,8 @@ bool Executive::charIsValid(char coord){
  		return(false);
  	}
  }
-
- void Executive::changeTurns(){
+ 
+  void Executive::changeTurns(){
 	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 	system("clear");
 	std::cout << "Switching turns in: 3\n";

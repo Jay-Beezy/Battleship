@@ -1,6 +1,12 @@
 #include "Parent.h"
 #include <iostream>
 
+
+
+
+
+
+
 bool Parent::validatePosition(int row, int colnum, std::string direction, int shipLength)
 {
 	bool isValid = false;
@@ -41,8 +47,8 @@ bool Parent::validatePosition(int row, int colnum, std::string direction, int sh
 			}
 			else if(shipGrid[row-1][colnum-1]=='S')
 	 		{
-				std::cout <<"Ships overlapping Vertically, please try again\n";
-				return(false);
+	 				std::cout <<"Ships overlapping Vertically, please try again\n";
+					 return(false);
 	 				//isValid = false;
 	 		}
 			else
@@ -108,13 +114,13 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 			{
 				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
 				 //not sure why this is here^
-				if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S')
-				{
-					shipArray[i].shipMinusHealth();
-				 	if(shipArray[i].checkIfSunk())
+				 if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				 {
+					shipArray[i]->shipMinusHealth();
+				 	if(shipArray[i]->checkIfSunk())
 					 {
-						m_numberOfShips--;
-						otherPlayer.charge = 1;
+						 m_numberOfShips--;
+						 otherPlayer.charge = 1;
 					 }
 				 }
 			}
