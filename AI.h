@@ -13,7 +13,7 @@ class AI: public Parent
     public:
         AI(int difficulty, int ships);
         ~AI();
-        void takeShot(char** oppGrid);
+        void takeShot(Parent* opp);
 
         /**
 		* @pre The ship must be created and anchored to a spot on player grid
@@ -22,7 +22,7 @@ class AI: public Parent
 		* @return void
 		**/
         void placeShips(int length);
-		int shipsRemaining();
+		const int shipsRemaining();
 
     private:
         /**
