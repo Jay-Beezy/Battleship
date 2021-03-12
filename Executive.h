@@ -43,11 +43,18 @@ class Executive
 	private:
 
 		/**
+		* @pre ship board needs to be printed
+		* @param player which player is taking their turn
+		* @post print ship board
+		**/
+		void printShips(Player& player, int id);
+
+		/**
 		* @pre player needs to take their turn
 		* @param player which player is taking their turn
 		* @post player's current ship map will display and they will select shot location
 		**/
-		void takeTurn(Parent& player);
+		void takeTurn(Player& player, int id);
 
 		/**
 		* @pre need players to change turns

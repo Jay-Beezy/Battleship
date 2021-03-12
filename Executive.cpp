@@ -389,10 +389,32 @@ void Executive::run()
 
 }
 
-void Executive::takeTurn(Parent& player){
+void Executive::takeTurn(Player& player, int id){
+	
 	//print player map
 	//player takes shot
 	//shot feedback
+}
+
+void Executive::printShips(Player& player, int id){
+std::cout << "+------------------------------------------Player "<< id << "'s  Board------------------------------------------+\n";
+	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
+	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			if(j == 0){
+				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << player.shipGrid[i][j] << "\t";
+			}
+			else if(j == 9){
+				std::cout << player.shipGrid[i][j] << "\t" << "|";
+			}
+			else{
+				std::cout << player.shipGrid[i][j] << "\t";
+			}
+		}
+		std::cout << "\n";
+	}
+	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
 
 bool Executive::charIsValid(char coord){
