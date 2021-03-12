@@ -20,7 +20,6 @@ Player::Player(int ships, std::string id)
 		}
 	}
 
-	
 	shotGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
 		shotGrid[i] = new char[10];
@@ -139,6 +138,7 @@ void Player::showFiringBoard(std::string turnPlayer)
 	std::cout << "+------------------------------------------Player " + turnPlayer + "'s Board-------------------------------------------+\n";
 	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
+	std::cout << "DEBUG\n";
 	for(int i = 0; i < 10; i++){
 		for(int j = 0; j < 10; j++){
 			if(j == 0){
@@ -154,6 +154,7 @@ void Player::showFiringBoard(std::string turnPlayer)
 		std::cout << "\n";
 	}
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
+	std::cout << "DEBUG1\n";
 }
 
 void Player::showShipPlacement(std::string turnPlayer){
@@ -175,12 +176,13 @@ void Player::showShipPlacement(std::string turnPlayer){
 		std::cout << "\n";
 	}
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
+	std::cout << "DEBUG2\n";
 }
 
 void Player::takeShot(Parent& opp){
 	int yCoord = 0;
-	char xCoord = '/0';
-	char powerShotChoice = '/0';
+	char xCoord = '\0';
+	char powerShotChoice = '\0';
 	int shotType = 0;
 	bool repeat = false;
 	if(charge == 1){
@@ -239,15 +241,11 @@ void Player::takeShot(Parent& opp){
 			std::cout <<"Shot already hit, please try again\n\n";
 			repeat = true;
 		}
-	}while(repeat = true);
+	}while(repeat == true);
 }
 
 void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
-	//char col = shipCoords.at(0);
-	//char row= shipCoords.at(1);
-	int colnum = colToInt(letterInput);
-	//std::cout <<"colnum: " << colnum << "\n";
-	//std::cout << "numberInput: " << numberInput << "\n";	
+	int colnum = colToInt(letterInput);	
 	
 		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
 		{
@@ -277,9 +275,9 @@ void Player::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 		}
 		else 
 		{
-				std::cout << "Sorry you missed.\n";
-				shotGrid[numberInput-1][colnum-1] = 'M';
-				otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';		
+			std::cout << "Sorry you missed.\n";
+			shotGrid[numberInput-1][colnum-1] = 'M';
+			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';	
 		}		
 }
 

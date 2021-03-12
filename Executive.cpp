@@ -29,11 +29,7 @@ Executive::~Executive() //deconstructor
 
 void Executive::run() 
 {  //runs the program
-
-	char p1coords = '\0';
-	char p2coords = '\0';
-	int p1Number = 0;
-	int p2Number = 0;
+	int turn = 1;
 	int difficulty = 1;
 	int choice = 0;
 	std::cout << "\e[8;50;105t";
@@ -99,10 +95,21 @@ void Executive::run()
 		{
 			robot.placeShips(i+1);
 		}
-		robot.showShipPlacement("Robot");
+		//robot.showShipPlacement("Robot");
 	}
 	//changeTurns();
+	while(!isWinner(playerOne, playerTwo)){
+		if(turn == 1){
+			takeTurn(playerOne, playerTwo, "One");
+			turn++;
+		}
+		else{
+			takeTurn(playerTwo, playerOne, "Two");
+			turn--;
+		}
+	}
 
+	/*
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
 	std::string tempS = "\0";//temporary storage string
@@ -385,58 +392,14 @@ void Executive::run()
 				isWinner(playerOne,robot);
 			}
 	}
-
-
+	*/
 }
 
-void Executive::takeTurn(Player& player, std::string id){
-	printShots(player, id);
-	printShips(player, id);
-
-	//player takes shot
+void Executive::takeTurn(Player& player, Player& opp, std::string id){
+	player.showFiringBoard(id);
+	player.showShipPlacement(id);
+	player.takeShot(opp);
 	//shot feedback
-}
-
-void Executive::printShots(Player& player, std::string id){
-	std::cout << "+------------------------------------------Player " << id << "'s Board-------------------------------------------+\n";
-	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 10; j++){
-			if(j == 0){
-				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << player.shotGrid[i][j] << "\t";
-			}
-			else if(j == 9){
-				std::cout << player.shotGrid[i][j] << "\t" << "|";
-			}
-			else{
-				std::cout << player.shotGrid[i][j] << "\t";
-			}
-		}
-		std::cout << "\n";
-	}
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-}
-
-void Executive::printShips(Player& player, std::string id){
-std::cout << "+------------------------------------------Player "<< id << "'s  Board------------------------------------------+\n";
-	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 10; j++){
-			if(j == 0){
-				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << player.shipGrid[i][j] << "\t";
-			}
-			else if(j == 9){
-				std::cout << player.shipGrid[i][j] << "\t" << "|";
-			}
-			else{
-				std::cout << player.shipGrid[i][j] << "\t";
-			}
-		}
-		std::cout << "\n";
-	}
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
 
 bool Executive::charIsValid(char coord){
@@ -494,7 +457,7 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
-bool Executive::isWinner(Player playerOne, Parent playerTwo){
+bool Executive::isWinner(Player& playerOne, Parent& playerTwo){
  	if(playerOne.shipsRemaining() == 0) {
 		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
 		 exit(1);

@@ -4,7 +4,13 @@
 
 
 
+void Parent::showFiringBoard(std::string turnPlayer){
 
+}
+
+void showShipPlacement(std::string turnPlayer){
+	
+}
 
 
 bool Parent::validatePosition(int row, int colnum, std::string direction, int shipLength)

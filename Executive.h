@@ -41,29 +41,13 @@ class Executive
 		void run();
 
 	private:
-
-		/**
-		* @pre shot board needs to be printed
-		* @param player which player is taking their turn
-		* @param id which player is taking their turn
-		* @post print shot board
-		**/
-		void printShots(Player& player, std::string id);
-
-		/**
-		* @pre ship board needs to be printed
-		* @param player which player is taking their turn
-		* @param id which player is taking their turn
-		* @post print ship board
-		**/
-		void printShips(Player& player, std::string id);
-
 		/**
 		* @pre player needs to take their turn
 		* @param player which player is taking their turn
+		* @param opp opposing player
 		* @post player's current ship map will display and they will select shot location
 		**/
-		void takeTurn(Player& player, std::string id);
+		void takeTurn(Player& player, Player& opp, std::string id);
 
 		/**
 		* @pre need players to change turns
@@ -101,7 +85,7 @@ class Executive
 		* @param none
 		* @return returns 1 if player1 wins and 2 if player2 wins
 		**/
-		bool isWinner(Player playerOne,Parent playerTwo);
+		bool isWinner(Player& playerOne,Parent& playerTwo);
 
 		/**
 		* @pre need to check if char coordinate is in bounds
@@ -111,8 +95,8 @@ class Executive
 		**/
 		bool charIsValid(char coord);
 
-		Parent playerOne;
-		Parent playerTwo;
+		//Parent playerOne;
+		//Parent playerTwo;
 		//int** playerOneGrid;
 		//int** playerTwoGrid;
 		//Player playerOne;
