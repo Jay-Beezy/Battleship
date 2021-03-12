@@ -54,6 +54,20 @@ class Player : public Parent
 		void placeShips(int length);
 
 		/**
+		* @pre player's turn begins
+		* @post player's shot board will be printed
+		* @param turnPlayer player id
+		**/
+		void showFiringBoard(std::string turnPlayer); // shows top board where you fire your shots
+
+		/**
+		* @pre player's turn begins and shot grid has been printed
+		* @post player's ship board will be printed
+		* @param turnPlayer player id
+		**/
+		void showShipPlacement(std::string turnPlayer);
+
+		/**
 		* @pre the player selects coordinates to fire upon
 		* @post area will be hit (or not) and opponent ship grid will be adjusted accordingly
 		* @param opp the opponent to be fired upon

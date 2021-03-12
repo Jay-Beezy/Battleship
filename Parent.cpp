@@ -154,49 +154,6 @@ void Parent::shipHit(Ship& ship)
 	
 }
 
-void Parent::showFiringBoard(std::string turnPlayer)
-{
-	std::cout << "+------------------------------------------Player " + turnPlayer + "'s Board-------------------------------------------+\n";
-	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 10; j++){
-			if(j == 0){
-				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << shotGrid[i][j] << "\t";
-			}
-			else if(j == 9){
-				std::cout << shotGrid[i][j] << "\t" << "|";
-			}
-			else{
-				std::cout << shotGrid[i][j] << "\t";
-			}
-		}
-		std::cout << "\n";
-	}
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-}
-
-void Parent::showShipPlacement(std::string turnPlayer){
-	std::cout << "+------------------------------------------Player "+ turnPlayer+ "'s  Board------------------------------------------+\n";
-	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 10; j++){
-			if(j == 0){
-				std::cout << "|" << "\t" << i+1 << "\t" << "|" << "\t" << shipGrid[i][j] << "\t";
-			}
-			else if(j == 9){
-				std::cout << shipGrid[i][j] << "\t" << "|";
-			}
-			else{
-				std::cout << shipGrid[i][j] << "\t";
-			}
-		}
-		std::cout << "\n";
-	}
-	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
-}
-
 bool Parent::validateCol(char column){
 	return (column >='a' && column <='j') || (column >='A' && column <='J');
 }

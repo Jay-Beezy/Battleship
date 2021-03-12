@@ -11,8 +11,8 @@ class Parent
 {
     public:
 
-    void showFiringBoard(std::string); // shows top board where you fire your shots
-		void showShipPlacement(std::string); // shows bottom board where youre ships are placed
+    	void showFiringBoard(std::string turnPlayer); // shows top board where you fire your shots
+		void showShipPlacement(std::string turnPlayer); // shows bottom board where youre ships are placed
 
 		/**
 		* @pre A column value must be checked to see if it is valid
