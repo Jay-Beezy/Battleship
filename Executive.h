@@ -83,6 +83,11 @@ class Executive
 	
 
 	private:
+		/**
+		* @pre need players to change turns
+		* @post screen will clear, followed by a timer for players to switch control of the game
+		**/
+		void changeTurns();
 		//int** playerOneGrid;
 		//int** playerTwoGrid;
 		//Player playerOne;
