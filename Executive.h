@@ -41,26 +41,29 @@ class Executive
 		void run();
 
 	private:
+
 		/**
 		* @pre shot board needs to be printed
 		* @param player which player is taking their turn
+		* @param id which player is taking their turn
 		* @post print shot board
 		**/
-		void printShots(Player& player, int id);
+		void printShots(Player& player, std::string id);
 
 		/**
 		* @pre ship board needs to be printed
 		* @param player which player is taking their turn
+		* @param id which player is taking their turn
 		* @post print ship board
 		**/
-		void printShips(Player& player, int id);
+		void printShips(Player& player, std::string id);
 
 		/**
 		* @pre player needs to take their turn
 		* @param player which player is taking their turn
 		* @post player's current ship map will display and they will select shot location
 		**/
-		void takeTurn(Player& player, int id);
+		void takeTurn(Player& player, std::string id);
 
 		/**
 		* @pre need players to change turns

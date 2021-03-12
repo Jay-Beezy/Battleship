@@ -66,8 +66,8 @@ void Executive::run()
 		std::cout << std::endl;
 	}
 	//Creating Players
-	Player playerOne(shipAmount);
-	Player playerTwo(shipAmount);
+	Player playerOne(shipAmount, "One");
+	Player playerTwo(shipAmount, "Two");
 	std::cout << "\nPlayer One's turn to place their ships!\n\n";
 	//Populating Player 1
 	playerOne.showFiringBoard("One");
@@ -389,14 +389,15 @@ void Executive::run()
 
 }
 
-void Executive::takeTurn(Player& player, int id){
+void Executive::takeTurn(Player& player, std::string id){
 	printShots(player, id);
 	printShips(player, id);
+
 	//player takes shot
 	//shot feedback
 }
 
-void Executive::printShots(Player& player, int id){
+void Executive::printShots(Player& player, std::string id){
 	std::cout << "+------------------------------------------Player " << id << "'s Board-------------------------------------------+\n";
 	std::cout << "|			A	B	C	D	E	F	G	H	I	J	|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
@@ -417,7 +418,7 @@ void Executive::printShots(Player& player, int id){
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 }
 
-void Executive::printShips(Player& player, int id){
+void Executive::printShips(Player& player, std::string id){
 std::cout << "+------------------------------------------Player "<< id << "'s  Board------------------------------------------+\n";
 	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
