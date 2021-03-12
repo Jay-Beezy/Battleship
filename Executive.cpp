@@ -328,73 +328,9 @@ void Executive::run()
 				//system("clear");
 				std::cout<<"Robot's Firing grid:\n";
 				robot.showFiringBoard("robot");
-				//printPlayerTwoGrid();//These are the firing grids
 				std::cout<<"Robot's Ships:\n";
 				robot.showShipPlacement("robot");// These are your ship placements
-				std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
-				do{
-					std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
-					std::cin>>p2coords;
-					if(!charIsValid(p2coords)){
-						std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
-					}
-				}while(!charIsValid(p2coords));
-				do{
-					std::cin.clear();
-					std::cin.ignore(100, '\n');
-					std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
-					std::cin>>p2Number;
-					if(std::cin.fail()){
-						std::cout << "ERROR: Please enter an integer.\n";
-					}
-					else if(p2Number < 1 || p2Number > 10){
-						std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
-					}
-				}while(std::cin.fail() || p2Number < 1 || p2Number > 10);
-				std::cout << "\n";
-
-				if(playerTwo.getShotGrid(p2coords,p2Number) == '0')
-				{
-					playerTwo.checkGrid(p2coords,p2Number,playerOne);
-					std::cout << "\n";
-				}
-				else if (playerTwo.getShotGrid(p2coords,p2Number)=='H' || playerTwo.getShotGrid(p2coords,p2Number)=='M')
-				{
-					while(1)
-					{
-						std::cout <<"Shot already hit, please try again\n\n";
-						std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
-						do
-						{
-							std::cout<<"Player Two, enter letter of the space you'd like to fire on: ";
-							std::cin>>p2coords;
-							if(!charIsValid(p2coords))
-							{
-								std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
-							}
-						}while(!charIsValid(p2coords));
-						do
-						{
-							std::cin.clear();
-							std::cin.ignore(100, '\n');
-							std::cout<<"Player Two, enter number of the space you'd like to fire on: ";
-							std::cin>>p2Number;
-							if(std::cin.fail()){
-								std::cout << "ERROR: Please enter an integer.\n";
-							}
-							else if(p2Number < 1 || p2Number > 10){
-								std::cout << "ERROR: Please enter an integer within the bounds [1, 10].\n";
-							}
-						}while(std::cin.fail() || p2Number < 1 || p2Number > 10);
-						std::cout << "\n";
-						if(playerTwo.getShotGrid(p2coords,p2Number)=='0')
-							{
-							playerTwo.checkGrid(p2coords,p2Number, playerOne);
-							std::cout << "\n";
-							break;
-							}
-					}	
-				}
+				
 				//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 				//system("clear");
 				//std::cout << "Switching turns in: 3\n";
