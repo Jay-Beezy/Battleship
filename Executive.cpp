@@ -87,7 +87,7 @@ void Executive::run()
 		}
 	}
 	//changeTurns();
-	while(!isWinner(playerOne, playerTwo)){
+	do{
 		if(turn == 1){
 			takeTurn(playerOne, playerTwo, "One");
 			turn++;
@@ -96,14 +96,13 @@ void Executive::run()
 			takeTurn(playerTwo, playerOne, "Two");
 			turn--;
 		}
-	}
+	}while(!isWinner(playerOne, playerTwo));
 }
 
 void Executive::takeTurn(Parent* player, Parent* opp, std::string id){
 	player->showFiringBoard(id);
 	player->showShipPlacement(id);
 	player->takeShot(opp);
-	//shot feedback
 }
 
 bool Executive::charIsValid(char coord){
@@ -112,16 +111,14 @@ bool Executive::charIsValid(char coord){
 
 bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
  	if(playerOne->shipsRemaining() == 0) {
-		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
-		 exit(1);
+		std::cout <<"\n\n\nPlayer One Wins\n\n\n";
  		return(true);
- 	} else if(playerTwo->shipsRemaining() == 0) {
-		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
-		exit(1);
- 		return(true);
- 	} else {
- 		return(false);
  	}
+	if(playerTwo->shipsRemaining() == 0) {
+		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
+ 		return(true);
+ 	}
+ 	return(false);
  }
  
   void Executive::changeTurns(){
