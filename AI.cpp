@@ -7,6 +7,12 @@ AI::AI(int difficulty, int ships){
         std::cin >> difficulty;
     }
     m_difficulty = difficulty;
+    shipArray = new Ship*[ships];
+    m_ships = ships;
+    m_shipHealth = 0;
+    for(int i = 1; i <= m_ships; i++){
+        m_shipHealth = m_shipHealth + i;
+    }
     shotGrid = new char*[10];
     shipGrid = new char*[10];
     for(int i = 0; i < 10; i++){
@@ -19,8 +25,6 @@ AI::AI(int difficulty, int ships){
             shipGrid[i][j] = '0';
         }
     }
-    shipArray = new Ship*[ships];
-    m_numberOfShips = ships;
 }
 
 AI::~AI(){
@@ -29,8 +33,13 @@ AI::~AI(){
 		delete shipGrid[i];
 		delete shotGrid[i];
 	}
+	for(int i = 0; i < m_ships; i++)
+	{
+		delete shipArray[i];
+	}
 	delete[] shipGrid;
 	delete[] shotGrid;
+	delete[] shipArray;
 }
 
 void AI::takeShot(Parent* opp){
@@ -61,10 +70,7 @@ void AI::takeShot(Parent* opp){
                 }
             }
         }
-        else{
-            std::cerr << "ERROR: Invalid difficulty level.\n";
-        }
-    }while(checkGrid(yCoord, xCoord, opp));
+    }while(checkGrid(xCoord + 1, yCoord + 1, opp));
 }
 
 void AI::placeShips(int length){
@@ -97,11 +103,11 @@ void AI::placeShips(int length){
             shipGrid[shipStarterRow][shipStarterCol + i] = 'S';
         }
     }
-    shipArray[shipLength-1] = new Ship(shipStarterCol, shipStarterRow, shipPlacement, shipLength);
+    shipArray[shipLength-1] = new Ship(shipStarterCol+1, shipStarterRow+1, shipPlacement, shipLength);
 }
 
 const int AI::shipsRemaining(){
-    return(m_numberOfShips);
+    return(m_shipHealth);
 }
 
 bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength)
@@ -149,32 +155,18 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 	return(isValid);
 }
 
-bool AI::checkGrid(int numberInput, int colnum, Parent* otherPlayer){
-		if(otherPlayer->shipGrid[numberInput][colnum]== 'S')
-		{
-			shotGrid[numberInput][colnum] = 'H';
-			otherPlayer->shipGrid[numberInput][colnum] = 'H';
-			for(int i = 0; i < m_ships;i++)
-			{
-				 if(shipArray[i]->getShipPlacementArray(numberInput,colnum) == 'S')
-				{
-					shipArray[i]->shipMinusHealth();
-				 	if(shipArray[i]->checkIfSunk())
-					{
-						m_numberOfShips--;
-						otherPlayer->charge = 1;
-					}
-				}
-			}
+bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
+		if(otherPlayer->shipGrid[numberInput-1][colnum-1]== 'S'){
+			shotGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'H';
+			m_shipHealth--;
 		}
-		else if(shotGrid[numberInput][colnum]=='H')
-		{
-			return(true);
+		else if(shotGrid[numberInput-1][colnum-1]=='H'){
+            return(true);
 		}
-		else 
-		{
-			shotGrid[numberInput][colnum] = 'M';
-			otherPlayer->shipGrid[numberInput][colnum] = 'M';	
+		else {
+			shotGrid[numberInput-1][colnum-1] = 'M';
+			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
 		}		
         return(false);
 }

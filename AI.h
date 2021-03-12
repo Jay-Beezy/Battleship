@@ -46,6 +46,7 @@ class AI: public Parent
 		**/
 		bool checkGrid(int numberInput, int colnum, Parent* otherPlayer);
         int m_difficulty;
-		int m_numberOfShips;
+		int m_shipHealth;
+		int m_ships;
 };
 #endif
