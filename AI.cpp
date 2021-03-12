@@ -33,8 +33,8 @@ AI::~AI(){
 }
 
 void AI::takeShot(char** oppGrid){
-    int xCoord = '/0';
-    int yCoord = '/0';
+    int xCoord = 0;//these were '\0' before so i changed them to 0
+    int yCoord = 0;
     if(m_difficulty == 1){
         srand((unsigned) time(0));
         xCoord = rand() % 10;

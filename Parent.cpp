@@ -120,6 +120,7 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 				 	if(shipArray[i].checkIfSunk())
 					 {
 						 numberOfShips--;
+						 charge = 1;
 					 }
 				 }
 			}

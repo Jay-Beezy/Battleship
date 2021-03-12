@@ -1,6 +1,7 @@
 //Executive.cpp
 
 #include "Executive.h"
+#include "AI.h"
 #include <iostream>
 
 
@@ -125,6 +126,8 @@ void Executive::run()
 
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
+	std::string tempS = "\0";//temporary storage string
+	int shotType = 0; //used to determine if power shot has been requested
 	while (1)
 	{
 			std::cout<<"Player One's Firing grid:\n";
@@ -132,6 +135,22 @@ void Executive::run()
 			//printPlayerOneGrid();//These are the firing grids
 			std::cout<<"Player One's Ships:\n";
 			playerOne.showShipPlacement("One");// These are your ship placements
+			//code for choosing power shot
+			if(playerOne.charge == 1)
+			{
+				do{
+					std::cout<<"You have a Power Shot! Would you like to use it?(Y/N): ";
+					std::cin>>tempS;
+				}while(!(tempS == "Y" || tempS == "y" || tempS == "N" || tempS == "n"));
+				if(tempS == "Y" || tempS == "y")
+				{
+					shotType = 1;
+				}
+				else
+				{
+					shotType = 0;
+				}
+			}
 			std::cout<<"Player One, enter coordinates of the space you'd like to fire on.\n";
 			do
 			{
@@ -163,11 +182,25 @@ void Executive::run()
 		{
 			if(choice ==1)
 			{
-				playerOne.checkGrid(p1coords,p1Number,playerTwo);
+				if(shotType == 1)
+				{
+					playerOne.checkPower(p1coords,p1Number,playerTwo);
+				}	
+				else
+				{
+					playerOne.checkGrid(p1coords,p1Number,playerTwo);
+				}
 			}
 			else if(choice == 2)
 			{
-				playerOne.checkGrid(p1coords,p1Number,robot);
+				if(shotType == 1)
+				{
+					playerOne.checkGrid(p1coords,p1Number,robot);
+				}	
+				else
+				{
+					playerOne.checkGrid(p1coords,p1Number,robot);
+				}
 			}
 			std::cout << "\n";
 		}
@@ -202,7 +235,33 @@ void Executive::run()
 				std::cout << "\n";
 				if(playerOne.getShotGrid(p1coords,p1Number)=='0')
 				{
-				playerOne.checkGrid(p1coords,p1Number, playerTwo);
+				//playerOne.checkGrid(p1coords,p1Number, playerTwo);
+							//I noticed this didn't have provesions for the ai options so I thought id add them,
+							//im leaving this spaced weird so its easy to find, if you dont see any problems go 
+							//ahead and delete this commit
+							if(choice ==1)
+							{
+								if(shotType == 1)
+								{
+									playerOne.checkPower(p1coords,p1Number,playerTwo);
+								}	
+								else
+								{
+									playerOne.checkGrid(p1coords,p1Number,playerTwo);
+								}
+							}
+							else if(choice == 2)
+							{
+								if(shotType == 1)
+								{
+									playerOne.checkGrid(p1coords,p1Number,robot);
+								}	
+								else
+								{
+									playerOne.checkGrid(p1coords,p1Number,robot);
+								}
+							}
+										
 				std::cout << "\n";
 				break;
 				}
@@ -228,6 +287,22 @@ void Executive::run()
 				//printPlayerTwoGrid();//These are the firing grids
 				std::cout<<"Player Two's Ships:\n";
 				playerTwo.showShipPlacement("Two");// These are your ship placements
+				//code for player two select power shot
+				if(playerTwo.charge == 1)
+				{
+					do{
+						std::cout<<"You have a Power Shot! Would you like to use it?(Y/N): ";
+						std::cin>>tempS;
+					}while(!(tempS == "Y" || tempS == "y" || tempS == "N" || tempS == "n"));
+					if(tempS == "Y" || tempS == "y")
+					{
+						shotType = 1;
+					}
+					else
+					{
+						shotType = 0;
+					}
+				}
 				std::cout<<"Player Two, enter coordinates of the space you'd like to fire on.\n";
 				do
 				{
@@ -257,7 +332,14 @@ void Executive::run()
 
 				if(playerTwo.getShotGrid(p2coords,p2Number) == '0')
 				{
-					playerTwo.checkGrid(p2coords,p2Number,playerOne);
+					if(shotType == 1)
+					{
+						playerTwo.checkPower(p2coords,p2Number,playerOne);
+					}	
+					else
+					{
+						playerTwo.checkGrid(p2coords,p2Number,playerOne);
+					}
 					std::cout << "\n";
 				}
 				else if (playerTwo.getShotGrid(p2coords,p2Number)=='H' || playerTwo.getShotGrid(p2coords,p2Number)=='M')
@@ -293,7 +375,14 @@ void Executive::run()
 						std::cout << "\n";
 						if(playerTwo.getShotGrid(p2coords,p2Number)=='0')
 						{
-							playerTwo.checkGrid(p2coords,p2Number, playerOne);
+							if(shotType == 1)
+							{
+								playerTwo.checkPower(p2coords,p2Number,playerOne);
+							}	
+							else
+							{
+								playerTwo.checkGrid(p2coords,p2Number,playerOne);
+							}
 							std::cout << "\n";
 							break;
 						}

@@ -5,6 +5,7 @@
 
 Player::Player(int ships)
 {
+	charge = 0;
 	m_ships = ships;
 	numberOfShips = m_ships;
 	shipArray = new Ship[ships];
@@ -122,4 +123,62 @@ void Player::placeShips(int length){
 				//std::cout << "shipGrid: " << arrayRow <<arrayCol+i << " = " << shipGrid[arrayRow][arrayCol+i] << "\n";
 		}
 	}
+}
+
+void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
+	//char col = shipCoords.at(0);
+	//char row= shipCoords.at(1);
+	int colnum = colToInt(letterInput);
+	//std::cout <<"colnum: " << colnum << "\n";
+	//std::cout << "numberInput: " << numberInput << "\n";	
+	int fire = 0;//marker for if a hit was made
+	for(int i = 0; i < 3; i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			if(!(((numberInput-2+i)<10)||((numberInput-2+i)>=0)||((colnum-2+j)<10)||((colnum-2+j)>=0)))//make sure shot is still valid
+			{	
+				if(otherPlayer.shipGrid[numberInput-2+i][colnum-2+j]== 'S')
+				{	
+					fire = 1;
+					//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
+					//check isWinner? or do that in Executive
+					std::cout << "Congrats you hit!\n";
+					shotGrid[numberInput-2+i][colnum-2+j] = 'H';
+					otherPlayer.shipGrid[numberInput-2+i][colnum-2+j] = 'H';
+					for(int i = 0; i < m_ships;i++)
+					{
+						//std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
+						//not sure why this is here^
+						if(shipArray[i].getShipPlacementArray(numberInput-2+j,colnum-2+j) == 'S')
+						{
+							shipArray[i].shipMinusHealth();
+							if(shipArray[i].checkIfSunk())
+							{
+								numberOfShips--;
+							}
+						}
+					}
+				}
+				else if(shotGrid[numberInput-2+i][colnum-2+j]=='H')
+				{}
+				else 
+				{
+					std::cout<<"YOOOO IM MAKING MISSES";
+					shotGrid[numberInput-2+i][colnum-2+j] = 'M';
+					otherPlayer.shipGrid[numberInput-2+i][colnum-2+j] = 'M';		
+				}
+			}
+		}
+	}
+	//player feedback
+	if(fire>0)
+	{
+		std::cout << "Congrats you hit!\n";
+	}
+	else
+	{
+		std::cout << "Sorry you missed.\n";
+	}
+	charge = 0;//use up the charge
 }

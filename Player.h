@@ -53,10 +53,11 @@ class Player : public Parent
 		void placeShips(int length);
 
 		/**
-		* @pre The function is called
-		* @post The player grid is shown
-		* @return void
+		* @pre the player has inputted coordinates to fire upon, we need to process them
+		* @post checks if the ship has been hit, if not hits area with power shot
+		* @param std::string shipCoords, the location of the ship
+		* @return none
 		**/
-
+		void checkPower(char letterInput, int numberInput,Parent& otherPlayer);
 };
 #endif

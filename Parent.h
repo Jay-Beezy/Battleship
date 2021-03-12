@@ -50,10 +50,10 @@ class Parent
 		std::string intToString(int num);
 
 		/**
-		* @pre the player has inputted coordinates to fire upon, we need to check them
-		* @post checks if the ship has been hit, informs player
+		* @pre the player has inputted coordinates to fire upon, we need to process them
+		* @post checks if the ship has been hit, if not does so
 		* @param std::string shipCoords, the location of the ship
-		* @return true if hit lands, false if miss
+		* @return none
 		**/
 		void checkGrid(char letterInput, int numberInput,Parent& otherPlayer);
 
@@ -77,7 +77,9 @@ class Parent
 		* @return void
 		**/
 
-    protected:
+		bool charge; //variable for if player has a power shot charge	
+
+    //protected:
         int m_ships;
 		int numberOfShips;
 		char** shipGrid;
