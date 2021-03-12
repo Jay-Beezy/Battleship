@@ -109,6 +109,15 @@ void Executive::run()
 	int shotType = 0; //used to determine if power shot has been requested
 	while (1)
 	{
+			//code for checking if player 2 one before player one goes
+			if(choice == 1)
+			{
+				isWinner(playerOne,playerTwo);
+			}
+			else
+			{
+				isWinner(playerOne,robot);
+			}
 			std::cout<<"Player One's Firing grid:\n";
 			playerOne.showFiringBoard("One");
 			//printPlayerOneGrid();//These are the firing grids
@@ -164,6 +173,7 @@ void Executive::run()
 				if(shotType == 1)
 				{
 					playerOne.checkPower(p1coords,p1Number,playerTwo);
+					shotType = 0;
 				}	
 				else
 				{
@@ -175,6 +185,7 @@ void Executive::run()
 				if(shotType == 1)
 				{
 					playerOne.checkGrid(p1coords,p1Number,robot);
+					shotType = 0;
 				}	
 				else
 				{
@@ -304,6 +315,7 @@ void Executive::run()
 					if(shotType == 1)
 					{
 						playerTwo.checkPower(p2coords,p2Number,playerOne);
+						shotType = 0;
 					}	
 					else
 					{

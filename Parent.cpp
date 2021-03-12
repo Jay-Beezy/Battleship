@@ -112,11 +112,11 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 				{
 					shipArray[i].shipMinusHealth();
 				 	if(shipArray[i].checkIfSunk())
-					{
+					 {
 						m_numberOfShips--;
-						charge = 1;
-					}
-				}
+						otherPlayer.charge = 1;
+					 }
+				 }
 			}
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='H')
@@ -174,7 +174,7 @@ void Parent::showShipPlacement(std::string turnPlayer){
 
 
 	
-	std::cout << "+---------------------------------------------Player "+ turnPlayer+ "'s  Board----------------------------------------------+\n";
+	std::cout << "+------------------------------------------Player "+ turnPlayer+ "'s  Board------------------------------------------+\n";
 	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 	for(int i = 0; i < 10; i++){
