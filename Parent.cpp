@@ -120,7 +120,7 @@ void Parent::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
 				 	if(shipArray[i].checkIfSunk())
 					 {
 						 numberOfShips--;
-						 charge = 1;
+						 otherPlayer.charge = 1;
 					 }
 				 }
 			}
@@ -180,7 +180,7 @@ void Parent::showShipPlacement(std::string turnPlayer){
 
 
 	
-	std::cout << "+---------------------------------------------Player "+ turnPlayer+ "'s  Board----------------------------------------------+\n";
+	std::cout << "+------------------------------------------Player "+ turnPlayer+ "'s  Board------------------------------------------+\n";
 	std::cout << "|\t\t\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ\t|\n";
 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 	for(int i = 0; i < 10; i++){
