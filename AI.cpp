@@ -36,34 +36,35 @@ AI::~AI(){
 void AI::takeShot(Parent* opp){
     int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
-    if(m_difficulty == 1){
-        srand((unsigned) time(0));
-        xCoord = rand() % 10;
-        srand((unsigned) time(0));
-        yCoord = rand() % 10;
-        //oppGrid[yCoord][xCoord] = 'X';   
-    }
-    else if(m_difficulty == 2){
-        srand((unsigned) time(0));
-        xCoord = rand() % 10;
-        srand((unsigned) time(0));
-        yCoord = rand() % 10;
-        //recursive shot
-    }
-    else if(m_difficulty == 3){
-        for(int i = 0; i < 10; i++){
-            for(int j = 0; j < 10; j++){
-                //if(oppGrid[i][j] == 'S'){
-                    //oppGrid[i][j] = 'X';
-                    //may need Ship object functions to display when AI has sunk a ship or to check win condition.
-                    return;
-                //}
+    do{
+
+        if(m_difficulty == 1){
+            srand((unsigned) time(0));
+            xCoord = rand() % 10;
+            srand((unsigned) time(0));
+            yCoord = rand() % 10;
+        }
+        else if(m_difficulty == 2){
+            srand((unsigned) time(0));
+            xCoord = rand() % 10;
+            srand((unsigned) time(0));
+            yCoord = rand() % 10;
+            //recursive shot
+        }
+        else if(m_difficulty == 3){
+            for(int i = 0; i < 10; i++){
+                for(int j = 0; j < 10; j++){
+                    if(opp->shipGrid[i][j] == 'S'){
+                        xCoord = j;
+                        yCoord = i;
+                    }
+                }
             }
         }
-    }
-    else{
-        std::cerr << "ERROR: Invalid difficulty level.\n";
-    }
+        else{
+            std::cerr << "ERROR: Invalid difficulty level.\n";
+        }
+    }while(checkGrid(yCoord, xCoord, opp));
 }
 
 void AI::placeShips(int length){
@@ -73,31 +74,29 @@ void AI::placeShips(int length){
 	std::string shipLocation;
 	std::string shipPlacement;
 
-	//std::cout << "\nWhat orientation would you like the ship to be placed in?\n";
-    srand((unsigned) time(0));
-    if (rand() % 2 == 0){
+    do{
+        srand((unsigned) time(0));
+        if (rand() % 2 == 0){
         shipPlacement = "V";
     }
     else{
         shipPlacement = "H";
     }
-    do{
-            srand((unsigned) time(0));
-            shipStarterCol = rand() % (11-length);
-            srand((unsigned) time(0));
-            shipStarterRow = rand() % (11-length);
-
-        if(shipPlacement == "V"){
+        srand((unsigned) time(0));
+        shipStarterCol = rand() % (11-length);
+        srand((unsigned) time(0));
+        shipStarterRow = rand() % (11-length);
+    }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
+    if(shipPlacement == "V"){
             for(int i = 0; i < length; i++){
                 shipGrid[shipStarterRow + i][shipStarterCol] = 'S';
             }
+    }
+    else{
+        for(int i = 0; i < length; i++){
+            shipGrid[shipStarterRow][shipStarterCol + i] = 'S';
         }
-        else{
-            for(int i = 0; i < length; i++){
-                shipGrid[shipStarterRow][shipStarterCol + i] = 'S';
-            }
-        }
-    }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
+    }
     shipArray[shipLength-1] = new Ship(shipStarterCol, shipStarterRow, shipPlacement, shipLength);
 }
 
@@ -108,7 +107,6 @@ const int AI::shipsRemaining(){
 bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength)
 {
 	bool isValid = false;
-	//int temporaryRow = row;
 	if(direction=="H" || direction == "h")
 	{
 		for(int i=0;i<shipLength;i++)
@@ -118,21 +116,16 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 			}
 			else if(shipGrid[row-1][colnum-1]=='S')
 			{
-					//std::cout <<"Ships overlapping horizontally, please try again\n";
-					return(false);
-					//isValid = false;
-					//return(isValid);
+				return(false);
 			}
 			else
 			{
 				isValid = false;
-				//std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 			}
 			colnum++;
 		}
 	}
 
-	//changed int i, to int j, cuz bug fixing. - andrews
 	if(direction=="V" || direction == "v"){
 		for(int j=0;j<shipLength;j++){
 			if(row <= 10 && shipGrid[row-1][colnum-1]=='0' ){
@@ -140,14 +133,11 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 			}
 			else if(row>10)
 			{
-				//std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 				return(false);
 			}
 			else if(shipGrid[row-1][colnum-1]=='S')
 	 		{
-	 				//std::cout <<"Ships overlapping Vertically, please try again\n";
-					 return(false);
-	 				//isValid = false;
+				return(false);
 	 		}
 			else
 			{
@@ -159,3 +149,32 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 	return(isValid);
 }
 
+bool AI::checkGrid(int numberInput, int colnum, Parent* otherPlayer){
+		if(otherPlayer->shipGrid[numberInput][colnum]== 'S')
+		{
+			shotGrid[numberInput][colnum] = 'H';
+			otherPlayer->shipGrid[numberInput][colnum] = 'H';
+			for(int i = 0; i < m_ships;i++)
+			{
+				 if(shipArray[i]->getShipPlacementArray(numberInput,colnum) == 'S')
+				{
+					shipArray[i]->shipMinusHealth();
+				 	if(shipArray[i]->checkIfSunk())
+					{
+						m_numberOfShips--;
+						otherPlayer->charge = 1;
+					}
+				}
+			}
+		}
+		else if(shotGrid[numberInput][colnum]=='H')
+		{
+			return(true);
+		}
+		else 
+		{
+			shotGrid[numberInput][colnum] = 'M';
+			otherPlayer->shipGrid[numberInput][colnum] = 'M';	
+		}		
+        return(false);
+}

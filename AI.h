@@ -35,8 +35,17 @@ class AI: public Parent
 		* @return bool, is the position is valid
 		**/
 		bool validatePosition(int row, int colnum, std::string direction, int shipLength);
-		void checkGrid(char letterInput, int numberInput, Parent& otherPlayer);
+
+		/**
+		* @pre the player has inputted coordinates to fire upon, we need to process them
+		* @post checks if the ship has been hit, if not does so
+		* @param colnum xCoordinate
+		* @param numberInput yCoordinate
+		* @param otherPlayer opponent
+		* @return none
+		**/
+		bool checkGrid(int numberInput, int colnum, Parent* otherPlayer);
         int m_difficulty;
-		int numberOfShips;
+		int m_numberOfShips;
 };
 #endif
