@@ -22,6 +22,7 @@ class AI: public Parent
 		* @return void
 		**/
         void placeShips(int length);
+		int shipsRemaining();
 
     private:
         /**
@@ -33,6 +34,9 @@ class AI: public Parent
 		* @param int size, the length of the ship
 		* @return bool, is the position is valid
 		**/
+		bool validatePosition(int row, int colnum, std::string direction, int shipLength);
+		void checkGrid(char letterInput, int numberInput, Parent& otherPlayer);
         int m_difficulty;
+		int numberOfShips;
 };
 #endif

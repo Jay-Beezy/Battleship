@@ -1,12 +1,6 @@
 #include "Parent.h"
 #include <iostream>
 
-
-
-
-
-
-
 bool Parent::validatePosition(int row, int colnum, std::string direction, int shipLength)
 {
 	bool isValid = false;
@@ -47,8 +41,8 @@ bool Parent::validatePosition(int row, int colnum, std::string direction, int sh
 			}
 			else if(shipGrid[row-1][colnum-1]=='S')
 	 		{
-	 				std::cout <<"Ships overlapping Vertically, please try again\n";
-					 return(false);
+				std::cout <<"Ships overlapping Vertically, please try again\n";
+				return(false);
 	 				//isValid = false;
 	 		}
 			else
