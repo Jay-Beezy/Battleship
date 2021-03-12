@@ -8,7 +8,7 @@ Player::Player(int ships)
 	charge = 0;
 	m_ships = ships;
 	numberOfShips = m_ships;
-	shipArray = new Ship[ships];
+	shipArray = new Ship*[ships];
 	shipGrid = new char*[10];
 	for(int i = 0; i < 10; i++){
 		shipGrid[i] = new char[10];
@@ -38,8 +38,13 @@ Player::~Player()
 		delete shipGrid[i];
 		delete shotGrid[i];
 	}
+	for(int i = 0; i < m_ships; i++)
+	{
+		delete shipArray[i];
+	}
 	delete[] shipGrid;
 	delete[] shotGrid;
+	delete[] shipArray;
 
 }
 
@@ -101,22 +106,25 @@ void Player::placeShips(int length){
 		}while(validateRow(shipStarterRow) == false);
 	}while(validatePosition(shipStarterRow, colToInt(shipStarterCol), shipPlacement, shipLength) == false);
 
+
 	//if(validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength) == true){
 		//shipLocation = shipStarterCol + intToString(shipStarterRow);
 
-		Ship newShip(colToInt(shipStarterCol), shipStarterRow, shipPlacement, shipLength);
-		shipArray[shipLength-1] = newShip;
+		shipArray[shipLength-1] = new Ship(colToInt(shipStarterCol), shipStarterRow, shipPlacement, shipLength);
 	//}
 
 	int startercolnum = colToInt(shipStarterCol);
 	int arrayRow = shipStarterRow-1;
 	int arrayCol = startercolnum-1;
 
+
 	if(shipPlacement=="V" || shipPlacement=="v"){
 		for(int i=0;i<shipLength;i++){
 			shipGrid[arrayRow+i][arrayCol]='S';
 		}
 	}
+	
+	
 	if(shipPlacement=="H" || shipPlacement=="h"){
 		for(int i=0;i<shipLength;i++){
 				shipGrid[arrayRow][arrayCol+i]='S';
@@ -149,10 +157,10 @@ void Player::checkPower(char letterInput, int numberInput, Parent& otherPlayer){
 					{
 						//std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
 						//not sure why this is here^
-						if(shipArray[i].getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
+						if(shipArray[i]->getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
 						{
-							shipArray[i].shipMinusHealth();
-							if(shipArray[i].checkIfSunk())
+							shipArray[i]->shipMinusHealth();
+							if(shipArray[i]->checkIfSunk())
 							{
 								numberOfShips--;
 							}

@@ -43,13 +43,14 @@ void Executive::run()
 	int shipAmount = 0;
 	std::cout <<"Play with Human(1) or AI(2): ";
 	std::cin >> choice;
+	std::cout << "How many ships do you want to use?\n";
+	std::cin >> shipAmount;
 
-	if(choice == 2){
+	if(choice == 2)
+	{
 		std::cout <<"What Difficulty? (1 for easy, 2 for medium, 3 for hard): ";
 		std::cin >> difficulty;
 	}
-	std::cout << "How many ships do you want to use?\n";
-	std::cin >> shipAmount;
 
 	AI robot(difficulty, shipAmount);
 	while(shipAmount <= 0 || shipAmount > 6 || std::cin.fail()){
@@ -73,9 +74,20 @@ void Executive::run()
 	playerOne.showFiringBoard("One");
 	for(int i = 0; i < shipAmount; i++){
 		playerOne.placeShips(i+1);
+		std::cout<<"Has to be here right?";
 	}
 	std::cout<<"Player One, look away!\n";
-	//changeTurns();
+	//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	//system("clear");
+	//std::cout << "Switching turns in: 3\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 2\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 1\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
 
 	if(choice == 1)
 	{
@@ -101,7 +113,17 @@ void Executive::run()
 		}
 		robot.showShipPlacement("Robot");
 	}
-	//changeTurns();
+	//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	//system("clear");
+	//std::cout << "Switching turns in: 3\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 2\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
+	//std::cout << "Switching turns in: 1\n";
+	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	//system("clear");
 
 	//OG grid at beginning of program
 	std::cout<<"Time to Begin!\n";
@@ -261,7 +283,17 @@ void Executive::run()
 		if(choice == 1)
 			{
 				isWinner(playerOne,playerTwo);
-				//changeTurns();
+				//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+				//system("clear");
+				//std::cout << "Switching turns in: 3\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 2\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 1\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
 				std::cout<<"Player Two's Firing grid:\n";
 				playerTwo.showFiringBoard("Two");
 				//printPlayerTwoGrid();//These are the firing grids
@@ -369,19 +401,49 @@ void Executive::run()
 						}
 					}	
 				}
-				//changeTurns();
+				//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+				//system("clear");
+				//std::cout << "Switching turns in: 3\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 2\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 1\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
 				isWinner(playerOne,playerTwo);
 			}
 			else if(choice == 2)
 			{
 				isWinner(playerOne,robot);
-				//changeTurns();
+				//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+				//system("clear");
+				//std::cout << "Switching turns in: 3\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 2\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 1\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
 				std::cout<<"Robot's Firing grid:\n";
 				robot.showFiringBoard("robot");
 				std::cout<<"Robot's Ships:\n";
 				robot.showShipPlacement("robot");// These are your ship placements
 				
-				//changeTurns();
+				//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+				//system("clear");
+				//std::cout << "Switching turns in: 3\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 2\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
+				//std::cout << "Switching turns in: 1\n";
+				//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				//system("clear");
 				isWinner(playerOne,robot);
 			}
 	}
@@ -444,7 +506,7 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
- bool Executive::isWinner(Player& playerOne, Parent& playerTwo){
+ bool Executive::isWinner(Player& playerOne,Parent& playerTwo){
  	if(playerOne.shipsRemaining() == 0) {
 		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
 		 exit(1);
@@ -456,18 +518,4 @@ bool Executive::charIsValid(char coord){
  	} else {
  		return(false);
  	}
- }
-
- void Executive::changeTurns(){
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-	system("clear");
-	std::cout << "Switching turns in: 3\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 2\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
-	std::cout << "Switching turns in: 1\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	system("clear");
  }

@@ -19,8 +19,7 @@ AI::AI(int difficulty, int ships){
             shipGrid[i][j] = '0';
         }
     }
-    shipArray = new Ship[ships];
-    numberOfShips = ships;
+    shipArray = new Ship*[ships];
 }
 
 AI::~AI(){
@@ -34,7 +33,7 @@ AI::~AI(){
 }
 
 void AI::takeShot(char** oppGrid){
-    int xCoord = 0;
+    int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
     if(m_difficulty == 1){
         srand((unsigned) time(0));
@@ -71,13 +70,15 @@ void AI::placeShips(int length){
 	int shipStarterRow = 0;
 	int shipLength = length;
 	std::string shipLocation;
-	std::string shipOrientation;
+	std::string shipPlacement;
+
+	//std::cout << "\nWhat orientation would you like the ship to be placed in?\n";
     srand((unsigned) time(0));
     if (rand() % 2 == 0){
-        shipOrientation = "V";
+        shipPlacement = "V";
     }
     else{
-        shipOrientation = "H";
+        shipPlacement = "H";
     }
     do{
             srand((unsigned) time(0));
@@ -85,7 +86,7 @@ void AI::placeShips(int length){
             srand((unsigned) time(0));
             shipStarterRow = rand() % (11-length);
 
-        if(shipOrientation == "V"){
+        if(shipPlacement == "V"){
             for(int i = 0; i < length; i++){
                 shipGrid[shipStarterRow + i][shipStarterCol] = 'S';
             }
@@ -95,40 +96,56 @@ void AI::placeShips(int length){
                 shipGrid[shipStarterRow][shipStarterCol + i] = 'S';
             }
         }
-    }while(validatePosition(shipStarterRow, shipStarterCol, shipOrientation, shipLength) == false);
-    Ship newShip(shipStarterCol, shipStarterRow, shipOrientation, shipLength);
-    shipArray[shipLength-1] = newShip;
+    }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
+    shipArray[shipLength-1] = new Ship(shipStarterCol, shipStarterRow, shipPlacement, shipLength);
 }
 
-bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength){
+bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength)
+{
 	bool isValid = false;
-	if(direction=="H"){
+	//int temporaryRow = row;
+	if(direction=="H" || direction == "h")
+	{
 		for(int i=0;i<shipLength;i++)
 		{
 			if((colnum)<=10 && shipGrid[row-1][colnum-1]=='0'){
 				isValid = true;
 			}
-			else if(shipGrid[row-1][colnum-1]=='S'){
-				return(false);
+			else if(shipGrid[row-1][colnum-1]=='S')
+			{
+					//std::cout <<"Ships overlapping horizontally, please try again\n";
+					return(false);
+					//isValid = false;
+					//return(isValid);
 			}
-			else{
+			else
+			{
 				isValid = false;
+				//std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 			}
 			colnum++;
 		}
 	}
-	if(direction=="V"){
+
+	//changed int i, to int j, cuz bug fixing. - andrews
+	if(direction=="V" || direction == "v"){
 		for(int j=0;j<shipLength;j++){
 			if(row <= 10 && shipGrid[row-1][colnum-1]=='0' ){
 				isValid = true;
 			}
-			else if(row>10){
+			else if(row>10)
+			{
+				//std::cout << "\n\nInvalid Coordinates, try again.\n\n";
 				return(false);
 			}
-			else if(shipGrid[row-1][colnum-1]=='S'){
-				return(false);
+			else if(shipGrid[row-1][colnum-1]=='S')
+	 		{
+	 				//std::cout <<"Ships overlapping Vertically, please try again\n";
+					 return(false);
+	 				//isValid = false;
 	 		}
-			else{
+			else
+			{
 				isValid = false;
 			}
 			row++;
@@ -137,33 +154,3 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 	return(isValid);
 }
 
-void AI::checkGrid(char letterInput, int numberInput, Parent& otherPlayer){
-	int colnum = colToInt(letterInput);
-		if(otherPlayer.shipGrid[numberInput-1][colnum-1]== 'S')
-		{
-			std::cout << "Congrats you hit!\n";
-			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer.shipGrid[numberInput-1][colnum-1] = 'H';
-			for(int i = 0; i < m_ships;i++){
-				if(shipArray[i].getShipPlacementArray(numberInput-1,colnum-1) == 'S'){
-					shipArray[i].shipMinusHealth();
-				 	if(shipArray[i].checkIfSunk()){
-						numberOfShips--;
-					}
-				}
-			}
-		}
-		else if(shotGrid[numberInput-1][colnum-1]=='H'){
-			std::cout << "Already hit\n";
-		}
-		else 
-		{
-				std::cout << "The AI has missed.\n";
-				shotGrid[numberInput-1][colnum-1] = 'M';
-				otherPlayer.shipGrid[numberInput-1][colnum-1] = 'M';		
-		}		
-}
-
-int AI::shipsRemaining(){
-    return(numberOfShips);
-}
