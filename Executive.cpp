@@ -377,6 +377,12 @@ void Executive::run()
 
 }
 
+void Executive::takeTurn(Parent& player){
+	//print player map
+	//player takes shot
+	//shot feedback
+}
+
 bool Executive::charIsValid(char coord){
 	return(coord == 'a' || coord == 'A' || coord == 'b' || coord == 'B' || coord == 'c' || coord == 'C' || coord == 'd' || coord == 'D' || coord == 'e' || coord == 'E' || coord == 'f' || coord == 'F' || coord == 'g' || coord == 'G' || coord == 'h' || coord == 'H' || coord == 'i' || coord == 'I' || coord == 'j' || coord == 'J');
 }
@@ -432,7 +438,7 @@ bool Executive::charIsValid(char coord){
 // 	std::cout << "+---------------+---------------------------------------------------------------------------------------+\n";
 // }
 
- bool Executive::isWinner(Player& playerOne, Parent& playerTwo){
+ bool Executive::isWinner(Player playerOne, Parent playerTwo){
  	if(playerOne.shipsRemaining() == 0) {
 		 std::cout <<"\n\n\nPlayer One Wins\n\n\n";
 		 exit(1);
