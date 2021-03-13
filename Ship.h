@@ -29,34 +29,13 @@ class Ship
 		/**
 		* @pre Ship constructor is called and given a coordinate to start, string orientation and length
 		* @post The class is created, m_shipArray is filled with zeros
-		* @param int length, length of ship, string shipStart, coordinates for head of ship, string shipOrientation, direction ship does on board
+		* @param int length, length of ship
+		* @param string shipStart, coordinates for head of ship
+		* @param string shipStart, coordinates for head of ship 
+		* @param string shipOrientation, direction ship goes on board
 		* @return N/A
 		**/
 		Ship(int shipHead_XCoordinate, int shipHead_YCoordinate, std::string shipOrientation, int length);
-
-		/**
-		* @pre need to know if a ship is destroyed
-		* @post outputs bool if ship is destroyed
-		* @param none
-		* @return returns true if shipIntegrity is zero
-		**/
-		//bool isDestroyed();
-
-		/**
-		* @pre we need to know if the space was a ship
-		* @post space is checked and bool is returned
-		* @param int row - row of space to be checked, char col - column index of space to be checked
-		* @return returns true if the space contains a ship
-		**/
-		//bool isHit(int row, char col);
-
-		/**
-		* @pre we just want to know the ship's information, test function
-		* @post tells us information about the ship
-		* @param none
-		* @return N/A
-		**/
-		//void shipDocks();
 
 		/**
 		* @pre we need to store the values of the ship's coordinates in an array
@@ -75,23 +54,49 @@ class Ship
 		std::string numToString(int num);
 
 		/**
-		* @pre we need to access the private array in another class
-		* @post we've made it so we can access the array from another class
-		* @param none
-		* @return returns a pointer to the array of coordinates
+		* @pre input from user is a lowercase letter
+		* @post changes lowercase letter to uppercase for colToInt function
+		* @param char col, the input from user on where to fire their shot(A-J)
+		* @return returns user-inputted letter capitalized
 		**/
-		//std::string* getArray();
-
 		char capitalize(char col);
 
+		/**
+		* @pre ship object is intialized
+		* @post char of coordinate on ship's grid is returned
+		* @param int i, the x-position of the grid
+		* @param int j, the y-position of the grid
+		* @return returns value of array
+		**/
 		int getShipPlacementArray(int i, int j);
 
+		/**
+		* @pre ship object is intialized
+		* @post shipHealth is decreased by 1
+		* @param none
+		* @return void
+		**/
 		void shipMinusHealth();
-
+		/**
+		* @pre ship object is intialized
+		* @post shipHealth is returned
+		* @param none
+		* @return m_shipHealth
+		**/
 		int getHealth();
-
+		/**
+		* @pre ship object is intialized
+		* @post tells health of ship
+		* @param none
+		* @return returns m_shipLength
+		**/
 		int getLength();
-
+		/**
+		* @pre ship object is intialized
+		* @post ship is sunk or not sunk
+		* @param none
+		* @return true if shipHealth is 0, false if not 0
+		**/
 		bool checkIfSunk();
 
 	private:

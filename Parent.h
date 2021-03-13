@@ -11,7 +11,21 @@ class Parent
 {
     public:
 
+
+		/**
+		* @pre Player or AI class must be initialized
+		* @post shows Player or AI's firing board(grid that maps out where entity has shot at)
+		* @param string turnPlayer, tells user whose board it is
+		* @return void
+		**/
     	virtual void showFiringBoard(std::string turnPlayer); // shows top board where you fire your shots
+		
+		/**
+		* @pre Player or AI class must be initialized
+		* @post shows Player or AI's ship board(grid that maps out where entity's ships are placed)
+		* @param string turnPlayer, tells user whose board it is
+		* @return void
+		**/
 		virtual void showShipPlacement(std::string turnPlayer); // shows bottom board where youre ships are placed
 
 		/**
