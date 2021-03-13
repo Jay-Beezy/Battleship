@@ -98,7 +98,7 @@ void Player::placeShips(int length){
 			if (std::cin.fail())
 			{
 				std::cin.clear(); // clear the error flags
-    			std::cin.ignore(INT_MAX, '\n'); // discard the row
+    			std::cin.ignore(INT8_MAX, '\n'); // discard the row
 			}
 			else 
 				break;

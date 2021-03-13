@@ -84,9 +84,10 @@ void Executive::run()
 		{
 			playerTwo->placeShips(i+1);
 		}
+		playerTwo->showShipPlacement();
 	}
 	std::cout << "\nPlayer One's turn to fire!\n\n";
-	changeTurns();
+	//changeTurns();
 	do{
 		if(turn == 1){
 			takeTurn(playerOne, playerTwo, "One");
@@ -115,10 +116,12 @@ bool Executive::charIsValid(char coord){
 bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
  	if(playerOne->shipsRemaining() == 0) {
 		std::cout <<"\n\n\nPlayer One Wins\n\n\n";
+		exit(1);
  		return(true);
  	}
 	if(playerTwo->shipsRemaining() == 0) {
 		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
+		exit(1);
  		return(true);
  	}
  	return(false);
