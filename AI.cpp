@@ -121,7 +121,7 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 			if((colnum)<=10 && shipGrid[row][colnum]=='0'){
 				isValid = true;
 			}
-			else if(shipGrid[row-1][colnum-1]=='S')
+			else if(shipGrid[row][colnum]=='S')
 			{
 				return(false);
 			}
@@ -171,3 +171,4 @@ bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
 		}		
         return(false);
 }
+
