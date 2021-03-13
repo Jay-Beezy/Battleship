@@ -52,6 +52,8 @@ class Parent
 
 		virtual void shipHit(Ship& ship);
 
+		void showShipPlacement();
+
     //protected:
         int m_ships;
 		int m_numberOfShips;
