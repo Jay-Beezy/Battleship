@@ -93,8 +93,6 @@ class Player : public Parent
 		**/
 		const int shipsRemaining();
 
-		char getShotGrid(char letter, int input);
-
 		/**
 		* @pre the player has inputted coordinates to fire upon, we need to process them
 		* @post checks if the ship has been hit, if not does so
@@ -110,7 +108,6 @@ class Player : public Parent
 		* @return none
 		**/
 		void checkPower(char letterInput, int numberInput,Parent* otherPlayer);
-
 
 		/**
 		* @pre char column value needs to be converted to an integer

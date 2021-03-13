@@ -302,17 +302,19 @@ void Player::takeShot(Parent* opp){
 		std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
 		do
 		{
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
 			std::cout<<"Player "<< m_id << ", enter letter of the space you'd like to fire on: ";
 			std::cin>> xCoord;
 			if(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')))
 			{
 				std::cout << "ERROR: Please enter an character within the bounds [A, J].\n";
 			}
-		}while(!((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')));
+		}while(std::cin.fail() || !((xCoord >= 'a' && xCoord <= 'j') || (xCoord >= 'A' && xCoord <= 'J')));
 		do
 		{
-			//std::cin.clear();
-			//std::cin.ignore(100, '\n');
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
 			std::cout<<"Player "<< m_id << ", enter number of the space you'd like to fire on: ";
 			std::cin>>yCoord;
 			if(std::cin.fail())
@@ -354,9 +356,7 @@ void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'H';
 			for(int i = 0; i < m_ships;i++)
 			{
-				 //std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
-				 //not sure why this is here^
-				 if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
 					shipArray[i]->shipMinusHealth();
 				 	if(shipArray[i]->checkIfSunk())
@@ -401,8 +401,6 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 					otherPlayer->shipGrid[numberInput-2+k][colnum-2+j] = 'H';
 					for(int i = 0; i < m_ships;i++)
 					{
-						//std::cout << shipArray[i].getShipPlacementArray(numberInput-1,colnum-1)<< "\n";
-						//not sure why this is here^
 						if(shipArray[i]->getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
 						{
 							shipArray[i]->shipMinusHealth();
