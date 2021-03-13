@@ -45,6 +45,7 @@ AI::~AI(){
 void AI::takeShot(Parent* opp){
     int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
+    std::cout << "AI is firing on your ships!\n";
     do{
 
         if(m_difficulty == 1){
