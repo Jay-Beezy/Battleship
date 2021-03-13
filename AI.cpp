@@ -85,14 +85,18 @@ void AI::placeShips(int length){
         srand((unsigned) time(0));
         if (rand() % 2 == 0){
         shipPlacement = "V";
-    }
-    else{
-        shipPlacement = "H";
-    }
         srand((unsigned) time(0));
-        shipStarterCol = rand() % (11-length);
+        shipStarterCol = rand() % 10;
         srand((unsigned) time(0));
         shipStarterRow = rand() % (11-length);
+        }
+        else{
+            shipPlacement = "H";
+            srand((unsigned) time(0));
+            shipStarterCol = rand() % (11-length);
+            srand((unsigned) time(0));
+            shipStarterRow = rand() % 10;
+        }
     }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
     if(shipPlacement == "V"){
             for(int i = 0; i < length; i++){
