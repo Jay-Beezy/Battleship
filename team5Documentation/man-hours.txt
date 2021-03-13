@@ -36,3 +36,20 @@ Team 5 Project 2 Estimated Total Hours: 27.5
 0.5 hours - Steven - fixed overlap protection, ship segmenting
 1 hours - Steven - implemented isWinner function
 2 hours - Caden - implementing AI (Difficulty 1 complete, Difficulty 3 partially done)
+
+3/9
+0.5 hour - all - Team meeting
+
+3/10
+1 hour - Caden - AI Ship Placement
+0.5 hours - Caden - Decompose redundant and irrelevant code in player object and include ship object in AI class and methods
+
+3/11
+0.5 hours - Chen - Fix Bug 3
+1 hour - Steven - Created Parent class, moved code from Player class into Parent class
+2 hours - Steven - Started on implementing AI into Executive
+1.5 hours - Wesley - Work on power shot
+
+3/12
+1.5 hours - Wesley - Finished up power shot and fixed bug 11
+5 hours - Caden - Restructure Executive and AI/Player inheritance

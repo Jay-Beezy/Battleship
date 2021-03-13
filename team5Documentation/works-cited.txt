@@ -6,3 +6,10 @@ http://www.cplusplus.com/forum/beginner/2957/
 
 Exit function:
 https://www.youtube.com/watch?v=s7gUg-aAbEY
+
+Random number generator:
+https://www.cplusplus.com/reference/cstdlib/rand/
+
+Inheritance:
+https://www.youtube.com/watch?v=DHAAy4GJ684
+https://www.youtube.com/watch?v=gq2Igdc-OSI
