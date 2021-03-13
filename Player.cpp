@@ -231,7 +231,6 @@ bool Player::validatePosition(int row, int colnum, std::string direction, int sh
 	return(isValid);
 }
 
-
 int Player::colToInt(char column){
 	if(column == 'A' || column == 'a'){
 		return(1);
@@ -265,15 +264,6 @@ int Player::colToInt(char column){
 	}
 	return(0);
 }
-
-/* void Parent::shipHit(Ship& ship)
-{
-	ship.shipMinusHealth();
-	if(ship.getHealth() !=ship.getLength())
-	{
-		ship.checkIfSunk();
-	}
-} */
 
 const int Player::shipsRemaining()
 {

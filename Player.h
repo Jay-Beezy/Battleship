@@ -38,14 +38,6 @@ class Player : public Parent
 		Player();
 
 		/**
-		* @pre You need to turn a char column value to an int value
-		* @post the char is turned into the corresponding int
-		* @param char column, the column value
-		* @return int, the column return value
-		**/
-		//int colToInt(char column);
-
-		/**
 		* @pre The ship must be created and anchored to a spot on player grid
 		* @post The ships are anchored to the player's grid
 		* @param int length, how long that ships is
