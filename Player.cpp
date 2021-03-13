@@ -74,6 +74,7 @@ Player::Player()
 
 void Player::placeShips(int length){
 	char shipStarterCol;
+	std::string colInput;
 	int shipStarterRow = 0;
 	int shipLength = length;
 	std::string shipLocation;
@@ -88,8 +89,9 @@ void Player::placeShips(int length){
 		std::cout << "\nWhere would you like to place the head of the ship? \n";
 		do{
 			std::cout << "Please input a valid column (A - J): ";
-			std::cin >> shipStarterCol;
-		}while(!(shipStarterCol >= 'a' || shipStarterCol <= 'j' || shipStarterCol >= 'A' || shipStarterCol <= 'J'));
+			std::cin >> colInput;
+			shipStarterCol = colInput.at(0);
+		}while(colInput.length() > 1 || !(shipStarterCol >= 'a' || shipStarterCol <= 'j' || shipStarterCol >= 'A' || shipStarterCol <= 'J'));
 
 		do{
 			while(1){
