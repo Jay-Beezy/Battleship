@@ -141,7 +141,6 @@ bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
  }
  
   void Executive::changeTurns(){
-	/*
 	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 	system("clear");
 	std::cout << "Switching turns in: 3\n";
@@ -153,5 +152,4 @@ bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
 	std::cout << "Switching turns in: 1\n";
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	system("clear");
-	*/
  }
