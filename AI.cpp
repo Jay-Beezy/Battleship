@@ -51,14 +51,14 @@ AI::~AI(){
 void AI::takeShot(Parent* opp){
     int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
+    srand((unsigned) time(0));
     std::cout << "AI is firing on your ships!\n";
     if(m_difficulty == 1){
         do{
-        srand((unsigned) time(0));
         xCoord = rand() % 10;
-        srand((unsigned) time(0));
         yCoord = rand() % 10;
-        }while(checkGrid(xCoord + 1, yCoord + 1, opp));
+        }while(opp->getShipGrid(yCoord, xCoord) == 'H' || opp->getShipGrid(yCoord, xCoord) == 'M');
+        checkGrid(xCoord + 1, yCoord + 1, opp);
     }
     else if(m_difficulty == 2){
         takeShot2(opp);
