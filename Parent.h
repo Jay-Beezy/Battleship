@@ -60,6 +60,7 @@ class Parent
 
 		virtual char getShipGrid(int x, int y);
 
+		virtual std::string returnID();
     //protected:
         int m_ships;
 		int m_numberOfShips;

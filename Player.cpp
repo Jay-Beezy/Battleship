@@ -275,13 +275,6 @@ const int Player::shipsRemaining()
 			}
 		}
 	}
-
-	if(retShipCount == 0 && m_id == "One"){
-		std::cout <<"\n\n\nPlayer Two Wins\n\n\n";
-	}
-	else if(retShipCount == 0 && m_id == "Two"){
-		std::cout << "\n\n\nPlayer One Wins\n\n\n";
-	}
 	return(retShipCount);
 }
 
@@ -451,4 +444,8 @@ void Player::setShipGrid(int x, int y, char set){
 
 char Player::getShipGrid(int x, int y){
 	return(shipGrid[x][y]);
+}
+
+std::string Player::returnID(){
+	return("Player "+ m_id);
 }

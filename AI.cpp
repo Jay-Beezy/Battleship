@@ -239,9 +239,6 @@ const int AI::shipsRemaining(){
 			}
 		}
 	}
-	if(retShipCount == 0){
-		std::cout <<"\n\n\nPlayer One Wins\n\n\n";
-	}
 	return(retShipCount);
 }
 
@@ -324,4 +321,8 @@ void AI::setShipGrid(int x, int y, char set){
 
 char AI::getShipGrid(int x, int y){
 	return(shipGrid[x][y]);
+}
+
+std::string AI::returnID(){
+	return("AI");
 }

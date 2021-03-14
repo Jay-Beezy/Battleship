@@ -127,6 +127,13 @@ class Player : public Parent
 		**/
 		char getShipGrid(int x, int y);
 
+
+		/**
+		* @pre player ID is required elsewhere
+		* @return player ID
+		**/
+		std::string returnID();
+
 		/**
 		* @pre char column value needs to be converted to an integer
 		* @post none

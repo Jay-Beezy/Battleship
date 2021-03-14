@@ -130,10 +130,12 @@ bool Executive::charIsValid(char coord){
 
 bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
  	if(playerOne->shipsRemaining() == 0) {
+		std::cout << "\n\n\n" << playerTwo->returnID() << " Wins\n\n\n";
 		exit(1);
  		return(true);
  	}
 	if(playerTwo->shipsRemaining() == 0) {
+		std::cout << "\n\n\n" << playerOne->returnID() << " Wins\n\n\n";
 		exit(1);
  		return(true);
  	}

@@ -87,6 +87,12 @@ class AI: public Parent
 		**/
 		char getShipGrid(int x, int y);
 
+		/**
+		* @pre player ID is required elsewhere
+		* @return AI ID
+		**/
+		std::string returnID();
+
     private:
         /**
 		* @pre a ship has been created, and it is not known if it's position is valid
