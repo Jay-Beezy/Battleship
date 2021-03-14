@@ -288,17 +288,22 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 }
 
 bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
+		std::cout<<"Im getting called right?\n";
 		if(otherPlayer->getShipGrid(numberInput-1, colnum-1) == 'S'){
 			shotGrid[numberInput-1][colnum-1] = 'H';
+			std::cout<<"AI Shot Hit!\n";
 			otherPlayer->setShipGrid(numberInput-1, colnum-1,  'H');
 			m_shipHealth--;
             for(int i = 0; i < m_ships;i++)
 			{
-				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				std::cout<<"SPAM\n";
+				if(otherPlayer->shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
-					shipArray[i]->shipMinusHealth();
-				 	if(shipArray[i]->checkIfSunk())
+					std::cout<<"ALMOST THERE\n";
+					otherPlayer->shipArray[i]->shipMinusHealth();
+				 	if(otherPlayer->shipArray[i]->checkIfSunk())
 					{
+						std::cout<<"WHAT THE HELL\n";
 						m_numberOfShips--;
 						otherPlayer->setCharge();
 					}

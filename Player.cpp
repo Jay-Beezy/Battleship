@@ -366,10 +366,10 @@ void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'H');
 			for(int i = 0; i < m_ships;i++)
 			{
-				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				if(otherPlayer->shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
-					shipArray[i]->shipMinusHealth();
-				 	if(shipArray[i]->checkIfSunk())
+					otherPlayer->shipArray[i]->shipMinusHealth();
+				 	if(otherPlayer->shipArray[i]->checkIfSunk())
 					{
 						m_numberOfShips--;
 						otherPlayer->setCharge();
