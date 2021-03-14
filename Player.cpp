@@ -421,6 +421,7 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 							if(shipArray[i]->checkIfSunk())
 							{
 								m_numberOfShips--;
+								otherPlayer->setCharge();
 							}
 						}
 					}

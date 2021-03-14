@@ -108,7 +108,7 @@ void Executive::run()
 			turn++;
 		}
 		else{
-			std::cout << "\nPlayer Two's turn to fire!\n\n";
+			std::cout << "\n" << playerTwo->returnID() << "'s turn to fire!\n\n";
 			changeTurns();
 			takeTurn(playerTwo, playerOne, "Two");
 			turn--;
