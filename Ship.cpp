@@ -22,8 +22,6 @@ Ship::Ship(int shipHead_xCoordinate, int shipHead_yCoordinate, std::string shipO
 			individualShipPlacements[j][k] = '0';
 		}
 	}
-
-
   createArray();
 }
 

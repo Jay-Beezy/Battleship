@@ -52,7 +52,7 @@ void AI::takeShot(Parent* opp){
     int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
     srand((unsigned) time(0));
-    std::cout << "AI is firing on your ships!\n";
+    std::cout << "AI is firing on your ships!\n\n";
     if(m_difficulty == 1){
         do{
         xCoord = rand() % 10;
@@ -290,13 +290,15 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
 		if(otherPlayer->getShipGrid(numberInput-1, colnum-1) == 'S'){
 			shotGrid[numberInput-1][colnum-1] = 'H';
-			std::cout<<"AI Shot Hit!\n";
 			otherPlayer->setShipGrid(numberInput-1, colnum-1,  'H');
 			m_shipHealth--;
             for(int i = 0; i < m_ships;i++)
 			{
 				if(otherPlayer->shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
 				 {
+					std::cout << "The AI hit your size "<< otherPlayer->shipArray[i]->getLength();
+					std::cout << " ship at "<< intToCol(colnum - 1) << numberInput <<"!\n";
+					std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 					otherPlayer->shipArray[i]->shipMinusHealth();
 				 	if(otherPlayer->shipArray[i]->checkIfSunk())
 					{
@@ -307,6 +309,7 @@ bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
 			}
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='0'){
+			std::cout << "The AI missed your ships.\n";
             shotGrid[numberInput-1][colnum-1] = 'M';
 			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'M');
 		}
@@ -326,4 +329,30 @@ char AI::getShipGrid(int x, int y){
 
 std::string AI::returnID(){
 	return("AI");
+}
+
+const char AI::intToCol(int num){
+	if(num == 0){
+		return 'A';
+	} else if(num == 1){
+		return 'B';
+	} else if(num == 2){
+		return 'C';
+	} else if(num == 3){
+		return 'D';
+	} else if(num == 4){
+		return 'E';
+	} else if(num == 5){
+		return 'F';
+	} else if(num == 6){
+		return 'G';
+	} else if(num == 7){
+		return 'H';
+	} else if(num == 8){
+		return 'I';
+	} else if(num == 9){
+		return 'J';
+	} else{
+		return '\0';
+	}
 }

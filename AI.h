@@ -7,6 +7,8 @@
 #include <string>
 #include "Ship.h"
 #include "Parent.h"
+#include <thread>
+#include <chrono>
 
 class AI: public Parent
 {
@@ -35,23 +37,6 @@ class AI: public Parent
 		* @return void
 		**/
         void takeShot(Parent* opp);
-		
-		/**
-		* @pre The ship must be created and anchored to a spot on player grid
-		* @post Helper function for recursive method of difficulty 2
-		* @param Parent* opp, the enemy player
-		* @return void
-		**/
-		void takeShot2(Parent* opp);
-		
-		/**
-		* @pre The ship must be created and anchored to a spot on player grid
-		* @post recursivly sniffs out ships for ai difficulty 2
-		* @param Parent* opp, the enemy player
-		* @return void
-		**/
-		bool takeShotR(Parent* opp, int direction);
-
         /**
 		* @pre The ship must be created and anchored to a spot on player grid
 		* @post The ships are anchored to the player's grid
@@ -67,7 +52,6 @@ class AI: public Parent
 		* @return int, numberOfShips AI has
 		**/
 		const int shipsRemaining();
-
 
 		/**
 		* @pre ship grid must be updated
@@ -114,6 +98,31 @@ class AI: public Parent
 		* @return none
 		**/
 		bool checkGrid(int numberInput, int colnum, Parent* otherPlayer);
+
+		/**
+		* @pre the AI must convert from integer to char coordinate
+		* @post char will be returned
+		* @param num number to be converted
+		* @return converted char
+		**/
+		const char intToCol(int num);
+		
+		/**
+		* @pre The ship must be created and anchored to a spot on player grid
+		* @post Helper function for recursive method of difficulty 2
+		* @param Parent* opp, the enemy player
+		* @return void
+		**/
+		void takeShot2(Parent* opp);
+		
+		/**
+		* @pre The ship must be created and anchored to a spot on player grid
+		* @post recursivly sniffs out ships for ai difficulty 2
+		* @param Parent* opp, the enemy player
+		* @return void
+		**/
+		bool takeShotR(Parent* opp, int direction);
+
         int m_difficulty;
 		int m_shipHealth;
 		int m_ships;

@@ -415,10 +415,10 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 					otherPlayer->setShipGrid(numberInput-2+k, colnum-2+j, 'H');
 					for(int i = 0; i < m_ships;i++)
 					{
-						if(shipArray[i]->getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
+						if(otherPlayer->shipArray[i]->getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
 						{
-							shipArray[i]->shipMinusHealth();
-							if(shipArray[i]->checkIfSunk())
+							otherPlayer->shipArray[i]->shipMinusHealth();
+							if(otherPlayer->shipArray[i]->checkIfSunk())
 							{
 								m_numberOfShips--;
 								otherPlayer->setCharge();

@@ -96,7 +96,6 @@ void Executive::run()
 		{
 			playerTwo->placeShips(i+1);
 		}
-		playerTwo->showShipPlacement();
 	}
 	
 	
@@ -141,15 +140,15 @@ bool Executive::isWinner(Player* playerOne, Parent* playerTwo){
  }
  
   void Executive::changeTurns(){
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(2500));
 	system("clear");
 	std::cout << "Switching turns in: 3\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	system("clear");
 	std::cout << "Switching turns in: 2\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	system("clear");
 	std::cout << "Switching turns in: 1\n";
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	system("clear");
  }

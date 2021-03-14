@@ -52,8 +52,6 @@ class Parent
 
 		virtual void shipHit(Ship& ship);
 
-		void showShipPlacement();
-
 		virtual void setCharge();
 
 		virtual void setShipGrid(int x, int y, char set);
