@@ -44,5 +44,13 @@ void Parent::showShipPlacement(){
 }
 
 void Parent::setCharge(){
-	
+
+}
+
+void Parent::setShipGrid(int x, int y, char set){
+
+}
+
+char Parent::getShipGrid(int x, int y){
+	return('\0');
 }

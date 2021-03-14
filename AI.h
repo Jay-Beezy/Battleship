@@ -68,6 +68,25 @@ class AI: public Parent
 		**/
 		const int shipsRemaining();
 
+
+		/**
+		* @pre ship grid must be updated
+		* @post ship grid will be updated
+		* @param x y coordinate
+		* @param y x coordinate
+		* @param set the character to be set
+		**/
+		void setShipGrid(int x, int y, char set);
+
+		/**
+		* @pre ship grid cell must be obtained
+		* @post ship grid cell returned
+		* @param x y coordinate
+		* @param y x coordinate
+		* @return ship grid cell[x][y]
+		**/
+		char getShipGrid(int x, int y);
+
     private:
         /**
 		* @pre a ship has been created, and it is not known if it's position is valid

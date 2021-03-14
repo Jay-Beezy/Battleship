@@ -71,7 +71,7 @@ void AI::takeShot(Parent* opp){
         else if(m_difficulty == 3){
             for(int i = 0; i < 10; i++){
                 for(int j = 0; j < 10; j++){
-                    if(opp->shipGrid[i][j] == 'S'){
+                    if(opp->getShipGrid(i, j) == 'S'){
                         xCoord = j;
                         yCoord = i;
                     }
@@ -108,7 +108,7 @@ void AI::takeShot2(Parent* opp){
             xCoord = rand() % 10;
             srand((unsigned) time(0));
             yCoord = rand() % 10;
-			if(opp->shipGrid[xCoord][yCoord] == 'S')
+			if(opp->getShipGrid(xCoord, yCoord) == 'S')
 			{
 				//change mode and save hit
 				mX = xCoord;
@@ -137,12 +137,12 @@ bool AI::takeShotR(Parent* opp, int direction){
 				return true;//signal i cant go any further
 			}
 			//check if it is a hit or miss
-			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			if(opp->getShipGrid(nY, nX) == '0' || opp->getShipGrid(nY, nX) == 'S')
 			{
 				checkGrid(nX + 1, nY + 1, opp);
 				return false;//signal to move on,
 			}
-			else if(opp->shipGrid[nY][nX] == 'M')
+			else if(opp->getShipGrid(nY, nX) == 'M')
 			{
 				return true;//signal chain is over
 			}
@@ -155,12 +155,12 @@ bool AI::takeShotR(Parent* opp, int direction){
 				return true;//signal i cant go any further
 			}
 			//check if it is a hit or miss
-			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			if(opp->getShipGrid(nY, nX) == '0' || opp->getShipGrid(nY, nX) == 'S')
 			{
 				checkGrid(nX + 1, nY + 1, opp);
 				return false;//signal to move on,
 			}
-			else if(opp->shipGrid[nY][nX] == 'M')
+			else if(opp->getShipGrid(nY, nX) == 'M')
 			{
 				return true;//signal chain is over
 			}
@@ -173,12 +173,12 @@ bool AI::takeShotR(Parent* opp, int direction){
 				return true;//signal i cant go any further
 			}
 			//check if it is a hit or miss
-			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			if(opp->getShipGrid(nY, nX) == '0' || opp->getShipGrid(nY, nX) == 'S')
 			{
 				checkGrid(nX + 1, nY + 1, opp);
 				return false;//signal to move on,
 			}
-			else if(opp->shipGrid[nY][nX] == 'M')
+			else if(opp->getShipGrid(nY, nX) == 'M')
 			{
 				return true;//signal chain is over
 			}
@@ -191,12 +191,12 @@ bool AI::takeShotR(Parent* opp, int direction){
 				return true;//signal i cant go any further
 			}
 			//check if it is a hit or miss
-			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			if(opp->getShipGrid(nY, nX) == '0' || opp->getShipGrid(nY, nX) == 'S')
 			{
 				checkGrid(nX + 1, nY + 1, opp);
 				return false;//signal to move on,
 			}
-			else if(opp->shipGrid[nY][nX] == 'M')
+			else if(opp->getShipGrid(nY, nX) == 'M')
 			{
 				return true;//signal chain is over
 			}
@@ -297,18 +297,37 @@ bool AI::validatePosition(int row, int colnum, std::string direction, int shipLe
 }
 
 bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
-		if(otherPlayer->shipGrid[numberInput-1][colnum-1]== 'S'){
+		if(otherPlayer->getShipGrid(numberInput-1, colnum-1) == 'S'){
 			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer->setShipGrid(numberInput-1, colnum-1,  'H');
 			m_shipHealth--;
+            for(int i = 0; i < m_ships;i++)
+			{
+				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
+				 {
+					shipArray[i]->shipMinusHealth();
+				 	if(shipArray[i]->checkIfSunk())
+					{
+						m_numberOfShips--;
+						otherPlayer->setCharge();
+					}
+				 }
+			}
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='H'){
             return(true);
 		}
 		else {
 			shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
+			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'M');	
 		}		
         return(false);
 }
 
+void AI::setShipGrid(int x, int y, char set){
+	shipGrid[x][y] = set;
+}
+
+char AI::getShipGrid(int x, int y){
+	return(shipGrid[x][y]);
+}

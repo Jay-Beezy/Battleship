@@ -295,7 +295,6 @@ void Player::takeShot(Parent* opp){
 	}
 	do{
 		repeat = false;
-		std::cout << "DEBUG: charge = " << charge << "\n";
 		std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
 		do
 		{
@@ -344,13 +343,13 @@ void Player::takeShot(Parent* opp){
 void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 	int colnum = colToInt(letterInput);	
 	
-		if(otherPlayer->shipGrid[numberInput-1][colnum-1]== 'S')
+		if(otherPlayer->getShipGrid(numberInput-1, colnum-1) == 'S')
 		{
 			//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 			//check isWinner? or do that in Executive
 			std::cout << "Congrats you hit!\n";
 			shotGrid[numberInput-1][colnum-1] = 'H';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'H';
+			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'H');
 			for(int i = 0; i < m_ships;i++)
 			{
 				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
@@ -372,7 +371,7 @@ void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 		{
 			std::cout << "Sorry you missed.\n";
 			shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
+			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'M');	
 		}		
 }
 
@@ -393,13 +392,13 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 		{
 			if(!(((numberInput-2+k)>9)||((numberInput-2+k)<0)||((colnum-2+j)>9)||((colnum-2+j)<0)))//make sure shot is still valid
 			{	
-				if(otherPlayer->shipGrid[numberInput-2+k][colnum-2+j]== 'S')
+				if(otherPlayer->getShipGrid(numberInput-2+k, colnum-2+j) == 'S')
 				{	
 					fire = 1;
 					//print hit notif. check isDestroyed(), change values in showWaters to whatever we're using for hits
 					//check isWinner? or do that in Executive
 					shotGrid[numberInput-2+k][colnum-2+j] = 'H';
-					otherPlayer->shipGrid[numberInput-2+k][colnum-2+j] = 'H';
+					otherPlayer->setShipGrid(numberInput-2+k, colnum-2+j, 'H');
 					for(int i = 0; i < m_ships;i++)
 					{
 						if(shipArray[i]->getShipPlacementArray(numberInput-2+k,colnum-2+j) == 'S')
@@ -417,7 +416,7 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 				else 
 				{
 					shotGrid[numberInput-2+k][colnum-2+j] = 'M';
-					otherPlayer->shipGrid[numberInput-2+k][colnum-2+j] = 'M';		
+					otherPlayer->setShipGrid(numberInput-2+k, colnum-2+j, 'M');		
 				}
 			}
 		}
@@ -432,4 +431,12 @@ void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){
 		std::cout << "Sorry you missed.\n";
 	}
 	charge = 0;//use up the charge
+}
+
+void Player::setShipGrid(int x, int y, char set){
+	shipGrid[x][y] = set;
+}
+
+char Player::getShipGrid(int x, int y){
+	return(shipGrid[x][y]);
 }

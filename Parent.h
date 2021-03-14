@@ -56,6 +56,10 @@ class Parent
 
 		virtual void setCharge();
 
+		virtual void setShipGrid(int x, int y, char set);
+
+		virtual char getShipGrid(int x, int y);
+
     //protected:
         int m_ships;
 		int m_numberOfShips;
