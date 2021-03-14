@@ -83,13 +83,18 @@ void Player::placeShips(int length){
 	system("clear");
 	std::cout << "\nPlayer "<< m_id<< " is placing their ships!\n\n";
 	showShipPlacement(m_id);
-	std::cout << "\nWhat orientation would you like the ship to be placed in?\n";
+	
 	do{
-		do{
-			std::cout << "Vertical or Horizontal? (V / H): ";
-			std::cin >> shipPlacement;
-		}while(!std::cin.fail() && shipPlacement != "V" && shipPlacement != "v" && shipPlacement != "H" && shipPlacement != "h");
-		std::cout << "\nWhere would you like to place the head of the ship? \n";
+		if(shipLength != 1){
+			do{
+				std::cout << "\nWhat orientation would you like the size " << shipLength << " ship to be placed in?\n";
+				std::cout << "Vertical or Horizontal? (V / H): ";
+				std::cin >> shipPlacement;
+			}while(!std::cin.fail() && shipPlacement != "V" && shipPlacement != "v" && shipPlacement != "H" && shipPlacement != "h");
+		} else {
+			shipPlacement = "V";
+		}
+		std::cout << "\nWhere would you like to place the head of the size " << shipLength << " ship? \n";
 		do{
 			std::cout << "Please input a valid column (A - J): ";
 			std::cin >> colInput;
