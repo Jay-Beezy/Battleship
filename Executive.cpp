@@ -72,8 +72,6 @@ void Executive::run()
 
 	Player* playerOne = new Player(shipAmount, "One");
 	Parent* playerTwo;
-
-	std::cout << "\nPlayer One's turn to place their ships!\n\n";
 	//Populating Player 1
 	playerOne->showFiringBoard("One");
 	for(int i = 0; i < shipAmount; i++){
@@ -82,7 +80,6 @@ void Executive::run()
 	if(choice == 1)
 	{
 		playerTwo = new Player(shipAmount, "Two");
-		std::cout << "\nPlayer Two's turn to place their ships!\n\n";
 		changeTurns();
 		//Populating Player 2
 		playerTwo->showFiringBoard("Two");	
@@ -101,19 +98,22 @@ void Executive::run()
 		}
 		playerTwo->showShipPlacement();
 	}
-	std::cout << "\nPlayer One's turn to fire!\n\n";
-	//changeTurns();
+	
+	
 	do{
 		if(turn == 1){
+			std::cout << "\nPlayer One's turn to fire!\n\n";
+			changeTurns();
 			takeTurn(playerOne, playerTwo, "One");
 			turn++;
 		}
 		else{
+			std::cout << "\nPlayer Two's turn to fire!\n\n";
+			changeTurns();
 			takeTurn(playerTwo, playerOne, "Two");
 			turn--;
 		}
 		if(!isWinner(playerOne, playerTwo)){
-		changeTurns();
 		}
 	}while(!isWinner(playerOne, playerTwo));
 }

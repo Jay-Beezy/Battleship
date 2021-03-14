@@ -80,6 +80,9 @@ void Player::placeShips(int length){
 	std::string shipLocation;
 	std::string shipPlacement;
 
+	system("clear");
+	std::cout << "\nPlayer "<< m_id<< " is placing their ships!\n\n";
+	showShipPlacement(m_id);
 	std::cout << "\nWhat orientation would you like the ship to be placed in?\n";
 	do{
 		do{
@@ -132,6 +135,7 @@ void Player::placeShips(int length){
 				//std::cout << "shipGrid: " << arrayRow <<arrayCol+i << " = " << shipGrid[arrayRow][arrayCol+i] << "\n";
 		}
 	}
+	
 }
 
 void Player::showFiringBoard(std::string turnPlayer)

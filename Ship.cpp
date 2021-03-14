@@ -97,7 +97,6 @@ void Ship::createArray()
 		for(int j = 0; j < 10; j++){
 			//std::cout << individualShipPlacements[i][j] << "     ";
 		}
-		std::cout << "\n";
 	}
 }
 
@@ -109,8 +108,7 @@ int Ship::getShipPlacementArray(int i, int j)
 void Ship::shipMinusHealth()
 {
 	m_shipHealth--;
-	std::cout << "Ship Health: " << m_shipHealth << "\n";
-
+	//std::cout << "Ship Health: " << m_shipHealth << "\n";
 }
 
 bool Ship::checkIfSunk()
