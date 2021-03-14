@@ -295,6 +295,7 @@ void Player::takeShot(Parent* opp){
 	}
 	do{
 		repeat = false;
+		std::cout << "DEBUG: charge = " << charge << "\n";
 		std::cout<<"Player "<< m_id << ", enter coordinates of the space you'd like to fire on.\n";
 		do
 		{
@@ -356,10 +357,10 @@ void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 				 {
 					shipArray[i]->shipMinusHealth();
 				 	if(shipArray[i]->checkIfSunk())
-					 {
-						 m_numberOfShips--;
-						 otherPlayer->charge = 1;
-					 }
+					{
+						m_numberOfShips--;
+						otherPlayer->setCharge();
+					}
 				 }
 			}
 		}
@@ -373,6 +374,10 @@ void Player::checkGrid(char letterInput, int numberInput, Parent* otherPlayer){
 			shotGrid[numberInput-1][colnum-1] = 'M';
 			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
 		}		
+}
+
+void Player::setCharge(){
+	charge = 1;
 }
 
 void Player::checkPower(char letterInput, int numberInput, Parent* otherPlayer){

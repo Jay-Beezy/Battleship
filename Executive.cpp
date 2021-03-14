@@ -31,8 +31,23 @@ void Executive::run()
 	std::cout << "+-+-+-+-+-+-+-BATTLESHIP-+-+-+-+-+-+-+\n";
 
 	int shipAmount = 0;
+	
 	std::cout <<"Play with Human(1) or AI(2): ";
 	std::cin >> choice;
+	while(choice <=0 || choice > 2 || std::cin.fail()){
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		std::cout <<"Play with Human(1) or AI(2): ";
+		std::cin >> choice;
+		if(std::cin.fail()){
+			std::cout << "ERROR: Please enter an integer.\n";
+		}
+		else if(choice <= 0 || choice > 2){
+			std::cout << "ERROR: Please enter an integer within the bounds [1, 2].\n";
+		}
+		std::cout << std::endl;
+	}
+
 
 	if(choice == 2){
 		std::cout <<"What AI Difficulty? (1 for easy, 2 for medium, 3 for hard): ";
