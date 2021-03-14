@@ -60,3 +60,7 @@ Team 5 Project 2 Estimated Total Hours: 27.5
 1 hour - Wesley - Difficulty 2 AI
 1 hour - Wesley - Bug fixing
 3 hours - Caden - Bug fixing / stress testing
+
+3/14
+1.5 hours - Wesley - Bug fixing
+2 hours - Caden - Bug fixing
