@@ -142,7 +142,6 @@ bool AI::takeShotR(Parent* opp, int direction){
 			{
 				checkGrid(nX + 1, nY + 1, opp);
 				return false;//signal to move on,
-				std::cout<<"YOU SHOULD BE STOPPED \n\n\n BITCH\n";
 			}
 			else if(opp->shipGrid[nY][nX] == 'M')
 			{
@@ -214,17 +213,16 @@ void AI::placeShips(int length){
 	std::string shipPlacement;
 
     do{
-        srand((unsigned) time(0));
         if (rand() % 2 == 0){
         shipPlacement = "V";
-    }
-    else{
-        shipPlacement = "H";
-    }
-        srand((unsigned) time(0));
-        shipStarterCol = rand() % (11-length);
-        srand((unsigned) time(0));
+        shipStarterCol = rand() % 10;
         shipStarterRow = rand() % (11-length);
+        }
+        else{
+            shipPlacement = "H";
+            shipStarterCol = rand() % (11-length);
+            shipStarterRow = rand() % 10;	
+        }
     }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
     if(shipPlacement == "V"){
             for(int i = 0; i < length; i++){
@@ -240,7 +238,12 @@ void AI::placeShips(int length){
 }
 
 const int AI::shipsRemaining(){
-    return(m_shipHealth);
+    if(m_shipHealth == 0){
+		if(m_numberOfShips == 0){
+			std::cout <<"\n\n\nAI Wins\n\n\n";
+		}
+	}
+	return(m_shipHealth);
 }
 
 bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength)
