@@ -101,6 +101,13 @@ class Player : public Parent
 		**/
 		void checkPower(char letterInput, int numberInput,Parent* otherPlayer);
 
+
+		/**
+		 * @pre charge needs to be set after ship is sunk
+		 * @post charge = 1
+		 **/
+		void setCharge();
+
 		/**
 		* @pre char column value needs to be converted to an integer
 		* @post none
