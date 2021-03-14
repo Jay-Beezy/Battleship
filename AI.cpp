@@ -52,44 +52,28 @@ void AI::takeShot(Parent* opp){
     int xCoord = 0;//these were '\0' before so i changed them to 0
     int yCoord = 0;
     std::cout << "AI is firing on your ships!\n";
-    if(m_difficulty == 2){
-		takeShot2(opp);
-		/*srand((unsigned) time(0));
-		xCoord = rand() % 10;
-		srand((unsigned) time(0));
-		yCoord = rand() % 10;
-		//recursive shot
-		*/
-	}
-	else
-	{
+    if(m_difficulty == 1){
         do{
-            if(m_difficulty == 1){
-                srand((unsigned) time(0));
-                xCoord = rand() % 10;
-                srand((unsigned) time(0));
-                yCoord = rand() % 10;
-            }
-            else if(m_difficulty == 2){
-                takeShot2(opp);
-                /*srand((unsigned) time(0));
-                xCoord = rand() % 10;
-                srand((unsigned) time(0));
-                yCoord = rand() % 10;
-                //recursive shot
-                */
-            }
-            else if(m_difficulty == 3){
-                for(int i = 0; i < 10; i++){
-                    for(int j = 0; j < 10; j++){
-                        if(opp->getShipGrid(i, j) == 'S'){
-                            xCoord = j;
-                            yCoord = i;
-                        }
-                    }
+        srand((unsigned) time(0));
+        xCoord = rand() % 10;
+        srand((unsigned) time(0));
+        yCoord = rand() % 10;
+        }while(checkGrid(xCoord + 1, yCoord + 1, opp));
+    }
+    else if(m_difficulty == 2){
+        takeShot2(opp);
+    }
+    else if(m_difficulty == 3){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(opp->getShipGrid(i, j) == 'S'){
+                    xCoord = j;
+                    yCoord = i;
+                    checkGrid(xCoord + 1, yCoord + 1, opp);
+                    return;
                 }
             }
-        }while(checkGrid(xCoord + 1, yCoord + 1, opp));
+        }
     }
 }
 
@@ -305,7 +289,6 @@ bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
 			shotGrid[numberInput-1][colnum-1] = 'H';
 			otherPlayer->setShipGrid(numberInput-1, colnum-1,  'H');
 			m_shipHealth--;
-<<<<<<< HEAD
             for(int i = 0; i < m_ships;i++)
 			{
 				if(shipArray[i]->getShipPlacementArray(numberInput-1,colnum-1) == 'S')
@@ -318,31 +301,15 @@ bool AI::checkGrid(int colnum, int numberInput, Parent* otherPlayer){
 					}
 				 }
 			}
-||||||| 9da336e
-=======
-			return(false);
->>>>>>> 467068e7848122bde6bfe0bd7083ccb80ed43378
 		}
 		else if(shotGrid[numberInput-1][colnum-1]=='0'){
             shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';
-			return(false);
+			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'M');
 		}
-<<<<<<< HEAD
-		else {
-			shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer->setShipGrid(numberInput-1, colnum-1, 'M');	
+		else { //'M' and 'H' cases - require re-do
+			return(true);
 		}		
-        return(false);
-||||||| 9da336e
-		else {
-			shotGrid[numberInput-1][colnum-1] = 'M';
-			otherPlayer->shipGrid[numberInput-1][colnum-1] = 'M';	
-		}		
-        return(false);
-=======
-		return(true);
->>>>>>> 467068e7848122bde6bfe0bd7083ccb80ed43378
+		return(false);
 }
 
 void AI::setShipGrid(int x, int y, char set){
