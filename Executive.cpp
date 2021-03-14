@@ -113,8 +113,6 @@ void Executive::run()
 			takeTurn(playerTwo, playerOne, "Two");
 			turn--;
 		}
-		if(!isWinner(playerOne, playerTwo)){
-		}
 	}while(!isWinner(playerOne, playerTwo));
 }
 
