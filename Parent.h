@@ -54,6 +54,8 @@ class Parent
 
 		void showShipPlacement();
 
+		virtual void setCharge();
+
     //protected:
         int m_ships;
 		int m_numberOfShips;
