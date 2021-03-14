@@ -231,12 +231,18 @@ void AI::placeShips(int length){
 }
 
 const int AI::shipsRemaining(){
-    if(m_shipHealth == 0){
-		if(m_numberOfShips == 0){
-			std::cout <<"\n\n\nAI Wins\n\n\n";
+    int retShipCount = 0;
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			if(shipGrid[i][j] == 'S'){
+				retShipCount++;
+			}
 		}
 	}
-	return(m_shipHealth);
+	if(retShipCount == 0){
+		std::cout <<"\n\n\nPlayer One Wins\n\n\n";
+	}
+	return(retShipCount);
 }
 
 bool AI::validatePosition(int row, int colnum, std::string direction, int shipLength)
