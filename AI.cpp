@@ -81,20 +81,21 @@ void AI::placeShips(int length){
 	std::string shipLocation;
 	std::string shipPlacement;
 
+    srand((unsigned) time(0));
     do{
-        srand((unsigned) time(0));
+        //srand((unsigned) time(0));
         if (rand() % 2 == 0){
         shipPlacement = "V";
-        srand((unsigned) time(0));
+        //srand((unsigned) time(0));
         shipStarterCol = rand() % 10;
-        srand((unsigned) time(0));
+       // srand((unsigned) time(0));
         shipStarterRow = rand() % (11-length);
         }
         else{
             shipPlacement = "H";
-            srand((unsigned) time(0));
+            //srand((unsigned) time(0));
             shipStarterCol = rand() % (11-length);
-            srand((unsigned) time(0));
+            //srand((unsigned) time(0));
             shipStarterRow = rand() % 10;
         }
     }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
@@ -112,6 +113,11 @@ void AI::placeShips(int length){
 }
 
 const int AI::shipsRemaining(){
+    if(m_shipHealth == 0){
+        if(m_numberOfShips == 0){
+		std::cout <<"\n\n\nAI Wins\n\n\n";
+	}
+    }
     return(m_shipHealth);
 }
 
