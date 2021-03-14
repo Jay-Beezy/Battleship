@@ -53,3 +53,10 @@ Team 5 Project 2 Estimated Total Hours: 27.5
 3/12
 1.5 hours - Wesley - Finished up power shot and fixed bug 11
 5 hours - Caden - Restructure Executive and AI/Player inheritance
+
+3/13
+2.5 hours - Chen - Stress testing
+1.5 hours - Steven - Bug fixing / stress testing
+1 hour - Wesley - Difficulty 2 AI
+1 hour - Wesley - Bug fixing
+3 hours - Caden - Bug fixing / stress testing

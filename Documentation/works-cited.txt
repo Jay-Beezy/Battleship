@@ -13,3 +13,6 @@ https://www.cplusplus.com/reference/cstdlib/rand/
 Inheritance:
 https://www.youtube.com/watch?v=DHAAy4GJ684
 https://www.youtube.com/watch?v=gq2Igdc-OSI
+
+Doxygen:
+https://youtu.be/-V_vHZPOZfY
