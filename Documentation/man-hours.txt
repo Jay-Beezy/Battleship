@@ -75,5 +75,6 @@ Date        - Member    - Task
 3/14
 1.5 hours   - Wesley    - Bug fixing
 2 hours     - Caden     - Bug fixing
+1 hour      - Caden     - Original design paradigm documentation
 
-Total: 57 man-hours
+Total: 58 man-hours
