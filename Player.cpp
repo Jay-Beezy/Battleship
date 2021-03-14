@@ -267,6 +267,9 @@ int Player::colToInt(char column){
 
 const int Player::shipsRemaining()
 {
+	if(m_numberOfShips == 0){
+		std::cout <<"\n\n\nPlayer "+ m_id +" Wins\n\n\n";
+	}
 	return(m_numberOfShips);
 }
 

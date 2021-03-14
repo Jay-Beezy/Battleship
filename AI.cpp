@@ -1,6 +1,11 @@
 #include "AI.h"
 
 AI::AI(int difficulty, int ships){
+	mode = 0; // memory variable for diff 2 recursive function
+	mX = 0; //memory variables for recursion
+	mY = 0;
+	nX = 0;
+	nY = 0;
     while(difficulty < 1 || difficulty > 3)
     {
         std::cerr << "ERROR: Invalid difficulty input. Please enter a valid on the bound [1,3]: ";
@@ -55,11 +60,13 @@ void AI::takeShot(Parent* opp){
             yCoord = rand() % 10;
         }
         else if(m_difficulty == 2){
-            srand((unsigned) time(0));
+            takeShot2(opp);
+			/*srand((unsigned) time(0));
             xCoord = rand() % 10;
             srand((unsigned) time(0));
             yCoord = rand() % 10;
             //recursive shot
+			*/
         }
         else if(m_difficulty == 3){
             for(int i = 0; i < 10; i++){
@@ -74,6 +81,129 @@ void AI::takeShot(Parent* opp){
     }while(checkGrid(xCoord + 1, yCoord + 1, opp));
 }
 
+void AI::takeShot2(Parent* opp){
+	int xCoord = 0;
+    int yCoord = 0;
+	if(mode == 1)//currently working on a shot
+	{
+		if(takeShotR(opp, 0))
+		{
+			if(takeShotR(opp,1))
+			{
+				if(takeShotR(opp,2))
+				{
+					if(takeShotR(opp,3))
+					{
+						//if this is true it has tried every place around the first hit
+						mode = 0;
+					}
+				}
+			}
+		}
+	}
+	if(mode == 0)//need to find a ship
+	{
+		do{//generate a shot, set it up for recursion if it is a ship, then send it.
+			srand((unsigned) time(0));
+            xCoord = rand() % 10;
+            srand((unsigned) time(0));
+            yCoord = rand() % 10;
+			if(opp->shipGrid[xCoord][yCoord] == 'S')
+			{
+				//change mode and save hit
+				mX = xCoord;
+				mY = yCoord;
+				mode = 1;
+			}
+			
+		}while(checkGrid(xCoord + 1, yCoord + 1, opp));
+	}
+}
+
+bool AI::takeShotR(Parent* opp, int direction){
+	//return true when I hit the end of this chain
+	//ship grid can be 0 M H or S
+	//by nature this function is centered on a H,
+	//if im looking up, I pass H and if I see an S or 0 I shoot, if I see an M the chain is over
+	nX = mX;
+	nY = mY;
+	do{
+		// i need to try and shoot the next block, if its an empty and it fails chain is over.
+		if(direction == 0)//up
+		{
+			nY = nY - 1;
+			if(nY < 0)
+			{
+				return true;//signal i cant go any further
+			}
+			//check if it is a hit or miss
+			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			{
+				checkGrid(nX + 1, nY + 1, opp);
+				return false;//signal to move on,
+			}
+			else if(opp->shipGrid[nY][nX] == 'M')
+			{
+				return true;//signal chain is over
+			}
+		}
+		else if(direction == 1)//right
+		{
+			nX = nX + 1;
+			if(nX > 9)
+			{
+				return true;//signal i cant go any further
+			}
+			//check if it is a hit or miss
+			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			{
+				checkGrid(nX + 1, nY + 1, opp);
+				return false;//signal to move on,
+			}
+			else if(opp->shipGrid[nY][nX] == 'M')
+			{
+				return true;//signal chain is over
+			}
+		}
+		else if(direction == 2)//down
+		{
+			nY = nY + 1;
+			if(nY > 9)
+			{
+				return true;//signal i cant go any further
+			}
+			//check if it is a hit or miss
+			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			{
+				checkGrid(nX + 1, nY + 1, opp);
+				return false;//signal to move on,
+			}
+			else if(opp->shipGrid[nY][nX] == 'M')
+			{
+				return true;//signal chain is over
+			}
+		}
+		else if(direction == 3)//left
+		{
+			nX = nX - 1;
+			if(nX < 0)
+			{
+				return true;//signal i cant go any further
+			}
+			//check if it is a hit or miss
+			if(opp->shipGrid[nY][nX] == '0' || opp->shipGrid[nY][nX] == 'S')
+			{
+				checkGrid(nX + 1, nY + 1, opp);
+				return false;//signal to move on,
+			}
+			else if(opp->shipGrid[nY][nX] == 'M')
+			{
+				return true;//signal chain is over
+			}
+		}
+	}while(1);//while(checkGrid(nX + 1, nY + 1, opp))
+}
+
 void AI::placeShips(int length){
 	int shipStarterCol;
 	int shipStarterRow = 0;
@@ -81,18 +211,23 @@ void AI::placeShips(int length){
 	std::string shipLocation;
 	std::string shipPlacement;
 
+    srand((unsigned) time(0));
     do{
-        srand((unsigned) time(0));
+        //srand((unsigned) time(0));
         if (rand() % 2 == 0){
         shipPlacement = "V";
-    }
-    else{
-        shipPlacement = "H";
-    }
-        srand((unsigned) time(0));
-        shipStarterCol = rand() % (11-length);
-        srand((unsigned) time(0));
+        //srand((unsigned) time(0));
+        shipStarterCol = rand() % 10;
+       // srand((unsigned) time(0));
         shipStarterRow = rand() % (11-length);
+        }
+        else{
+            shipPlacement = "H";
+            //srand((unsigned) time(0));
+            shipStarterCol = rand() % (11-length);
+            //srand((unsigned) time(0));
+            shipStarterRow = rand() % 10;
+        }
     }while((validatePosition(shipStarterRow, shipStarterCol, shipPlacement, shipLength)) == false);
     if(shipPlacement == "V"){
             for(int i = 0; i < length; i++){
@@ -108,6 +243,11 @@ void AI::placeShips(int length){
 }
 
 const int AI::shipsRemaining(){
+    if(m_shipHealth == 0){
+        if(m_numberOfShips == 0){
+		std::cout <<"\n\n\nAI Wins\n\n\n";
+	}
+    }
     return(m_shipHealth);
 }
 

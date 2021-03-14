@@ -35,6 +35,22 @@ class AI: public Parent
 		* @return void
 		**/
         void takeShot(Parent* opp);
+		
+		/**
+		* @pre The ship must be created and anchored to a spot on player grid
+		* @post Helper function for recursive method of difficulty 2
+		* @param Parent* opp, the enemy player
+		* @return void
+		**/
+		void takeShot2(Parent* opp);
+		
+		/**
+		* @pre The ship must be created and anchored to a spot on player grid
+		* @post recursivly sniffs out ships for ai difficulty 2
+		* @param Parent* opp, the enemy player
+		* @return void
+		**/
+		bool takeShotR(Parent* opp, int direction);
 
         /**
 		* @pre The ship must be created and anchored to a spot on player grid
@@ -76,5 +92,10 @@ class AI: public Parent
         int m_difficulty;
 		int m_shipHealth;
 		int m_ships;
-};
+		int mX;
+		int mY;
+		int nX;
+		int nY;
+		int mode;
+	};
 #endif
