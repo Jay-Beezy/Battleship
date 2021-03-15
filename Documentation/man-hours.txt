@@ -1,0 +1,80 @@
+Team 5 Project 2 Estimated Total Hours: 27.5
+*Estimation derived through Agile user story method, with Project 1 used as our inventory of products. We think Project 1 was equivalent to 8 story points and we estimate project 2 to be equivalent to 5 story points. Because Project 1 took 43.5 hours to complete, Project 2 has a 27.5 hour estimate*
+
+Date        - Member    - Task
+2/24
+2 hours     - Caden     - Team meeting
+2 hours     - Wesley    - Team meeting
+2 hours     - Steven    - Team meeting
+2 hours     - Chen      - Team meeting
+2 hours     - Bai       - Team meeting
+
+2/26
+0.5 hours   - Wesley    - Reviewing inherited project 2 code
+0.5 hours   - Caden     - Reviewing inherited project 2 code
+3 hours     - Steven    - Reviewing inherited project 2 code and fixing redundancies
+
+2/27
+6 hours     - Steven    - Implementing hit detection function
+1 hour      - Chen      - Reviewing inherited project 2 code and improving UI (clear screen after each turn)
+
+2/28
+0.5 hours   - Chen      - Improve UI (fixed terminal size - 105x50)
+
+3/1
+1.5 hours   - Caden     - Time log and works cited documentation files; Shot detection and UI bug fixes and improvements
+4 hours     - Steven    - worked on hitDetection and restructuring of way Ship object is designed
+1 hour      - Caden     - Team meeting
+1 hour      - Wesley    - Team meeting
+1 hour      - Steven    - Team meeting
+
+3/3
+2 hours     - Steven    - implemented overlap Protection(ships can't be placed so they overlap)
+2.5 hours   - Steven    - implemented protection for if shot hits place already shot(will prompt player to go again)
+
+3/4
+0.5 hours   - Caden     - implement charIsValid (verifies if char coordinate is in [A,J] bound
+2 hours     - Caden     - implement input protection for ship count, shot selection, and ship placement
+
+3/5
+1.5 hours   - Wesley    - ships being sunk
+
+3/8
+0.5 hours   - Steven    - fixed overlap protection, ship segmenting
+1 hours     - Steven    - implemented isWinner function
+2 hours     - Caden     - implementing AI (Difficulty 1 complete, Difficulty 3 partially done)
+
+3/9
+0.5 hour    - Caden     - Team meeting
+0.5 hour    - Wesley    - Team meeting
+0.5 hour    - Steven    - Team meeting
+0.5 hour    - Chen      - Team meeting
+0.5 hour    - Bai       - Team meeting
+
+3/10
+1 hour      - Caden     - AI Ship Placement
+0.5 hours   - Caden     - Decompose redundant and irrelevant code in player object and include ship object in AI class and methods
+
+3/11
+0.5 hours   - Chen      - Fix Bug 3
+1 hour      - Steven    - Created Parent class, moved code from Player class into Parent class
+2 hours     - Steven    - Started on implementing AI into Executive
+1.5 hours   - Wesley    - Work on power shot
+
+3/12
+1.5 hours   - Wesley    - Finished up power shot and fixed bug 11
+5 hours     - Caden     - Restructure Executive and AI/Player inheritance
+
+3/13
+2.5 hours   - Chen      - Stress testing
+1.5 hours   - Steven    - Bug fixing / stress testing
+1 hour      - Wesley    - Difficulty 2 AI
+1 hour      - Wesley    - Bug fixing
+3 hours     - Caden     - Bug fixing / stress testing
+
+3/14
+1.5 hours   - Wesley    - Bug fixing
+2 hours     - Caden     - Bug fixing
+1 hour      - Caden     - Original design paradigm documentation
+
+Total: 58 man-hours

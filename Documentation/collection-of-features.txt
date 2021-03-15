@@ -1,0 +1,6 @@
+* player is given access to a cluster shot, that affects a 3*3 area instead of a single area on grid
+* player is given one shot per each of their ship sunk
+* (Example:Player One sinks Player Two size 5 ship. Player two is given a power shot)
+* when player's ship is sunk, said player will be given a queue on the screen detailing mechanics of the powershot
+* player can then type input that lets them choose whether to use newly attained power shot or single shot
+* power shot has finite amount of uses( player get one for every one of their own ships that are sunk)

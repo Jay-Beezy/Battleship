@@ -1,0 +1,18 @@
+Sleep function to momentarily pause program in between turns:
+https://stackoverflow.com/questions/1658386/sleep-function-in-c
+
+Cin.fail integer input protection:
+http://www.cplusplus.com/forum/beginner/2957/
+
+Exit function:
+https://www.youtube.com/watch?v=s7gUg-aAbEY
+
+Random number generator:
+https://www.cplusplus.com/reference/cstdlib/rand/
+
+Inheritance:
+https://www.youtube.com/watch?v=DHAAy4GJ684
+https://www.youtube.com/watch?v=gq2Igdc-OSI
+
+Doxygen:
+https://youtu.be/-V_vHZPOZfY
